@@ -7,9 +7,17 @@ SaaS Team project. MEAN stack; Bootstrap
         node -v
         npm -v 
 
+## Install [MongoDB](https://www.mongodb.com/download-center/community) 
+## Install [As Service](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+
+
 ## Install Angular CLI globally
     Open terminal and run below command
         npm install -g @angular/cli
+
+## Install Nodemon globally 
+    Open terminal and run below command
+        npm install -g nodemon
 
 ## To initialize project
     navigate to root folder and run below command
