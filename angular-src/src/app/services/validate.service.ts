@@ -8,7 +8,7 @@ export class ValidateService {
   constructor() { }
 
   validateSignup(user) {
-    if(user.name == undefined || user.email == undefined || user.username == undefined || user.password == undefined) {
+    if(user.email == undefined || user.password == undefined) {
       return false;
     } else {
       return true;
