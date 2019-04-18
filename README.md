@@ -16,9 +16,9 @@ SaaS Team project. MEAN stack; Bootstrap
     Open terminal and run below command
         npm install -g @angular/cli
 
-## Install Nodemon globally 
+## Install TypeScript globally
     Open terminal and run below command
-        npm install -g nodemon
+        npm install -g typescript
 
 ## To initialize project
     navigate to root folder and run below command
@@ -28,9 +28,12 @@ SaaS Team project. MEAN stack; Bootstrap
 
 ## To start Node server, open new termial; navigate to root folder; run below command
 
-    nodemon -  starts node server
+    npm start -  starts node server
 
     Node will be listening on port 3000 by default
+
+## To compile TypeScript files - production moode
+    npm run-script build - comiples all .ts file under src folder and dumps them in dist folder.
 
 ## To start client, open new treminal; navigate into angular-src folder; run below command
 
