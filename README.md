@@ -32,7 +32,7 @@ SaaS Team project. MEAN stack; Bootstrap
 
     Node will be listening on port 3000 by default
 
-## To compile TypeScript files - production moode
+## To compile TypeScript files - production mode
     npm run-script build - comiples all .ts file under src folder and dumps them in dist folder.
 
 ## To start client, open new treminal; navigate into angular-src folder; run below command
