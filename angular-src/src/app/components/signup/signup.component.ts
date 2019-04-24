@@ -8,8 +8,8 @@ import { ValidateService} from '../../services/validate.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 
   constructor(private validateService: ValidateService) { }
 

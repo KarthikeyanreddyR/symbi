@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 // services
 import { ValidateService} from './services/validate.service';
+import { AppPasswordDirective } from './shared/directives/app-password.directive';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    AppPasswordDirective
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
   providers: [
     ValidateService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [AppPasswordDirective]
 })
 export class AppModule { }
