@@ -8,6 +8,7 @@ import { ValidateService} from '../../services/validate.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  name: string;
   email: string;
   password: string;
 
@@ -19,6 +20,7 @@ export class SignupComponent implements OnInit {
   onSignupSubmit() {
     console.log(123);
     let user = {
+      name: this.name,
       email: this.email,
       password:this.password
     }
