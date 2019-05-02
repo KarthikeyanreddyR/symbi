@@ -7,6 +7,16 @@ export class Address {
   country:string;
   geoLocation:string[];
   constructor() {
+    this.initialize();
+  }
 
+  private initialize() : void {
+    this.addressLine1 = '';
+    this.addressLine2 = '';
+    this.city = '',
+    this.state = undefined;
+    this.zip = 0;
+    this.country = '';
+    this.geoLocation = [];
   }
 }

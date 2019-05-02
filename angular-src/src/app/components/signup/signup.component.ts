@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ValidateService} from '../../services/validate.service';
+import { Parent } from 'src/app/shared/models/parent/parent';
+import { User, Profile } from 'src/app/shared/models/user';
+import { UserType } from 'src/app/shared/models/enums';
 
 @Component({
   selector: 'app-signup',
@@ -34,6 +37,14 @@ export class SignupComponent implements OnInit {
       console.log('invalid email', user);
       return false;
     }
+
+    let p = new User();
+    p.firstName = user.name;
+    p.email = user.email;
+    p.password = user.password;
+
+    console.log(p);
+
   }
 
 }
