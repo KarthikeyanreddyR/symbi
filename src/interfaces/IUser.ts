@@ -1,25 +1,27 @@
 import { Document } from "mongoose";
 import { UserType } from "./enums";
+import { ICaregiver } from "./ICaregiver";
+import { IParent } from "./IParent";
 
-export interface User extends Document {
-    firstName: string;
-    lastName: string;
-    gender: string;
-    profileImage: Blob;
+export interface IUser extends Document {
+    firstName?: string;
+    lastName?: string;
+    gender?: string;
+    profileImage?: Blob;
     email: string;
     password: string;
-    address: Address;
-    phoneNumber: number;
-    bio: string;
-    profiles: Profile[];
+    address?: IAddress;
+    phoneNumber?: number;
+    bio?: string;
+    profiles?: IProfile[];
 }
 
-export interface Profile {
+export interface IProfile {
     userType: UserType;
-    //profileData: Parent | Caregiver;
+    profileData: IParent | ICaregiver;
 }
 
-export interface Address {
+export interface IAddress {
     addressLine1: string;
     addressLine2: string;
     city: string;

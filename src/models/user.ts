@@ -1,4 +1,7 @@
-import { Document, Schema, Model, model} from "mongoose";
+import { Schema, Model, model} from "mongoose";
+import { IUser } from "../interfaces/IUser";
+import { AddressSchema } from "./address";
+import { ProfileSchema } from "./profile";
 
 const UserSchema:Schema = new Schema({
     firstName: {
@@ -15,24 +18,34 @@ const UserSchema:Schema = new Schema({
         contentType: String
     },
     email: {
-        type: String
+        type: String,
+        required : true,
+        unique : true
     },
     password: {
-        type: String
+        type: String,
+        required : true,
     },
     address: {
-        type: Schema.Types.ObjectId, ref: 'Address'
+        type: AddressSchema
     },
     phoneNumber: {
         type: Number
     },
     profiles: {
-
+        type : [ProfileSchema]
     },
     bio: {
         type: String
     },
 });
+
+UserSchema.methods.registerUser = (user:IUser, cb:any) => {
+    return new UserModel(user).save(cb);
+}
+
+export const UserModel: Model<IUser> = model<IUser>("User", UserSchema);
+
 
 // bcrypt.genSalt(10, (err: Error, salt: string) => {
 //     if(err) throw err;

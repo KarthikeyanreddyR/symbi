@@ -1,6 +1,6 @@
 import express from "express";
 import { Request, Response } from "express";
-import { User, UserRepository, UserModel } from '../models/user';
+import { UserModel } from '../models/user';
 import path from 'path';
 
 
@@ -22,20 +22,22 @@ class Routes {
         });
 
         this.router.post('/register', (req: Request, res: Response) => {
-            let newUser = new User();
-            newUser.name = req.body.name;
+            let newUser = new UserModel();
+            newUser.firstName = req.body.name;
             newUser.email = req.body.email;
             newUser.password = req.body.password;
 
             try {
-                UserRepository.addUser(newUser);
-                UserRepository.getUsers().then(users => {
-                    console.log(users);
-                });
-                res.json({
-                    success: true,
-                    msg: 'Registered user'
-                });
+                newUser.save((err, user) => {
+                    if(err) throw err;
+                    console.log('registered user');
+                    res.json({
+                        success: true,
+                        msg: 'Registered user',
+                        user : user
+                    });
+                })
+                
             } catch (error) {
                 res.json({
                     success: false,
