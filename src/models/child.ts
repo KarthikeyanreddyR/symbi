@@ -17,6 +17,6 @@ const ChildSchema: Schema = new Schema ({
         type: String
     },
     diet: {
-        
+        type: [String]
     }
 });
