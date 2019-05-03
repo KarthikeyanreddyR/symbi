@@ -44,6 +44,8 @@ class Routes {
             }
         });
 
+        // this.router.get(
+
         // Authenticate
         this.router.post('/auth', (req: Request, res: Response) => {
             res.send('Auth');
