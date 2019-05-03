@@ -44,7 +44,9 @@ class Routes {
             }
         });
 
-        // this.router.get(
+        this.router.get('/login', ((req: Request, res: Response) => {
+            res.sendFile(path.join(__dirname + '../../views/login.html'));
+        }));
 
         // Authenticate
         this.router.post('/auth', (req: Request, res: Response) => {
