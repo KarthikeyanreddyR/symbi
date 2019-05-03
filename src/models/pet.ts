@@ -13,4 +13,4 @@ const PetSchema: Schema = new Schema ({
     extraNotes: {
         type: [String]
     }
-})
+});
