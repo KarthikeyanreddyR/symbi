@@ -1,4 +1,5 @@
 import { Document, Schema, Model, model} from "mongoose";
+import { FamilySchema } from "./family";
 
 const ParentSchema:Schema = new Schema(
     {
@@ -6,7 +7,7 @@ const ParentSchema:Schema = new Schema(
             type: String
         },
         family: {
-            type: Schema.Types.ObjectId, ref: 'Family'
+            type: [FamilySchema]
         },
         houseRules: {
             type: [String]

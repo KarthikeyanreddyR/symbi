@@ -1,10 +1,12 @@
 import { Document, Schema, Model, model} from "mongoose";
+import { ChildSchema } from "./child";
+import { PetSchema } from "./pet";
 
-const FamilySchema: Schema = new Schema({
+export const FamilySchema: Schema = new Schema({
     children: {
-        type: Schema.Types.ObjectId, ref: ['Child']
+        type: [ChildSchema]
     },
     pets: {
-        type: Schema.Types.ObjectId, ref: ['Pet']
+        type: [PetSchema]
     }
 });
