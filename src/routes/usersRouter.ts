@@ -1,6 +1,7 @@
 import express from "express";
 import { Request, Response } from "express";
-import { User, UserRepository, UserModel } from '../models/user'
+import { User, UserRepository, UserModel } from '../models/user';
+import path from 'path';
 
 
 class Routes {
@@ -16,6 +17,10 @@ class Routes {
             res.status(200).send({
                 message: "Hello World$$$$$$$$$"
             });
+        });
+
+        this.router.get("/register", (req: Request, res:Response) => {
+            res.sendFile(path.join(__dirname + '../../views/register.html'));
         });
 
         this.router.post('/register', (req: Request, res: Response) => {
