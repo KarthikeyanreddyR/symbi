@@ -6,7 +6,7 @@ const ParentSchema:Schema = new Schema(
             type: String
         },
         family: {
-            type: Family
+            type: Schema.Types.ObjectId, ref: 'Family'
         },
         houseRules: {
             type: [String]
