@@ -7,4 +7,4 @@ const FamilySchema: Schema = new Schema({
     pets: {
         type: [Pets]
     }
-})
+});
