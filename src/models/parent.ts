@@ -1,5 +1,13 @@
 import { Document, Schema, Model, model} from "mongoose";
 
-const UserSchema:Schema = new Schema({
-
+const ParentSchema:Schema = new Schema({
+    bio: {
+        type: String
+    },
+    family: {
+        type: Family
+    },
+    houseRules: {
+        type: [String]
+    }
 });
