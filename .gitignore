@@ -65,3 +65,6 @@ dist/
 
 # webstrom files
 .idea/
+
+#vscode files
+.vscode/
