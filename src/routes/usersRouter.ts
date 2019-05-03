@@ -14,9 +14,7 @@ class Routes {
 
     private init(): void {
         this.router.get("/", (req: Request, res: Response) => {
-            res.status(200).send({
-                message: "Hello World$$$$$$$$$"
-            });
+            res.sendFile(path.join(__dirname + '../../views/index.html'));
         });
 
         this.router.get("/register", (req: Request, res:Response) => {
