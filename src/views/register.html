@@ -78,7 +78,18 @@
                 <div class="left-col">Left-Hand Column Div</div>
             </div>
             <div class="col-9">
-                <div class="main-col">Main Div</div>
+                <div class="main-col">
+
+                    <form action="register" method="POST" name="registerForm">
+                        <label for="">Name</label>
+                        <input type="text" name="name">
+                        <label for="">Email</label>
+                        <input type="text" name="email">
+                        <label for="">Password</label>
+                        <input type="text" name="password">
+                        <button type="submit" id="registerSubmit"> Register user</button>
+                    </form>
+                </div>
             </div>
         </div>
         <hr>
@@ -98,5 +109,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+            <script>
+                $('#registerSubmit').click((e)=> {
+                    $.ajax({
+                        method: POST,
+                        data : {
+
+                        },
+                        url : "register",
+                    })
+                })
+            </script>
     </body>
 </html>
