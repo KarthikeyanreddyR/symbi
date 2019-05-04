@@ -22,13 +22,14 @@ class Routes {
 
         this.router.post("/register", (req: Request, res: Response) => {
             const newUser = new UserModel();
-            newUser.firstName = req.body.name;
+            newUser.firstName = req.body.firstName;
+            newUser.lastName = req.body.lastName;
             newUser.email = req.body.email;
             newUser.password = req.body.password;
 
             try {
                 newUser.save((err, user) => {
-                    if (err) { throw err; }
+                    if (err) { console.log(err); }
                     console.log("registered user");
                     res.json({
                         success: true,
