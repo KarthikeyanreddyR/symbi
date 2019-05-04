@@ -63,7 +63,7 @@ typings/
 # output folder after compiling ts files
 dist/
 
-# webstrom files
+# webstorm files
 .idea/
 
 #vscode files

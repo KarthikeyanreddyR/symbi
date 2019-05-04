@@ -13,7 +13,7 @@ class Routes {
 
     private init(): void {
         this.router.get("/", (req: Request, res: Response) => {
-            res.sendFile(path.join(__dirname + "../../views/index.html"));
+            res.sendFile(path.join(__dirname + "../../views/home.html"));
         });
 
         this.router.get("/register", (req: Request, res: Response) => {
