@@ -35,7 +35,7 @@ class Routes {
                         success: true,
                         // tslint:disable-next-line:object-literal-sort-keys
                         msg: "Registered user",
-                        user,
+                        data: user
                     });
                 });
 
