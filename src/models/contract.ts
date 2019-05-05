@@ -15,10 +15,10 @@ export const ContractSchema: Schema = new Schema({
         type: Number
     },
     promiserDate: {
-        type: String
+        type: Date
     },
     promiseeDate: {
-        type: String
+        type: Date
     },
     contractStatus: {
         type: ContractStatus

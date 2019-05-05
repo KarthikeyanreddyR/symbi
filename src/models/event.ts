@@ -5,12 +5,12 @@ export const EventSchema: Schema = new Schema({
         type: String
     },
     date: {
-        type: String
+        type: Date
     },
     startTime: {
-        type: String
+        type: Date
     },
     endTime: {
-        type: String
+        type: Date
     }
 });
