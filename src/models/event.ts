@@ -8,6 +8,9 @@ export const EventSchema: Schema = new Schema({
         type: String
     },
     startTime: {
-        
+        type: String
+    },
+    endTime: {
+        type: String
     }
 });

@@ -1,7 +1,8 @@
 import { Schema, Model, model } from "mongoose";
 import { JobStatus, JobType } from "../interfaces/enums"
+import { EventSchema } from "./event";
 
-const JobSchema: Schema = new Schema({
+export const JobSchema: Schema = new Schema({
     jobName: {
         type: String
     },
