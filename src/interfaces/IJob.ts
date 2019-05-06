@@ -1,13 +1,12 @@
 import { Document } from "mongoose";
-import { UserType, JobType, JobStatus } from "./enums";
-import { ICaregiver } from "./ICaregiver";
-import { IParent } from "./IParent";
+import { JobType, JobStatus } from "./enums";
+import { IEvent } from "./IEvent";
 
 export interface IJob extends Document {
-    jobName?: string;
-    jobID?: string;
-    //TODO jobTime?: IEvent;
-    jobStatus?: JobStatus;
+    jobName: string;
+    jobID: string;
+    jobTime: IEvent;
+    jobStatus: JobStatus;
     jobType: JobType;
     jobNotes: string [];
 }
