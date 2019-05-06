@@ -18,14 +18,14 @@ let John = new UserModel({
 
 //Mary is a caregiver
 let Mary = new UserModel({
-    firstName: "John",
-    lastName: "Marston",
-    gender: "Male",
+    firstName: "Mary",
+    lastName: "Jane",
+    gender: "Female",
     profileImage: undefined,
-    email: "notacoward@outlaw.com",
-    password: "edgarrosssucks1",
-    address: "1776 Texas Rd",
+    email: "arachnoqueen@gmail.com",
+    password: "spiderman11",
+    address: "180 13th ave",
     phoneNumber: undefined,
-    bio: "Outlaw bounty hunter seeking caregiver for baby boy",
+    bio: "Freelance actor, part-time caregiver!",
     profiles: undefined
 });
