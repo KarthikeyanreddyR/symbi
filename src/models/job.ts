@@ -1,4 +1,4 @@
-import { Schema, Model, model } from "mongoose";
+import { Schema } from "mongoose";
 import { JobStatus, JobType } from "../interfaces/enums"
 import { EventSchema } from "./event";
 
