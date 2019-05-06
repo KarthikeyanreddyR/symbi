@@ -58,11 +58,11 @@ class Routes {
         }));
 
 /*        this.router.post("/login", (req: Request, res: Response) => {
-            User.findOne({_email: req.params.email,
-                                    _password: req.params.password},
-                                    (err: any, req.User.email) => {
-                if (err) { res.json(err); } else { res.render("show", {User : userInfo(firstName)};
-                });
+            UserModel.findOne({email: req.params.email,
+                                        password: req.params.password},
+                                        (err: any, user: UserModel) => {
+                if (err) { res.json(err); } else if (user) {res.send(user) else {res.status(500, "User not Found")}
+            });
         });*/
 
         // Authenticate
@@ -72,7 +72,7 @@ class Routes {
 
         // Profile
         this.router.get("/profile", (req: Request, res: Response) => {
-            res.send("profile");
+            res.sendFile(path.join(__dirname + "../../views/profile.html"));
         });
 
         //FIXME: TEST - DELETE ONCE DONE
