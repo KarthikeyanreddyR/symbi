@@ -1,4 +1,3 @@
-import { User } from "../../angular-src/src/app/shared/models/user";
 import { UserModel } from "../models/user";
 
 //Populate the DB with Users
