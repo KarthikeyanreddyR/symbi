@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import {userInfo} from "os";
 import path from "path";
 import {User} from "../../angular-src/src/app/shared/models/user";
+import {IUser} from "../interfaces/IUser";
 import { UserModel } from "../models/user";
 import { JobListingModel } from "../models/joblisting";
 import { IJobListing } from "../interfaces/IJobListing";
@@ -60,7 +61,7 @@ class Routes {
         this.router.post("/login", (req: Request, res: Response) => {
             UserModel.findOne({email: req.params.email,
                                         password: req.params.password},
-                                        (err: any, user: UserModel) => {
+                                        (err: any, user: IUser) => {
                 if (err) { res.json(err); } else if (user) { res.send(user); } else { res.status(500); }
             });
         });
