@@ -69,7 +69,7 @@ class Routes {
 
         // Profile
         this.router.get("/profile", (req: Request, res: Response) => {
-            res.send("profile");
+            res.sendFile(path.join(__dirname + "../../views/profile.html"));
         });
     }
 }
