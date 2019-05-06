@@ -16,7 +16,7 @@ class Routes {
         this.init();
     }
 
-    private init(): void {
+    private init(code: number): void {
         this.router.get("/", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/home.html"));
         });
@@ -57,13 +57,13 @@ class Routes {
             res.sendFile(path.join(__dirname + "../../views/login.html"));
         }));
 
-/*        this.router.post("/login", (req: Request, res: Response) => {
+        this.router.post("/login", (req: Request, res: Response) => {
             UserModel.findOne({email: req.params.email,
                                         password: req.params.password},
                                         (err: any, user: UserModel) => {
-                if (err) { res.json(err); } else if (user) {res.send(user) else {res.status(500, "User not Found")}
+                if (err) { res.json(err); } else if (user) { res.send(user); } else { res.status(500); }
             });
-        });*/
+        });
 
         // Authenticate
         this.router.post("/auth", (req: Request, res: Response) => {
