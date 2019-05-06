@@ -3,10 +3,10 @@ import { UserType, JobType, JobStatus } from "./enums";
 import { ICaregiver } from "./ICaregiver";
 import { IParent } from "./IParent";
 
-export interface IUser extends Document {
+export interface IJob extends Document {
     jobName?: string;
     jobID?: string;
-    jobTime?: IEvent;
+    //TODO jobTime?: IEvent;
     jobStatus?: JobStatus;
     jobType: JobType;
     jobNotes: string [];

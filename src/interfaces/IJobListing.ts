@@ -1,10 +1,10 @@
-import { Document } from "mongoose";
+import { Document, Schema } from "mongoose";
 import { UserType } from "./enums";
-import { ICaregiver } from "./ICaregiver";
+import { IJob } from "./IJob";
 import { IParent } from "./IParent";
 
 export interface IJobListing extends Document {
-    userID?: string;
-    //TODO: jobs?:
+    userID?: Schema.Types.ObjectId, ref: 'User';
+    jobs?: IJob []
     userType?: UserType;
 }
