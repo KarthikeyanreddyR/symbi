@@ -1,10 +1,11 @@
 import { Schema, Model, model } from "mongoose";
 import { JobSchema } from "./job"
 import { UserType } from "../interfaces/enums";
+import { IJobListing } from "../interfaces/IJobListing";
 
-export const JobListingSchema: Schema = new Schema({
+const JobListingSchema: Schema = new Schema({
     userID: {
-        type: String
+        type: Schema.Types.ObjectId, ref: 'User'
     },
     jobs: {
         type: [JobSchema]
@@ -13,3 +14,5 @@ export const JobListingSchema: Schema = new Schema({
         type: UserType
     }
 });
+
+export const JobListingModel: Model<IJobListing> = model<IJobListing>("JobListing", JobListingSchema);
