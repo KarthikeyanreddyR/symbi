@@ -1,6 +1,8 @@
 import express from "express";
 import { Request, Response } from "express";
+import {userInfo} from "os";
 import path from "path";
+import {User} from "../../angular-src/src/app/shared/models/user";
 import { UserModel } from "../models/user";
 
 class Routes {
@@ -35,7 +37,7 @@ class Routes {
                         success: true,
                         // tslint:disable-next-line:object-literal-sort-keys
                         msg: "Registered user",
-                        data: user
+                        data: user,
                     });
                 });
 
@@ -51,6 +53,14 @@ class Routes {
         this.router.get("/login", ((req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/login.html"));
         }));
+
+/*        this.router.post("/login", (req: Request, res: Response) => {
+            User.findOne({_email: req.params.email,
+                                    _password: req.params.password},
+                                    (err: any, req.User.email) => {
+                if (err) { res.json(err); } else { res.render("show", {User : userInfo(firstName)};
+                });
+        });*/
 
         // Authenticate
         this.router.post("/auth", (req: Request, res: Response) => {
