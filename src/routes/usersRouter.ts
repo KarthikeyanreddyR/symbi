@@ -21,6 +21,7 @@ class Routes {
         this.router.get("/register", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/register.html"));
         });
+        
 
         this.router.post("/register", (req: Request, res: Response) => {
             const newUser = new UserModel();
@@ -54,6 +55,8 @@ class Routes {
             res.sendFile(path.join(__dirname + "../../views/login.html"));
         }));
 
+
+
 /*        this.router.post("/login", (req: Request, res: Response) => {
             User.findOne({_email: req.params.email,
                                     _password: req.params.password},
@@ -69,7 +72,7 @@ class Routes {
 
         // Profile
         this.router.get("/profile", (req: Request, res: Response) => {
-            res.send("profile");
+            res.sendFile(path.join(__dirname + "../../views/profile.html"));
         });
     }
 }
