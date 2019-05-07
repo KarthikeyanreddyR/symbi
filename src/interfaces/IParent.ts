@@ -11,9 +11,9 @@ export interface IFamily {
 export interface IChild {
     name:string;
     gender:string;
-    birthDate:Date;
+    birthDate:Date | undefined;
     specialNeeds:string[];
-    sleepTime:Date;
+    sleepTime:Date | undefined;
     diet:string[];
     extraNotes:string[];
 }
