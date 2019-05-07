@@ -19,16 +19,8 @@ const JobListingSchema: Schema = new Schema({
     }
 });
 
-/**
- * Implementation testing method
- */
 JobListingSchema.methods.createJobListing = function(cb: any) {
     return this.save(cb);
 }
-
-JobListingSchema.methods.getAll = function(cb: any) {
-    return new JobListingModel(this).save(cb);
-}
-
 
 export const JobListingModel: Model<IJobListingSchema> = model<IJobListingSchema>("JobListing", JobListingSchema);

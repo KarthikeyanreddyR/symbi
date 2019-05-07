@@ -61,6 +61,10 @@ let _caregiver: ICaregiver = {
     extraNotes : '',
     rate : 20
 }
+let __caregiverProfile : IProfile = {
+    userType : UserType.CAREGIVER,
+    profileData : _caregiver
+}
 
 //Mary is a caregiver
 let Mary = new UserModel({
@@ -73,5 +77,5 @@ let Mary = new UserModel({
     address: "180 13th ave",
     phoneNumber: undefined,
     bio: "Freelance actor, part-time caregiver!",
-    profiles: [_caregiver]
+    profiles: [__caregiverProfile, _parentProfile]
 });

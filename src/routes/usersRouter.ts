@@ -32,28 +32,26 @@ class Routes {
         
 
         this.router.post("/register", (req: Request, res: Response) => {
-            const newUser = new UserModel();
-            newUser.firstName = req.body.firstName;
-            newUser.lastName = req.body.lastName;
-            newUser.email = req.body.email;
-            newUser.password = req.body.password;
+            let _user: IUser = UserModel.schema.statics.defaultObject();
+            
+            _user.firstName = req.body.firstName;
+            _user.lastName = req.body.lastName;
+            _user.email = req.body.email;
+            _user.password = req.body.password;
 
             try {
-                newUser.save((err, user) => {
+                new UserModel(_user).registerUser((err: any, user: IUser) => {
                     if (err) { console.log(err); }
                     console.log("registered user");
                     res.json({
                         success: true,
-                        // tslint:disable-next-line:object-literal-sort-keys
                         msg: "Registered user",
                         data: user,
                     });
                 });
-
             } catch (error) {
                 res.json({
                     success: false,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     msg: "Failed to register",
                 });
             }
@@ -64,18 +62,29 @@ class Routes {
         }));
 
         this.router.post("/login", (req: Request, res: Response) => {
-            UserModel.findOne({email: req.params.email,
-                                        password: req.params.password},
-                                        (err: any, user: IUser) => {
-                if (err) { res.json(err); }
-                else if (user) { res.send(user); console.log("Sign In Successful"); }
-                else { res.status(500); }
+            UserModel.findOne({ email: req.body.email }, (err: any, user: IUser) => {
+                if (err) {
+                    res.json(err);
+                } else if (user) {
+                    if(user.password === req.body.password) {
+                        res.json({
+                            success: true,
+                            msg: "Login successful",
+                            data: user,
+                        });
+                    } else {
+                        res.json({
+                            success: false,
+                            msg: "Invalid password"
+                        });
+                    }
+                } else {
+                    res.json({
+                        success: false,
+                        msg: "Invalid email"
+                    });
+                }
             });
-        });
-
-        // Authenticate
-        this.router.post("/auth", (req: Request, res: Response) => {
-            res.send("Auth");
         });
 
         // Profile
