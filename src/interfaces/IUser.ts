@@ -1,3 +1,8 @@
+/**
+ * Filename: IUser.ts
+ * Created: 5.5.2019
+ * Description: 
+ */
 import { Document } from "mongoose";
 import { UserType } from "./enums";
 import { ICaregiver } from "./ICaregiver";
