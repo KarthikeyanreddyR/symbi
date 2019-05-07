@@ -24,7 +24,7 @@
             min-height: 300px;
             margin: 15px 5px 10px 0;
             padding: 15px;
-            color: #000000;
+			color: black;
         }
         .foundation-col{
             background: #b2ebf2;
@@ -37,6 +37,10 @@
             background: #b2ebf2;
             font-family: sans-serif;
         }
+		.profile-rating{
+		color:black;
+		}
+		
         #updatePhoto {
             display: block;
             width: 100%;
@@ -94,13 +98,13 @@
                 <p style="text-align: center">A Symbiotic Relationship Between Parents and Nannies</p>
                 <div class="profile-summary">
                     <h3 style="text-align: center">Profile Details</h3>
-                    <img src="/assets/pexels-photo-1036622_sq400.jpg" alt="Sarah Ghelani" width="100%" height="auto"/>
-<!--               ** Going with local image vs online image for now **
-                    ** Added image and assets folder to github repo **
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>-->
+<!--                    <img src="C:\Users\Victo\WebstormProjects\k\symbi\src\assets\pexels-photo-1036622_sq400.jpg" alt="Sarah Ghelani"/>-->
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
                     <button class="btn btn-primary" type="button" id="updatePhoto">Change Photo</button>
+                    
+                        <h4>Charlie Williams</h4></a>
+						<p class="profile-rating">RATEING: <span>8/10</span></p>
                     <ul>
-                        <li><h4>Sarah Ghelani</h4></a></li>
                         <li><a href="">Upcoming events</a></li>
                         <li><a href="">Activity Log</a></li>
                     </ul>
@@ -114,194 +118,248 @@
                     <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="family-tab" data-toggle="tab" href="#family" role="tab" aria-controls="family" aria-selected="false">Family</a>
+                    <a class="nav-link" id="experience-tab" data-toggle="tab" href="#experience" role="tab" aria-controls="family" aria-selected="false">Experience</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment</a>
                 </li>
+				 <li class="nav-item">
+                    <a class="nav-link" id="acceptedjob-tab" data-toggle="tab" href="#acceptedjob" role="tab" aria-controls="postedjob" aria-selected="false">Accepted Jobs</a>
+                </li>
             </ul>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>User Id</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Sarah123</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Sarah Ghelani</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>sarahghelani@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Phone</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>123 456 7890</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Address</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>1100 NE 9th Pl</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>City</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Bellevue</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>State</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>WA</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Pin</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>98004</p>
-                                    </div>
-                                </div>
+			
+			
+			
+			
+			<div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>User Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Charlie123</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Charlie Williams</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Date of Birth</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>6/25/1986</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Female</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>charlieW@gmail.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>223 4466 7890</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>1260 112th Ave NE</p>
+                                            </div>
+                                        </div>
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>City</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Bellevue</p>
+                                            </div>
+                                        </div>
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>State</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>WA</p>
+                                            </div>
+                                        </div>
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Pin</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>98004</p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane " id="experience" role="tabpanel" aria-labelledby="experience-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Certification</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Yes</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Years of Experience</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>7 years</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Special qualities</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Special traing completed for kids below 5 years</p>
+                                                <p>Special training with pets</p>
+                                            </div>
+                                        </div>
+                                        
+							</div>
+							
+							
+							<div class="tab-pane " id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Amount to be received</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>1000$</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Payment Due</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>5/24/2019</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Account Details</label>
+                                            </div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+                                                <label>Account Number</label>
+											</div>
+                                            <div class="col-md-6">	
+                                                <p>xxxxxx135</p>
+                                            </div>
+                                        </div>
+                            </div>
+							
+							
+							<div class="tab-pane " id="acceptedjob" role="tabpanel" aria-labelledby="acceptedjob-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Job posted 1</label>
+                                            </div>
+                                        </div>
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Job Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Sarah Ghelani kid's</p>
+                                            </div>
+                                        </div>
+										
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Date</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>6/4/2019</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Time</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>11:00am - 4:00pm</p>
+                                            </div>
+                                        </div>
+										
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Place</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>1100 NE 9th PL, Bellevue WA, 98004</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Job posted 2</label>
+                                            </div>
+                                        </div>
+										
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Job Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>John Mark kid's</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Date</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>6/12/2019</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Time</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>08:00am - 2:00pm</p>
+                                            </div>
+                                        </div>
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Place</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>1367 110th N, Bellevue WA, 98004</p>
+                                            </div>
+                                        </div>
+                            </div>
+						</div>
                     </div>
-                    <div class="tab-pane " id="family" role="tabpanel" aria-labelledby="family-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Number of children</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>1</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Date of birth</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>5/24/2016</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Gender</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Male</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Allergies</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Peanuts</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Child sleep time</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>12:00pm /5:00pm / 8:00pm</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Have Pets</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Yes</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Type of Pet</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Dog</p>
-                                    </div>
-                                </div>
-                    </div>
-                    
-                    
-                    <div class="tab-pane " id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Current Balance</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>600$</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Payment Due</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>5/24/2019</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Card Details</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Card Number</label>
-                                    </div>
-                                    <div class="col-md-6">	
-                                        <p>xxxx-xxxx-xxxx-1100</p>
-                                    </div>
-                                </div>
-                    </div>
-
-                    <div class="tab-pane " id="postedjob" role="tabpanel" aria-labelledby="postedjob-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Date</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>6/4/2019</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Time</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>11:00am - 4:30pm</p>
-                            </div>
-                        </div>
-                       
-            </div>
-                </div>
-            </div>
-        </div>
+			</div>
         </div>
     </div>
     <hr>
@@ -314,7 +372,9 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
