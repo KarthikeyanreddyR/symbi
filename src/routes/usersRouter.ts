@@ -21,7 +21,7 @@ class Routes {
         this.init();
     }
 
-    private init(code: number): void {
+    private init(): void {
         this.router.get("/", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/home.html"));
         });

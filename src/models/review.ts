@@ -2,10 +2,12 @@ import { Schema } from "mongoose";
 
 export const ReviewSchema: Schema = new Schema({
     reviewerID: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     revieweeID: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     reviewTitle: {
         type: String
