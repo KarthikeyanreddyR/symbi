@@ -1,7 +1,11 @@
-import { Schema, Model, model } from "mongoose";
+import { Schema, Model, model, Document } from "mongoose";
 import { JobSchema } from "./job"
 import { UserType } from "../interfaces/enums";
 import { IJobListing } from "../interfaces/IJobListing";
+
+interface IJobListingSchema extends IJobListing, Document {
+    createJobListing(cb: any): void;
+}
 
 const JobListingSchema: Schema = new Schema({
     userID: {
@@ -15,11 +19,8 @@ const JobListingSchema: Schema = new Schema({
     }
 });
 
-export const JobListingModel: Model<IJobListing> = model<IJobListing>("JobListing", JobListingSchema);
-
-/**
- * Implementation testing method
- */
-JobListingSchema.methods.createJobListing = (jobListing: IJobListing, cb:any) => {
-    return new JobListingModel(jobListing).save(cb);
+JobListingSchema.methods.createJobListing = function(cb: any) {
+    return this.save(cb);
 }
+
+export const JobListingModel: Model<IJobListingSchema> = model<IJobListingSchema>("JobListing", JobListingSchema);

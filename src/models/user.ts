@@ -1,7 +1,15 @@
-import { Schema, Model, model} from "mongoose";
-import { IUser } from "../interfaces/IUser";
+import { Schema, Model, model, Document} from "mongoose";
+import { IUser, IProfile } from "../interfaces/IUser";
 import { AddressSchema } from "./address";
 import { ProfileSchema } from "./profile";
+import { IFamily, IParent } from "../interfaces/IParent";
+import { UserType } from "../interfaces/enums";
+import { IExperience, ICaregiver } from "../interfaces/ICaregiver";
+
+interface IUserSchema extends IUser, Document {
+    //defaultObject() : IUser;
+    registerUser(cb: any): void;
+}
 
 const UserSchema:Schema = new Schema({
     firstName: {
@@ -40,11 +48,49 @@ const UserSchema:Schema = new Schema({
     },
 });
 
-UserSchema.methods.registerUser = (user:IUser, cb:any) => {
-    return new UserModel(user).save(cb);
+UserSchema.statics.defaultObject = function(): IUser {
+    let _family: IFamily = {
+        children : [],
+        pets : []
+    }
+    let _parent: IParent = {
+        family : _family,
+        houseRules : []
+    }
+    let _parentProfile : IProfile = {
+        userType : UserType.PARENT,
+        profileData : _parent
+    }
+    let _caregiver: ICaregiver = {
+        birthDate : undefined,
+        certificates : undefined,
+        experience : [],
+        extraNotes : '',
+        rate : 0
+    }
+    let __caregiverProfile : IProfile = {
+        userType : UserType.CAREGIVER,
+        profileData : _caregiver
+    }
+    return {
+        firstName : '',
+        lastName: '',
+        email: '',
+        password: '',
+        bio: '',
+        gender: '',
+        phoneNumber: 0,
+        profileImage: undefined,
+        address: undefined,
+        profiles: [_parentProfile, __caregiverProfile]
+    }
 }
 
-export const UserModel: Model<IUser> = model<IUser>("User", UserSchema);
+UserSchema.methods.registerUser = function(cb:any): void {
+    this.save(cb);
+}
+
+export const UserModel: Model<IUserSchema> = model<IUserSchema>("User", UserSchema);
 
 
 // bcrypt.genSalt(10, (err: Error, salt: string) => {

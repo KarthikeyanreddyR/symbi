@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
 import usersRouter from './routes/usersRouter';
+import jobRoutes from './routes/jobRoutes';
 
 export class App {
 
@@ -29,5 +30,6 @@ export class App {
     private routes(): void {
         // map routes
         this.app.use('/api', usersRouter);
+        this.app.use('/api/job', jobRoutes);
     }
 }

@@ -3,22 +3,21 @@
  * Created: 5.5.2019
  * Description: 
  */
-import { Document } from "mongoose";
 import { UserType } from "./enums";
 import { ICaregiver } from "./ICaregiver";
 import { IParent } from "./IParent";
 
-export interface IUser extends Document {
-    firstName?: string;
-    lastName?: string;
-    gender?: string;
-    profileImage?: Blob;
+export interface IUser {
+    firstName: string;
+    lastName: string;
+    gender: string;
+    profileImage: Blob | undefined;
     email: string;
     password: string;
-    address?: IAddress;
-    phoneNumber?: number;
-    bio?: string;
-    profiles?: IProfile[];
+    address: IAddress | undefined;
+    phoneNumber: number | undefined;
+    bio: string | undefined;
+    profiles: IProfile[] | undefined;
 }
 
 export interface IProfile {
