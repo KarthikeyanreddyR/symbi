@@ -16,3 +16,10 @@ const JobListingSchema: Schema = new Schema({
 });
 
 export const JobListingModel: Model<IJobListing> = model<IJobListing>("JobListing", JobListingSchema);
+
+/**
+ * Implementation testing method
+ */
+JobListingSchema.methods.createJobListing = (jobListing: IJobListing, cb:any) => {
+    return new JobListingModel(jobListing).save(cb);
+}

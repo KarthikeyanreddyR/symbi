@@ -4,16 +4,23 @@ import {userInfo} from "os";
 import path from "path";
 import {User} from "../../angular-src/src/app/shared/models/user";
 import { UserModel } from "../models/user";
+import { JobListingModel } from "../models/joblisting";
+import { IJobListing } from "../interfaces/IJobListing";
+import { UserType } from "../interfaces/enums";
 
 class Routes {
     public router: express.Router;
 
     constructor() {
         this.router = express.Router();
+        this.newMethod();
+    }
+
+    private newMethod() {
         this.init();
     }
 
-    private init(): void {
+    private init(code: number): void {
         this.router.get("/", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/home.html"));
         });
@@ -55,15 +62,13 @@ class Routes {
             res.sendFile(path.join(__dirname + "../../views/login.html"));
         }));
 
-
-
-/*        this.router.post("/login", (req: Request, res: Response) => {
-            User.findOne({_email: req.params.email,
-                                    _password: req.params.password},
-                                    (err: any, req.User.email) => {
-                if (err) { res.json(err); } else { res.render("show", {User : userInfo(firstName)};
-                });
-        });*/
+        this.router.post("/login", (req: Request, res: Response) => {
+            UserModel.findOne({email: req.params.email,
+                                        password: req.params.password},
+                                        (err: any, user: UserModel) => {
+                if (err) { res.json(err); } else if (user) { res.send(user); } else { res.status(500); }
+            });
+        });
 
         // Authenticate
         this.router.post("/auth", (req: Request, res: Response) => {
@@ -74,6 +79,25 @@ class Routes {
         this.router.get("/profile", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/profile.html"));
         });
+
+        //FIXME: TEST - DELETE ONCE DONE
+        /*
+        this.router.get("/joblisting", (req: Request, res: Response) => {
+            let jobList = new JobListingModel({
+                userID: undefined,
+                jobs: undefined,
+                userType: UserType.PARENT
+            })
+            jobList.save(function(error, jList) {
+                if(error) {
+                    console.log("ERROR IN JOB LISTING CREATION");
+                    console.log(error);
+                } else {
+                    console.log("SUCCESS");
+                }
+            });
+        });
+        */
     }
 }
 
