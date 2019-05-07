@@ -92,6 +92,11 @@ class Routes {
             res.sendFile(path.join(__dirname + "../../views/profile.html"));
         });
 
+
+        this.router.get("/caregiverprofile", (req: Request, res: Response) => {
+            res.sendFile(path.join(__dirname + "../../views/caregiverprofile.html"));
+        });
+
         //FIXME: TEST - DELETE ONCE DONE
         /*
         this.router.get("/joblisting", (req: Request, res: Response) => {
