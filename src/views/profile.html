@@ -37,6 +37,19 @@
             background: #b2ebf2;
             font-family: sans-serif;
         }
+
+        .profile-edit-btn{
+            border: none;
+            border-radius: 1.5rem;
+            width: 70%;
+            padding: 2%;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+            position: relative;
+            top: 0;
+            left: 600%;
+        }
 		
         #updatePhoto {
             display: block;
@@ -109,6 +122,11 @@
         </div>
         <div class="col-9">
             <div class="main-col">
+
+                    <div class="col-md-2">
+                            <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                        </div>
+                        
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
