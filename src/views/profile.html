@@ -95,8 +95,8 @@
                 <p style="text-align: center">A Symbiotic Relationship Between Parents and Nannies</p>
                 <div class="profile-summary">
                     <h3 style="text-align: center">Profile Details</h3>
-<!--                    <img src="C:\Users\Victo\WebstormProjects\k\symbi\src\assets\pexels-photo-1036622_sq400.jpg" alt="Sarah Ghelani"/>-->
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                    <img src="/assets/pexels-photo-1036622_sq400.jpg" width="100%" height="auto" alt="Sarah Ghelani"/>
+<!--                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>-->
                     <button class="btn btn-primary" type="button" id="updatePhoto">Change Photo</button>
                     
                         <h4>Sarah Ghelani</h4></a>
@@ -120,7 +120,7 @@
                     <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment</a>
                 </li>
 				 <li class="nav-item">
-                    <a class="nav-link" id="postedjob-tab" data-toggle="tab" href="#postedjob" role="tab" aria-controls="postedjob" aria-selected="false">Posted Jobs</a>
+                    <a class="nav-link" id="postedjob-tab" data-toggle="tab" href="#postedjob" role="tab" aria-controls="postedjob" aria-selected="false">Post Jobs</a>
                 </li>
             </ul>
 			
@@ -289,7 +289,60 @@
 							
 							
 							<div class="tab-pane " id="postedjob" role="tabpanel" aria-labelledby="postedjob-tab">
-                                        <div class="row">
+                                <h3>Post open Job</h3>
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="title">Event title</label>
+                                                <input type="text" class="form-control" id="title">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="startDate">Start date-time</label>
+                                                <div class="input-group date" id="startDate" data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#startDate"
+                                                           id="startDateVal" />
+                                                    <div class="input-group-append" data-target="#startDate" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="endDate">End date-time</label>
+                                                <div class="input-group date" id="endDate" data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#endDate"
+                                                           id="endDateVal" />
+                                                    <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="notes"> Notes </label>
+                                                <textarea class="form-control" id="notes" cols="30" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <button class="btn btn-dark" id="postOpenJob"> Post Job </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+            </div>
+<!--                                        <div class="row">
                                             <div class="col-md-6">
                                                 <label>Date</label>
                                             </div>
@@ -304,7 +357,7 @@
                                             <div class="col-md-6">
                                                 <p>11:00am - 4:30pm</p>
                                             </div>
-                                        </div>
+                                        </div>-->
                                        
                             </div>
 						</div>
