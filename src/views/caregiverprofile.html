@@ -37,6 +37,20 @@
             background: #b2ebf2;
             font-family: sans-serif;
         }
+		.profile-edit-btn{
+			border: none;
+			border-radius: 1.5rem;
+			width: 70%;
+			padding: 2%;
+			font-weight: 600;
+			color: #6c757d;
+			cursor: pointer;
+			right: 300%;
+			top: 150px;
+		}
+		.profile-rating{
+		color:black;
+		}
 		
         #updatePhoto {
             display: block;
@@ -100,6 +114,7 @@
                     <button class="btn btn-primary" type="button" id="updatePhoto">Change Photo</button>
                     
                         <h4>Charlie Williams</h4></a>
+						<p class="profile-rating">RATEING: <span>8/10</span></p>
                     <ul>
                         <li><a href="">Upcoming events</a></li>
                         <li><a href="">Activity Log</a></li>
@@ -107,8 +122,13 @@
                 </div>
             </div>
         </div>
+		
+		
         <div class="col-9">
             <div class="main-col">
+			
+			
+			
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
@@ -120,9 +140,11 @@
                     <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment</a>
                 </li>
 				 <li class="nav-item">
-                    <a class="nav-link" id="postedjob-tab" data-toggle="tab" href="#postedjob" role="tab" aria-controls="postedjob" aria-selected="false">Posted Jobs</a>
+                    <a class="nav-link" id="acceptedjob-tab" data-toggle="tab" href="#acceptedjob" role="tab" aria-controls="postedjob" aria-selected="false">Accepted Jobs</a>
                 </li>
             </ul>
+			
+			
 			
 			
 			
@@ -274,12 +296,21 @@
                             </div>
 							
 							
-							<div class="tab-pane " id="postedjob" role="tabpanel" aria-labelledby="postedjob-tab">
+							<div class="tab-pane " id="acceptedjob" role="tabpanel" aria-labelledby="acceptedjob-tab">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Job posted 1</label>
                                             </div>
                                         </div>
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Job Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Sarah Ghelani kid's</p>
+                                            </div>
+                                        </div>
+										
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Date</label>
@@ -296,9 +327,27 @@
                                                 <p>11:00am - 4:00pm</p>
                                             </div>
                                         </div>
+										
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Place</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>1100 NE 9th PL, Bellevue WA, 98004</p>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Job posted 2</label>
+                                            </div>
+                                        </div>
+										
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Job Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>John Mark kid's</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -315,6 +364,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p>08:00am - 2:00pm</p>
+                                            </div>
+                                        </div>
+										<div class="row">
+                                            <div class="col-md-6">
+                                                <label>Place</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>1367 110th N, Bellevue WA, 98004</p>
                                             </div>
                                         </div>
                             </div>
