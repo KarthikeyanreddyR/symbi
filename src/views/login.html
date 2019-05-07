@@ -117,7 +117,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script>
-        $('#loginSubmit').click(e)=>
+        $('#loginSubmit').click((e) =>
         {
             var user = {
                 email: $('#email').val(),
@@ -132,8 +132,8 @@
                 success: function (data) {
                     console.log('login complete', data);
                 }
-            });
-        }
+            })
+        })
     </script>
     </body>
 </html>

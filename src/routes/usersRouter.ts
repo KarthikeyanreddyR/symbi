@@ -67,7 +67,9 @@ class Routes {
             UserModel.findOne({email: req.params.email,
                                         password: req.params.password},
                                         (err: any, user: IUser) => {
-                if (err) { res.json(err); } else if (user) { res.send(user); } else { res.status(500); }
+                if (err) { res.json(err); }
+                else if (user) { res.send(user); console.log("Sign In Successful"); }
+                else { res.status(500); }
             });
         });
 
