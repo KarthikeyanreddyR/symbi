@@ -6,95 +6,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Post Open Job</title>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
     <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     <base href="/api/">
+    <style>
+        main>.container {
+            padding: 80px 15px 80px;
+        }
+    </style>
 </head>
 
 <body>
-    <!--Navbar-->
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <a class="navbar-brand active" href="">SYMBI</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="profile">Profile <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Logout<span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h3>Post open Job</h3>
-        <form>
-            <div class="form-row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="title">Event title</label>
-                        <input type="text" class="form-control" id="title">
+    <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
+            <a class="navbar-brand active" href="">SYMBI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile">Profile <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Logout<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        <div class="container">
+            <h3>Post open Job</h3>
+            <form>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">Event title</label>
+                            <input type="text" class="form-control" id="title">
+                        </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="form-row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="startDate">Start date-time</label>
-                        <div class="input-group date" id="startDate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#startDate"
-                                id="startDateVal" />
-                            <div class="input-group-append" data-target="#startDate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="startDate">Start date-time</label>
+                            <div class="input-group date" id="startDate" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#startDate"
+                                    id="startDateVal" />
+                                <div class="input-group-append" data-target="#startDate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="endDate">End date-time</label>
+                            <div class="input-group date" id="endDate" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#endDate"
+                                    id="endDateVal" />
+                                <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="endDate">End date-time</label>
-                        <div class="input-group date" id="endDate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#endDate"
-                                id="endDateVal" />
-                            <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="notes"> Notes </label>
+                            <textarea class="form-control" id="notes" cols="30" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="notes"> Notes </label>
-                        <textarea class="form-control" id="notes" cols="30" rows="5"></textarea>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <button class="btn btn-dark" id="postOpenJob"> Post Job </button>
                     </div>
-
                 </div>
+            </form>
+            <div id="outputcode" style="height: 40vh; overflow: auto; margin-top: 2rem; display: none;">
+                <pre></pre>
             </div>
-            <div class="form-row">
-                <div class="col-md-4">
-                    <button class="btn btn-dark" id="postOpenJob"> Post Job </button>
-                </div>
-            </div>
-        </form>
-        <div id="outputcode" style="height: 40vh; overflow: auto; margin-top: 2rem;">
-            <pre></pre>
         </div>
-    </div>
-
+    </main>
+    <footer class="footer mt-auto pb-3 bg-dark text-white navbar fixed-bottom">
+        <div class="container">
+                <p class="mx-auto"><i class="fa fa-copyright"></i> 2019 Symbii, Group F, CPSC 5240 19SQ, Seattle University</p>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -141,6 +148,7 @@
                 url: "job/openJob",
                 success: function (data) {
                     console.log('request complete', data);
+                    $('#outputcode').show();
                     $('#outputcode>pre').html(JSON.stringify(data, undefined, 2));
                 }
             })
