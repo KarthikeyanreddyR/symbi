@@ -29,11 +29,11 @@ class Routes {
         this.router.get("/register", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/register.html"));
         });
-        
+
 
         this.router.post("/register", (req: Request, res: Response) => {
             let _user: IUser = UserModel.schema.statics.defaultObject();
-            
+
             _user.firstName = req.body.firstName;
             _user.lastName = req.body.lastName;
             _user.email = req.body.email;
@@ -95,6 +95,10 @@ class Routes {
 
         this.router.get("/caregiverprofile", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/caregiverprofile.html"));
+        });
+
+        this.router.get('/openJob', (req: Request, res: Response) => {
+            res.sendFile(path.join(__dirname + '../../views/openJob.html'))
         });
 
         //FIXME: TEST - DELETE ONCE DONE
