@@ -23,6 +23,23 @@ class Routes {
             res.sendFile(path.join(__dirname + "../../views/home.html"));
         });
 
+        this.router.get("/users", (req: Request, res: Response) => {
+            UserModel.find({}, (err: any, docs:IUser) => {
+                if(err) {
+                    console.log(err);
+                    res.json({
+                        success: false,
+                        msg: "Something went wrong!!!"
+                    })
+                } else {
+                    res.json({
+                        success: true,
+                        data: docs
+                    })
+                }
+            })
+        });
+
         this.router.get("/register", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/register.html"));
         });
