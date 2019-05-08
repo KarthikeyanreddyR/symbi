@@ -7,7 +7,6 @@ import path from "path";
 import { IEvent } from "../interfaces/IEvent";
 import { IJob } from "../interfaces/IJob";
 import { UserModel } from "../models/user";
-import { IUser } from "../interfaces/IUser";
 
 class JobRoutes {
     public router: express.Router;
@@ -50,7 +49,6 @@ class JobRoutes {
                 jobStatus: JobStatus.CREATED,
                 jobType: JobType.OPEN_JOB
             }
-            let _userId: string = '';
             let _joblisting: IJobListing = {
                 userType: UserType.PARENT,
                 jobs: [_job]

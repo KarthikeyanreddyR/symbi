@@ -1,13 +1,8 @@
 import express from "express";
 import { Request, Response } from "express";
-import {userInfo} from "os";
 import path from "path";
-import {User} from "../../angular-src/src/app/shared/models/user";
 import {IUser} from "../interfaces/IUser";
 import { UserModel } from "../models/user";
-import { JobListingModel } from "../models/joblisting";
-import { IJobListing } from "../interfaces/IJobListing";
-import { UserType } from "../interfaces/enums";
 
 class Routes {
     public router: express.Router;
@@ -94,29 +89,6 @@ class Routes {
         this.router.get("/caregiverprofile", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/caregiverprofile.html"));
         });
-
-        this.router.get('/openJob', (req: Request, res: Response) => {
-            res.sendFile(path.join(__dirname + '../../views/openJob.html'))
-        });
-
-        //FIXME: TEST - DELETE ONCE DONE
-        /*
-        this.router.get("/joblisting", (req: Request, res: Response) => {
-            let jobList = new JobListingModel({
-                userID: undefined,
-                jobs: undefined,
-                userType: UserType.PARENT
-            })
-            jobList.save(function(error, jList) {
-                if(error) {
-                    console.log("ERROR IN JOB LISTING CREATION");
-                    console.log(error);
-                } else {
-                    console.log("SUCCESS");
-                }
-            });
-        });
-        */
     }
 }
 
