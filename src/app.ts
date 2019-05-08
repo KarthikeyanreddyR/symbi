@@ -4,7 +4,11 @@ import cors from 'cors';
 import path from 'path';
 import usersRouter from './routes/usersRouter';
 import jobRoutes from './routes/jobRoutes';
-
+/**
+ * Class to manage Express app.
+ * Middleware such as body-parser, cors are managed.
+ * Server routes and static folder config is managed.
+ */
 export class App {
 
     public app: express.Application;

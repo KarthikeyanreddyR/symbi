@@ -6,11 +6,14 @@ import { IFamily, IParent } from "../interfaces/IParent";
 import { UserType } from "../interfaces/enums";
 import { IExperience, ICaregiver } from "../interfaces/ICaregiver";
 
+/**
+ * Interface for UserSchema - extends from IUser and Mongoose.Document
+ */
 interface IUserSchema extends IUser, Document {
-    //defaultObject() : IUser;
     registerUser(cb: any): void;
 }
 
+// UserSchema - used to structure users collection through mongoose schema.
 const UserSchema:Schema = new Schema({
     firstName: {
         type: String
@@ -90,6 +93,7 @@ UserSchema.methods.registerUser = function(cb:any): void {
     this.save(cb);
 }
 
+// UserModel - mongoose model from UserSchema
 export const UserModel: Model<IUserSchema> = model<IUserSchema>("User", UserSchema);
 
 
