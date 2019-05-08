@@ -30,7 +30,6 @@ class Routes {
             res.sendFile(path.join(__dirname + "../../views/register.html"));
         });
 
-
         this.router.post("/register", (req: Request, res: Response) => {
             let _user: IUser = UserModel.schema.statics.defaultObject();
 
@@ -91,7 +90,6 @@ class Routes {
         this.router.get("/profile", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/profile.html"));
         });
-
 
         this.router.get("/caregiverprofile", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/caregiverprofile.html"));
