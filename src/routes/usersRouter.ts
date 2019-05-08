@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import path from "path";
 import {IUser} from "../interfaces/IUser";
 import { UserModel } from "../models/user";
+import { IReview } from "../interfaces/IReview";
+import { ReviewModel } from "../models/review";
 
 class Routes {
     public router: express.Router;
@@ -89,6 +91,52 @@ class Routes {
         this.router.get("/caregiverprofile", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/caregiverprofile.html"));
         });
+
+        this.router.get("/reviews", (req: Request, res: Response) => {
+            res.sendFile(path.join(__dirname + "../../views/reviews.html"));
+        });
+
+        this.router.get("/reviews", (req: Request, res: Response) => {
+            res.sendFile(path.join(__dirname + "../../views/reviews.html"));
+        });
+
+        this.router.post("/review", (req: Request, res: Response) => {
+            let review: IReview = {
+                reviewerID: "",
+                revieweeID: "",
+                reviewDate: new Date(),
+                reviewTitle: req.body.reviewTitle,
+                starRating: req.body.starRating,
+                reviewNotes: req.body.reviewNotes
+            }
+
+            UserModel.findOne({}).exec().then((user:any) => {
+                review.reviewerID = user['_id'];
+                review.revieweeID = user['_id'];
+
+                new ReviewModel(review).addReview((err: any, doc:IReview) => {
+                    if(err) {
+                        res.json({
+                            success: false,
+                            msg: 'error occurred'
+                        });
+                    } else {
+                        res.json({
+                            success: true,
+                            msg: 'review posted',
+                            data: doc
+                        })
+                    }
+                })
+            }, (err: any) => {
+                console.log(err);
+                res.json({
+                    success: false,
+                    msg: 'error occurred'
+                })
+            })
+        });
+
     }
 }
 

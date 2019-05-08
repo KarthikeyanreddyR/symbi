@@ -1,4 +1,9 @@
-import { Schema } from "mongoose";
+import { Schema, Document, Model, model } from "mongoose";
+import { IReview } from "../interfaces/IReview";
+
+interface IReviewSchema extends IReview, Document {
+    addReview(cb: any): void;
+}
 
 export const ReviewSchema: Schema = new Schema({
     reviewerID: {
@@ -22,3 +27,9 @@ export const ReviewSchema: Schema = new Schema({
         type: String
     }
 });
+
+ReviewSchema.methods.addReview = function(cb: any): void {
+    this.save(cb);
+}
+
+export const ReviewModel: Model<IReviewSchema> = model<IReviewSchema>('Review', ReviewSchema);
