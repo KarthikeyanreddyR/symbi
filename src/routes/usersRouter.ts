@@ -96,10 +96,6 @@ class Routes {
             res.sendFile(path.join(__dirname + "../../views/reviews.html"));
         });
 
-        this.router.get("/reviews", (req: Request, res: Response) => {
-            res.sendFile(path.join(__dirname + "../../views/reviews.html"));
-        });
-
         this.router.post("/review", (req: Request, res: Response) => {
             let review: IReview = {
                 reviewerID: "",
