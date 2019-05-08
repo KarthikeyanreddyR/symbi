@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 export enum UserType {
     PARENT, CAREGIVER
   }

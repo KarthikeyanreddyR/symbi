@@ -93,6 +93,7 @@ UserSchema.methods.registerUser = function(cb:any): void {
 export const UserModel: Model<IUserSchema> = model<IUserSchema>("User", UserSchema);
 
 
+/* PASSWORD HASH CODE BELOW - DO NOT TOUCH */
 // bcrypt.genSalt(10, (err: Error, salt: string) => {
 //     if(err) throw err;
 //     bcrypt.hash(newUser.password, salt, (err: Error, hash: string) => {
