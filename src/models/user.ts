@@ -13,7 +13,19 @@ interface IUserSchema extends IUser, Document {
     registerUser(cb: any): void;
 }
 
-// UserSchema - used to structure users collection through mongoose schema.
+/** UserSchema, used to structure users collection through mongoose schema.
+ * firstName: User's first name
+ * lastName: User's last name
+ * gender: User's gender
+ * profileImage: Picture for user's profile
+ * email: User's email
+ * password: User's password
+ * address: User's address
+ * phoneNumber:
+ * profiles: Collection of ProfileSchemas that hold the user's caregiver profile
+ *           and parent profile.
+ * bio: Short optional biography for user
+ */
 const UserSchema:Schema = new Schema({
     firstName: {
         type: String
@@ -51,6 +63,13 @@ const UserSchema:Schema = new Schema({
     },
 });
 
+/**
+ * User schema compilation of interfaces
+ * IFamily
+ * IParent
+ * IProfile
+ * ICaregiver
+ */
 UserSchema.statics.defaultObject = function(): IUser {
     let _family: IFamily = {
         children : [],
@@ -89,11 +108,17 @@ UserSchema.statics.defaultObject = function(): IUser {
     }
 }
 
+/**
+ * User registration method
+ */
 UserSchema.methods.registerUser = function(cb:any): void {
     this.save(cb);
 }
 
-// UserModel - mongoose model from UserSchema
+
+/** 
+ * Model for User, mongoose model from UserSchema
+ */
 export const UserModel: Model<IUserSchema> = model<IUserSchema>("User", UserSchema);
 
 
