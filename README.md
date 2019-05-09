@@ -40,3 +40,13 @@ SaaS Team project. MEAN stack; Bootstrap
     ng serve --o - compiles ts files and loads client in browser
 
     Angular will be served on port 4200 by default
+
+## Load MongoDB scripts.
+    Install MongoDB in local system.
+    Add MongoDB `bin` folder to PATH in Environmental variables.
+    To verify, open terminal anywhere and execute 'mongo' command. It should open mongo shell.
+    Open terminal in your scripts folder and fire up mongo shell.
+    Execute below cammand
+        load("java-script-file.js")
+     
+
