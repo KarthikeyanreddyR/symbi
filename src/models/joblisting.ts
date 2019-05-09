@@ -1,8 +1,15 @@
+/**
+ * Filename: joblisting.ts
+ * Created: 4.28.2019
+ * Description: This is the Model-Schema file for the JobListing
+ *              class.
+ */
 import { Schema, Model, model, Document } from "mongoose";
 import { JobSchema } from "./job"
 import { UserType } from "../interfaces/enums";
 import { IJobListing } from "../interfaces/IJobListing";
 
+//Create interface 
 interface IJobListingSchema extends IJobListing, Document {
     createJobListing(cb: any): void;
 }
