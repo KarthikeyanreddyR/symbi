@@ -35,7 +35,7 @@ SaaS Team project. MEAN stack; Bootstrap
 ## To compile TypeScript files - production mode
     npm run-script build - comiples all .ts file under src folder and dumps them in dist folder.
 
-## To start client, open new treminal; navigate into angular-src folder; run below command
+## To start client, open new terminal; navigate into angular-src folder; run below command
 
     ng serve --o - compiles ts files and loads client in browser
 
