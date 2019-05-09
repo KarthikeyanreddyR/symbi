@@ -13,7 +13,7 @@ export class User {
   address: Address;
   phoneNumber: number;
   bio: string;
-  profiles:Profile[];
+  profiles: Profile[];
 
   constructor() {
     this.initialize();
@@ -23,7 +23,7 @@ export class User {
     this.firstName = '';
     this.lastName = '';
     this.gender = '',
-      this.profileImage = undefined;
+    this.profileImage = undefined;
     this.email = '';
     this.password = '';
     this.address = new Address();
