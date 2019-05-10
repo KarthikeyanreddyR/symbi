@@ -14,10 +14,10 @@ export interface IUser {
     profileImage: Blob | undefined;
     email: string;
     password: string;
-    address: IAddress | undefined;
-    phoneNumber: number | undefined;
-    bio: string | undefined;
-    profiles: IProfile[] | undefined;
+    address: IAddress;
+    phoneNumber: number;
+    bio: string;
+    profiles: IProfile[];
 }
 
 export interface IProfile {

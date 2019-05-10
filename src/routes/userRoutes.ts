@@ -5,8 +5,9 @@ import {IUser} from "../interfaces/IUser";
 import { UserModel } from "../models/user";
 import { IReview } from "../interfaces/IReview";
 import { ReviewModel } from "../models/review";
+import { UserType } from "../interfaces/enums";
 
-class Routes {
+class UserRoutes {
     public router: express.Router;
 
     constructor() {
@@ -24,7 +25,7 @@ class Routes {
         });
 
         this.router.get("/users", (req: Request, res: Response) => {
-            UserModel.find({}, (err: any, docs:IUser) => {
+            UserModel.find({}, (err: any, docs:IUser[]) => {
                 if(err) {
                     console.log(err);
                     res.json({
@@ -32,6 +33,55 @@ class Routes {
                         msg: "Something went wrong!!!"
                     })
                 } else {
+                    res.json({
+                        success: true,
+                        data: docs
+                    })
+                }
+            })
+        });
+
+        this.router.get('/caregivers', (req: Request, res: Response) => {
+            let _logged_in_user_email: string = req.query.authEmail;
+            console.log(_logged_in_user_email);
+            UserModel.find({}).where('email').ne(_logged_in_user_email).exec((err: any, docs:IUser[]) => {
+                if(err) {
+                    console.log(err);
+                    res.json({
+                        success: false,
+                        msg: "Something went wrong!!!"
+                    })
+                } else {
+                    docs.forEach(doc => {
+                        doc.profiles.forEach((profile, idx, arr) => {
+                            if(profile.userType == UserType.PARENT)
+                                arr.splice(idx, 1);
+                        });
+                    });
+                    res.json({
+                        success: true,
+                        data: docs
+                    })
+                }
+            })
+        });
+
+        this.router.get('/caregivers/:email', (req: Request, res: Response) => {
+            let _email: string = req.params.email;
+            UserModel.find({}).where('email').equals(_email).exec((err: any, docs:IUser[]) => {
+                if(err) {
+                    console.log(err);
+                    res.json({
+                        success: false,
+                        msg: "Something went wrong!!!"
+                    })
+                } else {
+                    docs.forEach(doc => {
+                        doc.profiles.forEach((profile, idx, arr) => {
+                            if(profile.userType == UserType.PARENT)
+                                arr.splice(idx, 1);
+                        });
+                    });
                     res.json({
                         success: true,
                         data: docs
@@ -153,4 +203,4 @@ class Routes {
     }
 }
 
-export default new Routes().router;
+export default new UserRoutes().router;

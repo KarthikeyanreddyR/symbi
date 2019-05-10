@@ -1,5 +1,5 @@
 import { Schema, Model, model, Document} from "mongoose";
-import { IUser, IProfile } from "../interfaces/IUser";
+import { IUser, IProfile, IAddress } from "../interfaces/IUser";
 import { AddressSchema } from "./address";
 import { ProfileSchema } from "./profile";
 import { IFamily, IParent } from "../interfaces/IParent";
@@ -94,6 +94,15 @@ UserSchema.statics.defaultObject = function(): IUser {
         userType : UserType.CAREGIVER,
         profileData : _caregiver
     }
+    let _address: IAddress = {
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        country: '',
+        state: '',
+        zip: 0,
+        geoLocation: []
+    }
     return {
         firstName : '',
         lastName: '',
@@ -103,7 +112,7 @@ UserSchema.statics.defaultObject = function(): IUser {
         gender: '',
         phoneNumber: 0,
         profileImage: undefined,
-        address: undefined,
+        address: _address,
         profiles: [_parentProfile, __caregiverProfile]
     }
 }
