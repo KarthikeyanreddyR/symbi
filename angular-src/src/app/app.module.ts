@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -18,12 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 // services
 import { ValidateService} from './services/validate.service';
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
+import { ReviewComponent } from './components/review/review.component';
 
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent }
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,14 +27,15 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    AppPasswordDirective
+    AppPasswordDirective,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
