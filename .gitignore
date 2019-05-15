@@ -68,3 +68,4 @@ dist/
 
 #vscode files
 .vscode/
+angular-src/package-lock.json
