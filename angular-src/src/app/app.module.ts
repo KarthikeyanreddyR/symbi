@@ -19,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ValidateService} from './services/validate.service';
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
 import { ReviewComponent } from './components/review/review.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ReviewComponent } from './components/review/review.component';
     HomeComponent,
     NavbarComponent,
     AppPasswordDirective,
-    ReviewComponent
+    ReviewComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
