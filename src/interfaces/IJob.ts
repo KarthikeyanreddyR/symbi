@@ -6,15 +6,16 @@
  *              All fields in a Job are required for a Job to
  *              exist, a Job is then collected under JobListing
  */
-import { Document } from "mongoose";
 import { JobType, JobStatus } from "./enums";
-import { IEvent } from "./IEvent";
 
 export interface IJob {
     jobName: string;
-    jobID: string;
-    jobTime: IEvent;
+    createdBy: string;
+    createdAt: Date | undefined;
+    jobStartTime: Date | undefined;
+    jobEndTime: Date | undefined
     jobStatus: JobStatus;
     jobType: JobType;
-    jobNotes: string [];
+    jobNotes: string;
+    createdFor: string | undefined;
 }

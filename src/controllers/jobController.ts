@@ -1,0 +1,212 @@
+import { Request, Response } from "express";
+import { JobModel } from "../models/job";
+import { IJob } from "../interfaces/IJob";
+import { JobStatus, JobType } from "../interfaces/enums";
+import { UserModel } from "../models/user";
+
+export class JobController {
+
+    public static GetAllJobs(req: Request, res: Response) {
+        JobModel.find({}).exec((err: any, docs: IJob[]) => {
+            if (err) {
+                res.json({
+                    success: false,
+                    data: err
+                }).status(500);
+            } else {
+                res.json({
+                    success: true,
+                    data: docs
+                }).status(200);
+            }
+        });
+    }
+
+    public static GetAllJobsById(req: Request, res: Response) {
+        JobModel.findById(req.params.jobId).exec((err: any, docs: IJob[]) => {
+            if (err) {
+                res.json({
+                    success: false,
+                    data: err
+                }).status(500);
+            } else {
+                res.json({
+                    success: true,
+                    data: docs
+                }).status(200);
+            }
+        });
+    }
+
+    public static GetAllJobsByUserId(req: Request, res: Response) {
+        let _id = req.params.id;
+        UserModel.findById(_id).exec((err: any, user:any) => {
+            if(err) {
+                res.json({
+                    success: false,
+                    data: err
+                }).status(500);
+            } else {
+                if(user) {
+                    JobModel.find({}).where('createdBy').equals(user._id).exec((err: any, docs: IJob[]) => {
+                        if(err) {
+                            res.json({
+                                success: false,
+                                data: err
+                            }).status(500);
+                        } else {
+                            res.json({
+                                success: true,
+                                data : docs
+                            });
+                        }
+                    });
+                } else {
+                    // no user with provided email
+                    res.json({
+                        success: false,
+                        data: "No user with provided user id"
+                    }).status(500);
+                }
+            }
+        });
+    }
+
+    public static GetAllJobsForUserId(req: Request, res: Response) {
+        let _id = req.params.id;
+        UserModel.findById(_id).exec((err: any, user:any) => {
+            if(err) {
+                res.json({
+                    success: false,
+                    data: err
+                }).status(500);
+            } else {
+                if(user) {
+                    JobModel.find({}).where('createdFor').equals(user._id).exec((err: any, docs: IJob[]) => {
+                        if(err) {
+                            res.json({
+                                success: false,
+                                data: err
+                            }).status(500);
+                        } else {
+                            res.json({
+                                success: true,
+                                data : docs
+                            });
+                        }
+                    });
+                } else {
+                    // no user with provided email
+                    res.json({
+                        success: false,
+                        data: "No user with provided user id"
+                    }).status(500);
+                }
+            }
+        });
+    }
+
+    public static DeleteJobByJobId(req: Request, res: Response) {
+
+    }
+
+    public static GetAllOpenJobs(req: Request, res: Response) {
+        JobModel.find().where('jobType').equals(JobType.OPEN_JOB).exec((err: any, docs: IJob[]) => {
+            if(err) {
+                res.json({
+                    success: false,
+                    data: err
+                }).status(500);
+            } else {
+                res.json({
+                    success: true,
+                    data : docs
+                });
+            }
+        });
+    }
+
+    public static GetAllScheduledJobs(req: Request, res: Response) {
+        JobModel.find().where('jobType').equals(JobType.SCHEDULED_JOB).exec((err: any, docs: IJob[]) => {
+            if(err) {
+                res.json({
+                    success: false,
+                    data: err
+                }).status(500);
+            } else {
+                res.json({
+                    success: true,
+                    data : docs
+                });
+            }
+        });
+    }
+
+    public static CreateOpenJob(req: Request, res: Response) {
+        try {
+            let _job: IJob = JobModel.schema.statics.defaultObject();
+            _job.createdBy = req.body.userId;
+            _job.jobName = req.body.jobName;
+            _job.createdAt = new Date();
+            _job.jobStartTime = req.body.jobStartTime;
+            _job.jobEndTime = req.body.jobEndTime;
+            _job.jobNotes = req.body.jobNotes;
+            _job.jobStatus = JobStatus.CREATED;
+            _job.jobType = JobType.OPEN_JOB;
+            _job.createdFor = undefined;
+
+            new JobModel(_job).createJob((err: any, doc: IJob) => {
+                if (err) {
+                    res.json({
+                        success: false,
+                        data: err
+                    }).status(500);
+                } else {
+                    res.json({
+                        success: true,
+                        data: doc
+                    }).status(200);
+                }
+            });
+        } catch (error) {
+            res.json({
+                success: false,
+                data: error
+            }).status(500);
+        }
+    }
+
+    public static CreateScheduleJob(req: Request, res: Response) {
+        try {
+            let _job: IJob = JobModel.schema.statics.defaultObject();
+            _job.createdBy = req.body.userId;
+            _job.jobName = req.body.jobName;
+            _job.createdAt = new Date();
+            _job.jobStartTime = req.body.jobStartTime;
+            _job.jobEndTime = req.body.jobEndTime;
+            _job.jobNotes = req.body.jobNotes;
+            _job.jobStatus = JobStatus.CREATED;
+            _job.jobType = JobType.SCHEDULED_JOB;
+            _job.createdFor = req.body.createdFor;
+
+            new JobModel(_job).createJob((err: any, doc: IJob) => {
+                if (err) {
+                    res.json({
+                        success: false,
+                        data: err
+                    }).status(500);
+                } else {
+                    res.json({
+                        success: true,
+                        data: doc
+                    }).status(200);
+                }
+            });
+        } catch (error) {
+            res.json({
+                success: false,
+                data: error
+            }).status(500);
+        }
+    }
+}

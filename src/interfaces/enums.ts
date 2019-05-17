@@ -12,7 +12,7 @@
   * CAREGIVER - caregiver user
   */
 export enum UserType {
-    PARENT, CAREGIVER
+  UNKNOWN, PARENT, CAREGIVER
   }
   
   /**
@@ -22,7 +22,7 @@ export enum UserType {
    * SCHEDULED_JOB - A job that has been taken by a caregiver
    */
   export enum JobType {
-    OPEN_JOB, SCHEDULED_JOB
+    UNKNOWN, OPEN_JOB, SCHEDULED_JOB
   }
   
   /**
@@ -37,7 +37,7 @@ export enum UserType {
    * REJECTED - The parent/caregiver have rejected the job
    */
   export enum JobStatus {
-    CREATED, POSTED, ACCEPTED, INPROGRESS, COMPLETED, REJECTED
+    UNKNOWN, CREATED, POSTED, ACCEPTED, INPROGRESS, COMPLETED, REJECTED
   }
   
   /**
@@ -49,5 +49,5 @@ export enum UserType {
    * REJECTED - One or both parties have rejected the proposed contract
    */
   export enum ContractStatus {
-    CREATED, PARENT_SIGNED, CAREGIVER_SIGNED, COMPLETED, REJECTED
+    UNKNOWN, CREATED, PARENT_SIGNED, CAREGIVER_SIGNED, COMPLETED, REJECTED
   }

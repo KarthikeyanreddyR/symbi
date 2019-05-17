@@ -1,9 +1,13 @@
 /**
  * FILE DOC
  */
-import { Schema } from "mongoose";
+import { Schema, Document, model, Model } from "mongoose";
 import { JobStatus, JobType } from "../interfaces/enums"
-import { EventSchema } from "./event";
+import { IJob } from "../interfaces/IJob";
+
+interface IJobSchema extends IJob, Document {
+    createJob(cb: any): void;
+}
 
 /**
  * CLASS DOC
@@ -12,11 +16,22 @@ export const JobSchema: Schema = new Schema({
     jobName: {
         type: String
     },
-    jobID: {
-        type: String
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    jobTime: {
-        type: EventSchema
+    createdFor: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    createdAt: {
+        type: Date
+    },
+    jobStartTime: {
+        type: Date
+    },
+    jobEndTime: {
+        type: Date
     },
     jobStatus: {
         type: JobStatus
@@ -25,6 +40,26 @@ export const JobSchema: Schema = new Schema({
         type: JobType
     },
     jobNotes: {
-        type: [String]
+        type: String
     }
 });
+
+JobSchema.statics.defaultObject = function() : IJob {
+    return {
+        jobName : "",
+        createdAt : undefined,
+        createdBy: "",
+        jobEndTime: undefined,
+        jobStartTime: undefined,
+        jobNotes: "",
+        jobType: JobType.UNKNOWN,
+        jobStatus: JobStatus.UNKNOWN,
+        createdFor: undefined
+    }
+}
+
+JobSchema.methods.createJob = function(cb: any) {
+    return this.save(cb);
+}
+
+export const JobModel: Model<IJobSchema> = model<IJobSchema>("Jobs", JobSchema);
