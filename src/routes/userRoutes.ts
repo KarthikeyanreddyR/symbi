@@ -7,6 +7,7 @@ import { IReview } from "../interfaces/IReview";
 import { ReviewModel } from "../models/review";
 import { UserType } from "../interfaces/enums";
 import { UserController } from "../controllers/usersController";
+import { RootController } from "../controllers/rootController";
 
 class UserRoutes {
     public router: express.Router;
@@ -62,13 +63,6 @@ class UserRoutes {
             UserController.DeleteReviewForUserByReviewId(req, res);
         });
 
-        /**
-         * Temp routes - need to be modified to angular routes
-         */
-        this.router.get("/", (req: Request, res: Response) => {
-            res.sendFile(path.join(__dirname + "../../views/home.html"));
-        });
-
         this.router.get("/register", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/register.html"));
         });
@@ -87,6 +81,10 @@ class UserRoutes {
 
         this.router.get("/reviews", (req: Request, res: Response) => {
             res.sendFile(path.join(__dirname + "../../views/reviews.html"));
+        });
+
+        this.router.get("/", (req: Request, res: Response) => {
+            RootController.ApiRootDocumentation(res);
         });
 
     }
