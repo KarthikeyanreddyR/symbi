@@ -14,12 +14,16 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ReviewComponent } from './components/review/review.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 // services
 import { ValidateService} from './services/validate.service';
+import { UserService } from './services/user.service';
+import { JobService } from './services/job.service';
+
+// directives
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
-import { ReviewComponent } from './components/review/review.component';
-import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     })
   ],
   providers: [
-    ValidateService
+    ValidateService,
+    UserService,
+    JobService
   ],
   bootstrap: [AppComponent],
   exports: [AppPasswordDirective]
