@@ -22,6 +22,7 @@ class UserRoutes {
 
     private init(): void {
         
+        /* User Routes */
         this.router.get("/users", (req: Request, res: Response) => {
             UserController.GetAllUsers(req, res);
         });
@@ -34,14 +35,17 @@ class UserRoutes {
             UserController.UpdateUserById(req, res);
         });
 
+        //Register 
         this.router.post("/register", (req: Request, res: Response) => {
             UserController.RegisterUser(req, res);
         });
         
+        //Login
         this.router.post("/login", (req: Request, res: Response) => {
             UserController.AuthenticateUser(req, res);
         });
 
+        /* Review Routes */
         this.router.post("/review", (req: Request, res: Response) => {
             UserController.AddReview(req, res);
         });
