@@ -1,5 +1,22 @@
 import { Schema } from "mongoose";
-import { ExperienceSchema } from "./experience";
+
+const ExperienceSchema: Schema = new Schema({
+    jobPlace: {
+        type: String
+    },
+    jobDesignation: {
+        type: String
+    },
+    jobDescription: {
+        type: String
+    },
+    startDate: {
+        type: Date
+    },
+    endDate: {
+        type: Date
+    }
+});
 
 export const CaregiverSchema: Schema = new Schema({
     birthDate: {

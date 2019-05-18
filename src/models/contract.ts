@@ -1,18 +1,18 @@
-import {Schema, Model, model } from "mongoose";
+import { Schema, Model, model } from "mongoose";
 import { ContractStatus } from "../interfaces/enums";
 
 export const ContractSchema: Schema = new Schema({
-    jobID: {
-        type: Number
+    jobId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Job'
     },
-    contractID: {
-        type: Number
+    promiserId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    promiserID: {
-        type: Number
-    },
-    promiseeID: {
-        type: Number
+    promiseeId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     promiserDate: {
         type: Date

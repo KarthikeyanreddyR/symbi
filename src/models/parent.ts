@@ -7,7 +7,51 @@
  *              in case they need to be indicated to the caregiver.
  */
 import { Document, Schema, Model, model} from "mongoose";
-import { FamilySchema } from "./family";
+
+const ChildSchema: Schema = new Schema ({
+    name: {
+        type: String
+    },
+    gender: {
+        type: String
+    },
+    birthDate: {
+        type: String
+    },
+    spNeeds: {
+        type: [String]
+    },
+    sleepTime: {
+        type: String
+    },
+    diet: {
+        type: [String]
+    }
+});
+
+const PetSchema: Schema = new Schema ({
+    name: {
+        type: String
+    },
+    species: {
+        type: String
+    },
+    diet: {
+        type: [String]
+    },
+    extraNotes: {
+        type: [String]
+    }
+});
+
+const FamilySchema: Schema = new Schema({
+    children: {
+        type: [ChildSchema]
+    },
+    pets: {
+        type: [PetSchema]
+    }
+});
 
 export const ParentSchema:Schema = new Schema(
     {

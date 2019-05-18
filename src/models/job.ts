@@ -62,4 +62,4 @@ JobSchema.methods.createJob = function(cb: any) {
     return this.save(cb);
 }
 
-export const JobModel: Model<IJobSchema> = model<IJobSchema>("Jobs", JobSchema);
+export const JobModel: Model<IJobSchema> = model<IJobSchema>("Job", JobSchema);
