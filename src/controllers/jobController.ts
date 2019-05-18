@@ -106,8 +106,43 @@ export class JobController {
         });
     }
 
-    public static DeleteJobByJobId(req: Request, res: Response) {
+    public static DeleteJobForUserIdByJobId(req: Request, res: Response) {
+        let _userId: string = req.params.userId;
+        let _jobId: string = req.params.jobId;
 
+        // validate userId
+        UserModel.findById(_userId).count().exec((err: any, count: number) => {
+            if(count > 0) {
+                JobModel.findByIdAndDelete(_jobId).where('createdBy').equals(_userId).exec((err: any, doc:IJob) => {
+                    if(err) {
+                        res.json({
+                            success: false,
+                            data: err
+                        })
+                    } else {
+                        if(doc) {
+                            res.json({
+                                success: true,
+                                data: doc,
+                                msg: "deleted job"
+                            })
+                        } else {
+                            res.json({
+                                success: false,
+                                msg: "No job with given job id"
+                            })
+                        }
+                    }
+                });
+
+            } else {
+                // no user with id
+                res.json({
+                    success: false,
+                    data : "No user with given user id"
+                })
+            }
+        });
     }
 
     public static GetAllOpenJobs(req: Request, res: Response) {

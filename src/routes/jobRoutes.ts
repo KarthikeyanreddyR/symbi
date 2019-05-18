@@ -41,6 +41,10 @@ class JobRoutes {
             JobController.GetAllJobsById(req, res);
         });
 
+        this.router.delete('/jobs/:userId/:jobId', (req: Request, res: Response) => {
+            JobController.DeleteJobForUserIdByJobId(req, res);
+        });
+
         this.router.get('/jobs/jobsByUser/:userId', (req: Request, res: Response) => {
             JobController.GetAllJobsByUserId(req, res);
         });
