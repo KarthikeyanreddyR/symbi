@@ -54,6 +54,10 @@ class UserRoutes {
             UserController.GetAllReviewsForUser(req, res);
         });
 
+        this.router.delete("/review/:userId/:reviewId", (req: Request, res: Response) => {
+            UserController.DeleteReviewForUserByReviewId(req, res);
+        });
+
         /**
          * Temp routes - need to be modified to angular routes
          */

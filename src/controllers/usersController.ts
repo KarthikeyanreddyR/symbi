@@ -175,4 +175,44 @@ export class UserController {
             }
         })
     }
+
+    public static DeleteReviewForUserByReviewId(req: Request, res: Response) {
+        let _userId: string = req.params.userId;
+        let _reviewId: string = req.params.reviewId;
+
+        // validate userId
+        UserModel.findById(_userId).count().exec((err: any, count: number) => {
+            if(count > 0) {
+                // find by _id and delete it.
+                ReviewModel.findByIdAndDelete(_reviewId).where('reviewerID').equals(_userId).exec((err: any, doc:IReview) => {
+                    if(err) {
+                        res.json({
+                            success: false,
+                            data: err
+                        })
+                    } else {
+                        if(doc) {
+                            res.json({
+                                success: true,
+                                data: doc,
+                                msg: "deleted review"
+                            })
+                        } else {
+                            res.json({
+                                success: false,
+                                msg: "No review with given review id"
+                            })
+                        }
+                    }
+                });
+
+            } else {
+                // no user with id
+                res.json({
+                    success: false,
+                    data : "No user with given user id"
+                })
+            }
+        });
+    }
 }
