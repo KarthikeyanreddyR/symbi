@@ -7,7 +7,7 @@ export class User {
   firstName: string;
   lastName: string;
   gender: string;
-  profileImage: Blob;
+  profileImage: Blob | undefined;
   email: string;
   password: string;
   address: Address;

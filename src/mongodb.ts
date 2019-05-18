@@ -7,7 +7,7 @@ import config from './config/database';
 export class MongoDBConfig {
     public static init(): void {
         // connection to MongoDB
-        mongoose.connect(config.database, { useNewUrlParser: true, useCreateIndex: true });
+        mongoose.connect(config.database, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false });
         
         // on connection - connected
         mongoose.connection.on('connected', () => {

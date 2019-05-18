@@ -2,9 +2,9 @@ import { Experience } from './experience';
 import { User } from '../user';
 
 export class Caregiver {
-  birthDate:Date;
+  birthDate:Date | undefined;
   rate:number;
-  certificates:File[];
+  certificates:File[] | undefined;
   experience:Experience[];
   extraNotes:string;
   constructor() {
