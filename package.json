@@ -5,7 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "tsnd --respawn --transpileOnly src/server.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "tests": "mocha src/tests/"
   },
   "author": "Vic, Tejas, Valerio, Karthikeyan",
   "license": "ISC",
