@@ -49,4 +49,7 @@ SaaS Team project. MEAN stack; Bootstrap
     Execute below cammand
         load("java-script-file.js")
      
+## Run server-side tests with Mocha, Chai
+    Open terminal in root folder which has package.json file
+    Execute `npm run tests` to run all the tests present under src/tests folder.
 
