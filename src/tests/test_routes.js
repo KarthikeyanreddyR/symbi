@@ -13,7 +13,7 @@ describe("Test GET /api/users/:userId", function () {
     let _response;
     before(function (done) {
         chai.request('http://localhost:3000')
-            .get('api/users/:userId')
+            .get('/api/users/_id')
             .end(function (err, res) {
                 expect(err).to.be.null;
                 _response = res;
