@@ -99,6 +99,22 @@ export class UserController {
         });
     }
 
+    public static GetUserByEmail(req: Request, res: Response) {
+        UserModel.find({"email": req.params.email}).exec((err: any, doc:IUser) => {
+            if(err) {
+                res.json({
+                    success: false,
+                    msg: err
+                }).status(500)
+            } else {
+                res.json({
+                    success: true,
+                    data: doc
+                }).status(200)
+            }
+        });
+    }
+
     public static UpdateUserById(req: Request, res: Response) {
         UserModel.findByIdAndUpdate(req.body._id, req.body, {new: true}).exec((err: any, doc:IUser) => {
             if(err) {

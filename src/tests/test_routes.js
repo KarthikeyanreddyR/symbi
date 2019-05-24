@@ -14,7 +14,7 @@ describe("Test GET /api/users/:userId", function () {
     let _httpResponse;
     before(function (done) {
         chai.request('http://localhost:3000')
-            .get('/api/users/5cd386aa1a05652e9c7eeaf3')
+            .get('/api/users/byEmail/notacoward@outlaw.com')
             .end(function (err, res) {
                 expect(err).to.be.null;
                 _httpResponse = res;
@@ -33,8 +33,8 @@ describe("Test GET /api/users/:userId", function () {
     it('validate email, password properties', function () {
         expect(_response).to.have.property('success');
         expect(_response).to.have.property('data');
-        expect(_response.data).to.have.property('email').that.is.a('String');
-        expect(_response.data).to.have.property('password').that.is.a('String');
+        expect(_response.data[0]).to.have.property('email').that.is.a('String');
+        expect(_response.data[0]).to.have.property('password').that.is.a('String');
     })
 });
 
