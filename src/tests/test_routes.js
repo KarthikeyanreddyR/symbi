@@ -42,17 +42,24 @@ describe("Test GET /api/users/:userId", function () {
 describe("Test GET /api/users", function () {
 
     let _response;
+    let _httpResponse;
+
     before(function (done) {
         chai.request('http://localhost:3000')
             .get('/api/users')
             .end(function (err, res) {
                 expect(err).to.be.null;
-                _response = res;
+                _httpResponse = res;
+                _response = res.body;
                 done();
             });
     });
 
     it('status must be 200', function () {
-        expect(_response).to.have.status(200);
+        expect(_httpResponse).to.have.status(200);
+    });
+
+    it('user list length is greater than 0', function () {
+        expect(_response.data).to.have.length > 0;
     });
 });
