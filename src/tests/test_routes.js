@@ -14,7 +14,7 @@ describe("Test GET /api/users/:userId", function () {
     let _httpResponse;
     before(function (done) {
         chai.request('http://localhost:3000')
-            .get('/api/users/byEmail/notacoward@outlaw.com')
+            .get('/api/users/5ce3581d5fba742e68b35971')
             .end(function (err, res) {
                 expect(err).to.be.null;
                 _httpResponse = res;

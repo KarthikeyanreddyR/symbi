@@ -32,10 +32,6 @@ class UserRoutes {
             UserController.GetUserById(req, res);
         });
 
-        this.router.get("/users/byEmail/:email", (req: Request, res: Response) => {
-            UserController.GetUserByEmail(req, res);
-        });
-
         this.router.put("/users", (req: Request, res: Response) => {
             UserController.UpdateUserById(req, res);
         });
