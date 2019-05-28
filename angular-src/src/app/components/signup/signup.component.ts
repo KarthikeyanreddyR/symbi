@@ -5,6 +5,7 @@ import { ValidateService} from '../../services/validate.service';
 import { Parent } from 'src/app/shared/models/parent/parent';
 import { User, Profile } from 'src/app/shared/models/user';
 import { UserType } from 'src/app/shared/models/enums';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,7 @@ export class SignupComponent implements OnInit {
   // email: string;
   // password: string;
 
-  constructor(private validateService: ValidateService, private formBuilder: FormBuilder) { }
+  constructor(private validateService: ValidateService, private formBuilder: FormBuilder, private userservice: UserService) { }
 
   // signUpForm: FormGroup = new FormGroup({
   //   name : new FormControl(''),
@@ -69,8 +70,12 @@ export class SignupComponent implements OnInit {
 
     // console.log(p);
 
-    console.log(this.signUpForm);
+    console.log(this.signUpForm.value);
+    let _signupInfo = this.signUpForm.value;
 
+    this.userservice.registerUser(_signupInfo).subscribe(res => {
+      console.log(res);
+    })
   }
 
 }
