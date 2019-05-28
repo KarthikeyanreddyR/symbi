@@ -1,4 +1,4 @@
-# Symbi
+# Symbii
 # Welcome to Simple Child Care Planner
 
 SaaS Team project. MEAN stack; Bootstrap

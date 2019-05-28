@@ -28,10 +28,10 @@ interface IUserSchema extends IUser, Document {
  */
 const UserSchema:Schema = new Schema({
     firstName: {
-        type: String
+        type: String,
     },
     lastName: {
-        type: String
+        type: String,
     },
     gender: {
         type: String
