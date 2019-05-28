@@ -22,6 +22,11 @@
     padding: 15px;
 }
 
+.umbrella{
+    text-align: center;
+    font-size: 78px;
+}
+
 .text-body{
     font-style: italic;
 }
