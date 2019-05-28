@@ -62,4 +62,8 @@ describe("Test GET /api/users", function () {
     it('user list length is greater than 0', function () {
         expect(_response.data).to.have.length > 0;
     });
+
+    it('expects the response to be an array', function () {
+        expect(_response.data).to.be.instanceOf.propertyIsEnumerable(_response.data);
+    })
 });
