@@ -1,0 +1,30 @@
+.title{
+    font-size: 128px;
+    text-align: center;
+}
+.text-body{
+    font-size: 48px;
+    text-align: center;
+}
+.left-col{
+    /*background: #b2ebf2;*/
+    font-family: 'Pacifico';
+    font-size: 15px;
+    min-height: 300px;
+    margin: 15px 0 10px 5px;
+    padding: 15px;
+}
+.main-col{
+    background: #b2ebf2;
+    font-size: 15px;
+    min-height: 300px;
+    margin: 15px 5px 10px 0;
+    padding: 15px;
+}
+.foundation-col{
+    background: #b2ebf2;
+    font-size: 15px;
+    min-height: 100px;
+    margin: 10px 5px 15px 5px;
+    padding: 15px;
+}
