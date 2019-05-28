@@ -23,4 +23,8 @@ export class UserService {
   public updateUser(user: User) : Observable<Object>  {
     return this.httpClient.put<Object>(`${this.apiUrl}/users`, user);
   }
+
+  public registerUser(register: any) {
+    return this.httpClient.post(`${this.apiUrl}/register`, register);
+  }
 }

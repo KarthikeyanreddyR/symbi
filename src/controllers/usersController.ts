@@ -40,8 +40,7 @@ export class UserController {
     public static RegisterUser(req: Request, res: Response) {
         let _user: IUser = UserModel.schema.statics.defaultObject();
 
-            _user.firstName = req.body.firstName;
-            _user.lastName = req.body.lastName;
+            _user.firstName = req.body.name;
             _user.email = req.body.email;
             _user.password = req.body.password;
 
