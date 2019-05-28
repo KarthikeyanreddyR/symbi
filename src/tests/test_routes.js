@@ -33,8 +33,8 @@ describe("Test GET /api/users/:userId", function () {
     it('validate email, password properties', function () {
         expect(_response).to.have.property('success');
         expect(_response).to.have.property('data');
-        expect(_response.data[0]).to.have.property('email').that.is.a('String');
-        expect(_response.data[0]).to.have.property('password').that.is.a('String');
+        expect(_response.data).to.have.property('email').that.is.a('String');
+        expect(_response.data).to.have.property('password').that.is.a('String');
     })
 });
 
