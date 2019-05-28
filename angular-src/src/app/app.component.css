@@ -5,3 +5,11 @@
     text-align: left;
     padding: 15px;
 }
+
+.footer {
+  bottom: 0;
+  position: fixed;
+  overflow: hidden;
+  background-color: #ddd;
+  width: 100%;
+}
