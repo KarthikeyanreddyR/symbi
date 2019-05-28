@@ -8,7 +8,6 @@
           <div class="input-group-text"><i class="fas fa-user"></i></div>
         </span>
         <input type="text" class="form-control" formControlName="name" placeholder="Enter Name" required>
-        <!--[(ngModel)]="name"-->
       </div>
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
         <div *ngIf="name.errors.required">
@@ -23,7 +22,6 @@
           <div class="input-group-text"><i class="fas fa-envelope"></i></div>
         </span>
         <input type="email" class="form-control" formControlName="email" placeholder="Enter Email" required>
-        <!-- [(ngModel)]="email"-->
       </div>
       <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
         <div *ngIf="email.errors.email">
@@ -42,7 +40,6 @@
         </span>
         <input type="password" class="form-control" formControlName="password"
           placeholder="Enter Password" appPassword required>
-        <!--[(ngModel)]="password" appPassword-->
       </div>
       <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
         <div *ngIf="password.errors.minlength || password.errors.maxlength">
