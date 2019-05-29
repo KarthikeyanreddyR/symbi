@@ -30,6 +30,12 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.userservice.loginUser(this.loginForm.value).subscribe(res => {
       console.log(res);
+    },
+    err => {
+      alert('error occured while login!!')
+    },
+    () => {
+
     })
   }
 

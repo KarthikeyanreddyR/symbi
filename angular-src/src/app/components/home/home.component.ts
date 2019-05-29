@@ -10,11 +10,19 @@ import { User } from 'src/app/shared/models/user';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userService:UserService) { }
+  constructor(private userservice:UserService) { }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe(res => {
+    this.userservice.getAllUsers().subscribe(
+      res => {
       console.log(res);
+    },
+    err => {
+      console.log(err)
+    },
+    () => {
+      // this methods is executed only when there is no error.
+      console.log('req complete')
     });
   }
 

@@ -1,6 +1,6 @@
 <section>
   <h2>Login</h2>
-  <form (submit)="onLoginSubmit()"  [formGroup]="loginForm">
+  <form (submit)="onLoginSubmit()" [formGroup]="loginForm">
     <div class="form-group">
       <label for="email">Email</label>
       <div class="input-group">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
   </form>
   <hr>
   <div>
