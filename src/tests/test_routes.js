@@ -25,23 +25,27 @@ describe("Test GET /api/users/:userId", function () {
     });
 
     /***   Check for single object for required parameters   ***/
+    it('response should be a json', function () {
+        expect(_httpResponse).to.be.json;
+    });
+    
     it('status must be 200', function () {
         expect(_httpResponse).to.have.status(200);
     });
 
-    it('response must have success property with value true', function () {
+    it('response success property must have value true', function () {
         expect(_response).to.have.property('success', true);
     });
 
-    it('response should be a json', function () {
-        expect(_httpResponse).to.be.json;
+    it('response must not have msg property', function() {
+        expect(_response).to.not.have.property('msg');
     });
 
-    it('response must have data property of type object', function () {
+    it('data property must be an object', function () {
         expect(_response).to.have.property('data').that.is.a('object');
     });
 
-    it('should have an email attribute that is a string', function () {
+    it('validate that the email attribute is a string', function () {
         expect(_response.data).to.have.property('email').that.is.a('String');
     });
 
@@ -53,9 +57,6 @@ describe("Test GET /api/users/:userId", function () {
         expect(_response.data).to.have.property('_id', _id);
     });
 
-    it('response must not have msg property', function() {
-        expect(_response).to.not.have.property('msg');
-    });
 });
 
 /***   Mocha Test 2 : Get List Objects   ***/
@@ -89,19 +90,19 @@ describe("Test GET /api/users", function () {
         expect(_response).to.not.have.property('msg');
     });
 
-    it('the response must be an array', function () {
+    it('return value is an array list', function () {
         expect(_response.data).to.be.instanceOf.propertyIsEnumerable(0);
     });
 
-    it('user list length is greater than 0', function () {
+    it('user list length must be greater than 0', function () {
         expect(_response.data).to.have.length.greaterThan(0);
     });
     
-    it('the list items must have an attribute named email', function () {
+    it('the list must have an attribute named email', function () {
         expect(_response.data).to.contain.hasOwnProperty('email');
     });
 
-    it('the user firstName must be of type string', function () {
+    it('the user firstName must be a string', function () {
         expect(_response.data[0].firstName).to.be.a('string');
     });
 
