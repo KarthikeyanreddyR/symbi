@@ -25,7 +25,7 @@ export class RootController {
                 },
                 {
                     "route":"/api/users/:userID",
-                    "method":"GT",
+                    "method":"GET",
                     "description":"Retrieve user based on id",
                 },
                 {
