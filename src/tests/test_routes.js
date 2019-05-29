@@ -59,11 +59,16 @@ describe("Test GET /api/users", function () {
         expect(_httpResponse).to.have.status(200);
     });
 
+    it('expects the response to be an array', function () {
+        expect(_response.data).to.be.instanceOf.propertyIsEnumerable(0);
+    });
+    
+    it('expects the list items to have an attribute named email', function () {
+        expect(_response.data).to.contain.hasOwnProperty('email');
+    });
+    
     it('user list length is greater than 0', function () {
-        expect(_response.data).to.have.length > 0;
+        expect(_response.data).to.have.length.greaterThan(0);
     });
 
-    it('expects the response to be an array', function () {
-        expect(_response.data).to.be.instanceOf.propertyIsEnumerable(_response.data);
-    })
 });
