@@ -12,9 +12,10 @@ describe("Test GET /api/users/:userId", function () {
 
     let _response;
     let _httpResponse;
+    let _id = '5ce3581d5fba742e68b35971'
     before(function (done) {
         chai.request('http://localhost:3000')
-            .get('/api/users/5ce3581d5fba742e68b35971')
+            .get(`/api/users/${_id}`)
             .end(function (err, res) {
                 expect(err).to.be.null;
                 _httpResponse = res;
@@ -28,16 +29,16 @@ describe("Test GET /api/users/:userId", function () {
         expect(_httpResponse).to.have.status(200);
     });
 
-    it('status must be success', function () {
-        expect(_response).to.have.property('success');
+    it('response must have success property with value true', function () {
+        expect(_response).to.have.property('success', true);
     });
 
     it('response should be a json', function () {
         expect(_httpResponse).to.be.json;
     });
 
-    it('validate json has data property', function () {
-        expect(_response).to.have.property('data');
+    it('response must have data property of type object', function () {
+        expect(_response).to.have.property('data').that.is.a('object');
     });
 
     it('should have an email attribute that is a string', function () {
@@ -49,7 +50,7 @@ describe("Test GET /api/users/:userId", function () {
     });
 
     it('the item must contain an ID', function () {
-        expect(_response.data).to.have.property('_id');
+        expect(_response.data).to.have.property('_id', _id);
     });
 });
 
