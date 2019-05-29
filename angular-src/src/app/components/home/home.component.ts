@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private userservice:UserService) { }
 
   ngOnInit() {
+    // testing userservice to fetch all users.
     this.userservice.getAllUsers().subscribe(
       res => {
       console.log(res);
