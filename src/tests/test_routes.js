@@ -52,6 +52,10 @@ describe("Test GET /api/users/:userId", function () {
     it('the item must contain an ID', function () {
         expect(_response.data).to.have.property('_id', _id);
     });
+
+    it('response must not have msg property', function() {
+        expect(_response).to.not.have.property('msg');
+    });
 });
 
 /***   Mocha Test 2 : Get List Objects   ***/
@@ -75,6 +79,14 @@ describe("Test GET /api/users", function () {
     /***   Check List Object for Required Parameters   ***/
     it('status must be 200', function () {
         expect(_httpResponse).to.have.status(200);
+    });
+
+    it('response must have success property with value true', function () {
+        expect(_response).to.have.property('success', true);
+    });
+
+    it('response must not have msg property', function() {
+        expect(_response).to.not.have.property('msg');
     });
 
     it('the response must be an array', function () {
