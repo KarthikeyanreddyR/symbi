@@ -23,19 +23,34 @@ describe("Test GET /api/users/:userId", function () {
             });
     });
 
-    /***   Check for correct status code and json object   ***/
+    /***   Check for single object for required parameters   ***/
     it('status must be 200', function () {
         expect(_httpResponse).to.have.status(200);
+    });
+
+    it('status must be success', function () {
+        expect(_response).to.have.property('success');
+    });
+
+    it('response should be a json', function () {
         expect(_httpResponse).to.be.json;
     });
 
-    /***   Check for required properties in the user json object   ***/
-    it('validate email, password properties', function () {
-        expect(_response).to.have.property('success');
+    it('validate json has data property', function () {
         expect(_response).to.have.property('data');
+    });
+
+    it('should have an email attribute that is a string', function () {
         expect(_response.data).to.have.property('email').that.is.a('String');
+    });
+
+    it('password should be a string', function () {
         expect(_response.data).to.have.property('password').that.is.a('String');
-    })
+    });
+
+    it('the item must contain an ID', function () {
+        expect(_response.data).to.have.property('_id');
+    });
 });
 
 /***   Mocha Test 2 : Get List Objects   ***/
@@ -55,6 +70,8 @@ describe("Test GET /api/users", function () {
             });
     });
 
+
+    /***   Check List Object for Required Parameters   ***/
     it('status must be 200', function () {
         expect(_httpResponse).to.have.status(200);
     });
