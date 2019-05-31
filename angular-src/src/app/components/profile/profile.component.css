@@ -26,3 +26,12 @@
 .profile-tab:hover{
     background-color: rgb(149, 224, 229);
 }
+
+.profile-tab:active{
+    background-color: rgb(110, 169, 173);
+}
+
+button{
+    background-color: grey;
+    border-style: none;
+}

@@ -4,7 +4,7 @@
       <!-- Profile Box -->  
       <div class="col-4 profile-box" style="background-color:rgb(240, 245, 176);">
         <div>
-          Profile Box
+          Profile Picture
         </div>
       </div>
       <!-- Bio Box -->
@@ -16,22 +16,46 @@
     </div>
     <!-- Bottom row -->
     <div class="row">
-      <div class="col profile-tab">
-        Button 1
-      </div>
-      <div class="col profile-tab">
-        Button 2
-      </div>
-      <div class="col profile-tab">
-        Button 3
-      </div>
-      <div class="col profile-tab">
-        Button 4
-      </div>
+      <button (click)="activeTab = 0" class="col profile-tab">
+        Profile
+      </button>
+      <button (click)="activeTab = 1" class="col profile-tab">
+        Family
+      </button>
+      <button (click)="activeTab = 2" class="col profile-tab">
+        Jobs
+      </button>
+      <button (click)="activeTab = 3" class="col profile-tab">
+        Experience
+      </button>
     </div>
-    <div class="row">
-      <div class="col basicinfo-box" style=background-color:blueviolet>
-        More random bio
+    <div class="row" >
+      <div class="col basicinfo-box" style=background-color:blueviolet [ngSwitch]="activeTab">
+        <!-- Profile Box-->
+        <div *ngSwitchCase="0">
+            Basic Info Box
+            <ul>
+              <li>Name: {{user.name}}</li>
+              <li>Gender: {{user.gender}}</li>
+              <li>DOB:</li>
+              <li>Email:</li>
+              <li>Phone:</li>
+              <li>Phone:</li>
+              <li>State:</li>
+            </ul>
+        </div>
+        <!-- Family Information -->
+        <div *ngSwitchCase="1">
+            Family Box
+        </div>
+        <!-- Jobs Information -->
+        <div *ngSwitchCase="2">
+            Jobs Box
+        </div>
+        <!-- Experience Information-->
+        <div *ngSwitchCase="3">
+            Experience Box
+        </div>
       </div>
     </div>
 </div>
