@@ -16,9 +16,9 @@ export class LandingPageComponent implements OnInit {
 
   public openDashboard(userType: number) {
     if(userType === 0) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/parent']);
     } else if(userType === 1) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/caregiver']);
     } else {
       // no option
     }

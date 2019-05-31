@@ -6,6 +6,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { ReviewComponent } from './components/review/review.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ParentDashboardComponent } from './components/dashboard/parent-dashboard/parent-dashboard.component';
+import { CaregiverDashboardComponent } from './components/dashboard/caregiver-dashboard/caregiver-dashboard.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'dashboard', component: ParentDashboardComponent }
+  { path: 'dashboard/parent', component: ParentDashboardComponent },
+  { path: 'dashboard/caregiver', component: CaregiverDashboardComponent }
 ];
 
 @NgModule({
