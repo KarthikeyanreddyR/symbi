@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ReviewComponent } from './components/review/review.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 // services
 import { ValidateService} from './services/validate.service';
@@ -34,7 +35,8 @@ import { AppPasswordDirective } from './shared/directives/app-password.directive
     NavbarComponent,
     AppPasswordDirective,
     ReviewComponent,
-    ProfileComponent
+    ProfileComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,16 @@
+.title{
+  font-size: 3vw;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+}
+
+.jumbotron{
+  padding: 1rem 1rem;
+  position: center;
+  background: transparent;
+}
+.text-body{
+  font-size: 3vw;
+  text-align: center;
+  font-style: italic;
+}
