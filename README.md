@@ -46,9 +46,9 @@ SaaS Team project. MEAN stack; Bootstrap
     Add MongoDB `bin` folder to PATH in Environmental variables.
     To verify, open terminal anywhere and execute 'mongo' command. It should open mongo shell.
     Open terminal in your scripts folder and fire up mongo shell.
-    Execute below cammand
+    Execute below command
         load("java-script-file.js")
      
 ## Run server-side tests with Mocha, Chai
-    Open terminal in root folder which has package.json file
+    Open terminal in root folder which has package.json file.
     Execute `npm run tests` to run all the tests present under src/tests folder.
