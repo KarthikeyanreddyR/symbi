@@ -5,12 +5,13 @@
       <div class="col-4 profile-box" style="background-color:rgb(240, 245, 176);">
         <div>
           Profile Picture
+          {{user.profileImage}}
         </div>
       </div>
       <!-- Bio Box -->
       <div class="col" style="background-color:rgb(207, 218, 248);">
         <div>
-          Bio Info
+          Welcome back {{user.firstName}}
         </div>
       </div>
     </div>
@@ -35,13 +36,13 @@
         <div *ngSwitchCase="0">
             Basic Info Box
             <ul>
-              <li>Name: {{user.name}}</li>
+              <li>Name: {{user.firstName + " " + user.lastName}}</li>
               <li>Gender: {{user.gender}}</li>
-              <li>DOB:</li>
-              <li>Email:</li>
-              <li>Phone:</li>
-              <li>Phone:</li>
-              <li>State:</li>
+              <li>Email: {{user.email}}</li>
+              <li>Phone: {{user.phoneNumber}}</li>
+              <li>City: {{user.address.city}}</li>
+              <li>State: {{user.address.state}}</li>
+              <li>Bio: {{user.bio}}</li>
             </ul>
         </div>
         <!-- Family Information -->
