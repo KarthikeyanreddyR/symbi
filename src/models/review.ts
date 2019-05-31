@@ -33,7 +33,7 @@ export const ReviewSchema: Schema = new Schema({
         type: String
     },
     reviewDate: {
-        type: Date
+        type: String
     },
     starRating: {
         type: Number

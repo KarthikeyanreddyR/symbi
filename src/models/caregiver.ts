@@ -11,16 +11,16 @@ const ExperienceSchema: Schema = new Schema({
         type: String
     },
     startDate: {
-        type: Date
+        type: String
     },
     endDate: {
-        type: Date
+        type: String
     }
 });
 
 export const CaregiverSchema: Schema = new Schema({
     birthDate: {
-        type: Date
+        type: String
     },
     rate: {
         type: Number

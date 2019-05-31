@@ -84,7 +84,7 @@ UserSchema.statics.defaultObject = function(): IUser {
         profileData : _parent
     }
     let _caregiver: ICaregiver = {
-        birthDate : undefined,
+        birthDate : "",
         certificates : undefined,
         experience : [],
         extraNotes : '',

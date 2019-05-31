@@ -9,18 +9,18 @@ export interface IFamily {
 }
 
 export interface IChild {
-    name:string;
-    gender:string;
-    birthDate:Date | undefined;
-    specialNeeds:string[];
-    sleepTime:Date | undefined;
-    diet:string[];
-    extraNotes:string[];
+    name: string;
+    gender: string;
+    birthDate: string;
+    specialNeeds: string[];
+    sleepTime: string;
+    diet: string[];
+    extraNotes: string[];
 }
 
 export interface IPet {
-    name:string;
-    species:string;
-    diet:string[];
-    extraNotes:string[];
+    name: string;
+    species: string;
+    diet: string[];
+    extraNotes: string[];
 }

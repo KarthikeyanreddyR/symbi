@@ -25,13 +25,13 @@ export const JobSchema: Schema = new Schema({
         ref: 'User'
     },
     createdAt: {
-        type: Date
+        type: String
     },
     jobStartTime: {
-        type: Date
+        type: String
     },
     jobEndTime: {
-        type: Date
+        type: String
     },
     jobStatus: {
         type: JobStatus
@@ -47,10 +47,10 @@ export const JobSchema: Schema = new Schema({
 JobSchema.statics.defaultObject = function() : IJob {
     return {
         jobName : "",
-        createdAt : undefined,
+        createdAt : "",
         createdBy: "",
-        jobEndTime: undefined,
-        jobStartTime: undefined,
+        jobEndTime: "",
+        jobStartTime: "",
         jobNotes: "",
         jobType: JobType.UNKNOWN,
         jobStatus: JobStatus.UNKNOWN,

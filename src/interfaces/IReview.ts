@@ -23,7 +23,7 @@ export interface IReview {
     reviewerID: string;
     revieweeID: string;
     reviewTitle: string;
-    reviewDate: Date | undefined;
+    reviewDate: string;
     starRating: number;
     reviewNotes: string | undefined;
 }

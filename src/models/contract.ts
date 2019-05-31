@@ -20,10 +20,10 @@ const ContractSchema: Schema = new Schema({
         ref: 'User'
     },
     promiserDate: {
-        type: Date
+        type: String
     },
     promiseeDate: {
-        type: Date
+        type: String
     },
     contractStatus: {
         type: ContractStatus
