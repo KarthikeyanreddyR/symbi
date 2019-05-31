@@ -12,27 +12,27 @@ export class UserController {
     public static AuthenticateUser(req: Request, res: Response) {
         UserModel.findOne({ email: req.body.email }, (err: any, user: IUser) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     error: err
-                }).status(500);
+                });
             } else if (user) {
                 if (user.password === req.body.password) {
-                    res.json({
+                    res.status(200).json({
                         success: true,
                         data: user,
-                    }).status(200);
+                    });
                 } else {
-                    res.json({
+                    res.status(200).json({
                         success: false,
                         msg: "Invalid password"
-                    }).status(500);
+                    });
                 }
             } else {
-                res.json({
+                res.status(200).json({
                     success: false,
                     msg: "Invalid email"
-                }).status(500);
+                });
             }
         });
     }
@@ -47,37 +47,37 @@ export class UserController {
         try {
             new UserModel(_user).registerUser((err: any, user: IUser) => {
                 if (err) {
-                    res.json({
+                    res.status(500).json({
                         success: false,
                         error: err
-                    }).status(500);
+                    });
                 } else {
-                    res.json({
+                    res.status(200).json({
                         success: true,
                         data: user,
-                    }).status(200);
+                    });
                 }
             });
         } catch (error) {
-            res.json({
+            res.status(500).json({
                 success: false,
                 error: error
-            }).status(500);
+            });
         }
     }
 
     public static GetAllUsers(req: Request, res: Response) {
         UserModel.find({}).exec((err: any, docs: IUser[]) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     error: err
-                }).status(500)
+                });
             } else {
-                res.json({
+                res.status(200).json({
                     success: true,
                     data: docs
-                }).status(200)
+                });
             }
         });
     }
@@ -85,15 +85,15 @@ export class UserController {
     public static GetUserById(req: Request, res: Response) {
         UserModel.findById(req.params.userId).exec((err: any, doc: IUser) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     error: err
-                }).status(500)
+                });
             } else {
-                res.json({
+                res.status(200).json({
                     success: true,
                     data: doc
-                }).status(200)
+                });
             }
         });
     }
@@ -101,15 +101,15 @@ export class UserController {
     public static UpdateUserById(req: Request, res: Response) {
         UserModel.findByIdAndUpdate(req.body._id, req.body, { new: true }).exec((err: any, doc: IUser) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     error: err
-                }).status(500);
+                });
             } else {
-                res.json({
+                res.status(200).json({
                     success: true,
                     data: doc
-                }).status(200);
+                });
             }
         });
     }
@@ -130,15 +130,15 @@ export class UserController {
 
         new ReviewModel(review).addReview((err: any, doc: IReview) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     error: err
-                }).status(500);
+                });
             } else {
-                res.json({
+                res.status(200).json({
                     success: true,
                     data: doc
-                }).status(200);
+                });
             }
         })
     }
@@ -146,15 +146,15 @@ export class UserController {
     public static GetAllReviewsByUser(req: Request, res: Response) {
         ReviewModel.find().where('reviewerID').equals(req.params.userId).exec((err: any, docs: IReview[]) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     error: err
-                }).status(500);
+                });
             } else {
-                res.json({
+                res.status(200).json({
                     success: true,
                     data: docs
-                }).status(200);
+                });
             }
         })
     }
@@ -162,15 +162,15 @@ export class UserController {
     public static GetAllReviewsForUser(req: Request, res: Response) {
         ReviewModel.find().where('revieweeID').equals(req.params.userId).exec((err: any, docs: IReview[]) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     error: err
-                }).status(500);
+                });
             } else {
-                res.json({
+                res.status(200).json({
                     success: true,
                     data: docs
-                }).status(200);
+                });
             }
         })
     }
@@ -185,32 +185,32 @@ export class UserController {
                 // find by _id and delete it.
                 ReviewModel.findByIdAndDelete(_reviewId).where('reviewerID').equals(_userId).exec((err: any, doc: IReview) => {
                     if (err) {
-                        res.json({
+                        res.status(500).json({
                             success: false,
                             error: err
-                        }).status(500);
+                        });
                     } else {
                         if (doc) {
-                            res.json({
+                            res.status(200).json({
                                 success: true,
                                 data: doc,
                                 msg: "deleted review"
-                            }).status(200);
+                            });
                         } else {
-                            res.json({
+                            res.status(200).json({
                                 success: false,
                                 msg: "No review with given review id"
-                            }).status(500);
+                            })
                         }
                     }
                 });
 
             } else {
                 // no user with id
-                res.json({
+                res.status(200).json({
                     success: false,
                     msg: "No user with given user id"
-                }).status(500);
+                });
             }
         });
     }
