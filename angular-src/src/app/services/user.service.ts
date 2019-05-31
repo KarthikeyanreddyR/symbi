@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../shared/models/user';
+import { ApiResponse } from '../shared/interfaces/response';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class UserService {
     return this.httpClient.post(`${this.apiUrl}/register`, register);
   }
 
-  public loginUser(login: any) {
-    return this.httpClient.post(`${this.apiUrl}/login`, login);
+  public loginUser(login: any): Observable<ApiResponse> {
+    return this.httpClient.post<ApiResponse>(`${this.apiUrl}/login`, login);
   }
 }
