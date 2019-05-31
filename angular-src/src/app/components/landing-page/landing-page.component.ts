@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+declare var $: any;
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  public openDashboard(userType: number) {
+    if(userType === 0) {
+      this.router.navigate(['/dashboard']);
+    } else if(userType === 1) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      // no option
+    }
+
+    this.hideLandingPage();
+  }
+
+  private hideLandingPage() {
+    $('#landingPage').modal('hide');
+  }
 }

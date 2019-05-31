@@ -1,28 +1,30 @@
-<!--   ***   Main Body layout   ***   -->
-<div class="jumbotron jumbotron-fluid">
-  <div class="title">
-        Symbii
-  </div>
+<div>
+  <h4>Please Choose a Profile Type for this Session</h4>
 
-    <div class="text-body">
-      Please Choose a Profile Type for this Session:
-
-      <!--   ***   Dual Column layout for profile options   ***   -->
-      <div class="row">
-        <div class="col-6">
-            <div class="left-col">
-              <label>Proceed as a Parent</label>
-              <button type="submit" class="btn btn-primary">Parent</button>
-            </div>
+  <!--   ***   Dual Column layout for profile options   ***   -->
+  <div class="row">
+    <div class="col-6">
+      <div class="left-col">
+        <div class="card" (click)="openDashboard(0)">
+          <div class="card-body">
+            <h5 class="card-title">Proceed as a Parent</h5>
+          </div>
         </div>
-        <div class="col-6">
-            <div class="right-col">
-              <label>Proceed as a Caregiver</label>
-              <button type="submit" class="btn btn-primary">Caregiver</button>
-            </div>
-        </div>
+        <!-- <label></label>
+        <button type="submit" class="btn btn-primary">Parent</button> -->
       </div>
-      
     </div>
+    <div class="col-6">
+      <div class="right-col">
+        <div class="card" (click)="openDashboard(1)">
+          <div class="card-body">
+            <h5 class="card-title">Proceed as a Caregiver</h5>
+          </div>
+        </div>
+        <!-- <label>Proceed as a Caregiver</label>
+        <button type="submit" class="btn btn-primary">Caregiver</button> -->
+      </div>
+    </div>
+  </div>
 
 </div>
