@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) {
     this.activeTab = 0;
     this.userService.getUserById('5ce3581d5fba742e68b35971').subscribe(res => {
-      this.user = <User>res;
+      this.user = <User>res.data;
     },
     err => {
       alert('error when retreiving user!!')

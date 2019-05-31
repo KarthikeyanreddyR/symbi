@@ -17,8 +17,8 @@ export class UserService {
     return this.httpClient.get<Object>(`${this.apiUrl}/users`);
   }
 
-  public getUserById(_userId: string): Observable<Object> {
-    return this.httpClient.get<Object>(`${this.apiUrl}/users/${_userId}`);
+  public getUserById(_userId: string): Observable<ApiResponse> {
+    return this.httpClient.get<ApiResponse>(`${this.apiUrl}/users/${_userId}`);
   }
 
   public updateUser(user: User): Observable<Object>  {
