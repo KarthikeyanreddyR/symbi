@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    width: 100%;
-}
-
 /* Create two equal columns that floats next to each other */
 [class*="col"] {
     float:left;
@@ -16,14 +12,17 @@ body {
 .profile-box {
     height: 30vh;
 }
-.basicinfo-box{
-    height: max-content;
-}
 
 /* Clear floats after the columns */
 .row::after {
     content: "";
     display: table;
     clear: both;
-    width: 2vw;
+}
+
+.profile-tab{
+    background-color: rgb(211, 183, 183);
+}
+.profile-tab:hover{
+    background-color: 
 }
