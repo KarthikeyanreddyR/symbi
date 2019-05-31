@@ -14,10 +14,10 @@ export class UserController {
             if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else if (user) {
-                if(user.password === req.body.password) {
+                if (user.password === req.body.password) {
                     res.json({
                         success: true,
                         data: user,
@@ -40,38 +40,38 @@ export class UserController {
     public static RegisterUser(req: Request, res: Response) {
         let _user: IUser = UserModel.schema.statics.defaultObject();
 
-            _user.firstName = req.body.name;
-            _user.email = req.body.email;
-            _user.password = req.body.password;
+        _user.firstName = req.body.name;
+        _user.email = req.body.email;
+        _user.password = req.body.password;
 
-            try {
-                new UserModel(_user).registerUser((err: any, user: IUser) => {
-                    if (err) {
-                        res.json({
-                            success: false,
-                            data: err
-                        }).status(500);
-                    } else {
-                        res.json({
-                            success: true,
-                            data: user,
-                        }).status(200);
-                    }
-                });
-            } catch (error) {
-                res.json({
-                    success: false,
-                    data: error
-                }).status(500);
-            }
+        try {
+            new UserModel(_user).registerUser((err: any, user: IUser) => {
+                if (err) {
+                    res.json({
+                        success: false,
+                        error: err
+                    }).status(500);
+                } else {
+                    res.json({
+                        success: true,
+                        data: user,
+                    }).status(200);
+                }
+            });
+        } catch (error) {
+            res.json({
+                success: false,
+                error: error
+            }).status(500);
+        }
     }
 
     public static GetAllUsers(req: Request, res: Response) {
-        UserModel.find({}).exec((err: any, docs:IUser[]) => {
-            if(err) {
+        UserModel.find({}).exec((err: any, docs: IUser[]) => {
+            if (err) {
                 res.json({
-                    success:false,
-                    msg: err
+                    success: false,
+                    error: err
                 }).status(500)
             } else {
                 res.json({
@@ -83,11 +83,11 @@ export class UserController {
     }
 
     public static GetUserById(req: Request, res: Response) {
-        UserModel.findById(req.params.userId).exec((err: any, doc:IUser) => {
-            if(err) {
+        UserModel.findById(req.params.userId).exec((err: any, doc: IUser) => {
+            if (err) {
                 res.json({
                     success: false,
-                    msg: err
+                    error: err
                 }).status(500)
             } else {
                 res.json({
@@ -99,11 +99,11 @@ export class UserController {
     }
 
     public static UpdateUserById(req: Request, res: Response) {
-        UserModel.findByIdAndUpdate(req.body._id, req.body, {new: true}).exec((err: any, doc:IUser) => {
-            if(err) {
+        UserModel.findByIdAndUpdate(req.body._id, req.body, { new: true }).exec((err: any, doc: IUser) => {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
@@ -117,22 +117,22 @@ export class UserController {
     /**
      * User Reviews
      */
-    
-     public static AddReview(req: Request, res: Response) {
+
+    public static AddReview(req: Request, res: Response) {
         let review: IReview = {
             reviewerID: req.body.reviewerID,
             revieweeID: req.body.revieweeID,
-            reviewDate: new Date(),
+            reviewDate: req.body.reviewDate,
             reviewTitle: req.body.reviewTitle,
             starRating: req.body.starRating,
             reviewNotes: req.body.reviewNotes
         }
-        
-        new ReviewModel(review).addReview((err: any, doc:IReview) => {
-            if(err) {
+
+        new ReviewModel(review).addReview((err: any, doc: IReview) => {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
@@ -141,14 +141,14 @@ export class UserController {
                 }).status(200);
             }
         })
-     }
+    }
 
-     public static GetAllReviewsByUser(req: Request, res: Response) {
+    public static GetAllReviewsByUser(req: Request, res: Response) {
         ReviewModel.find().where('reviewerID').equals(req.params.userId).exec((err: any, docs: IReview[]) => {
-            if(err) {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
@@ -161,10 +161,10 @@ export class UserController {
 
     public static GetAllReviewsForUser(req: Request, res: Response) {
         ReviewModel.find().where('revieweeID').equals(req.params.userId).exec((err: any, docs: IReview[]) => {
-            if(err) {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
@@ -181,26 +181,26 @@ export class UserController {
 
         // validate userId
         UserModel.findById(_userId).count().exec((err: any, count: number) => {
-            if(count > 0) {
+            if (count > 0) {
                 // find by _id and delete it.
-                ReviewModel.findByIdAndDelete(_reviewId).where('reviewerID').equals(_userId).exec((err: any, doc:IReview) => {
-                    if(err) {
+                ReviewModel.findByIdAndDelete(_reviewId).where('reviewerID').equals(_userId).exec((err: any, doc: IReview) => {
+                    if (err) {
                         res.json({
                             success: false,
-                            data: err
-                        })
+                            error: err
+                        }).status(500);
                     } else {
-                        if(doc) {
+                        if (doc) {
                             res.json({
                                 success: true,
                                 data: doc,
                                 msg: "deleted review"
-                            })
+                            }).status(200);
                         } else {
                             res.json({
                                 success: false,
                                 msg: "No review with given review id"
-                            })
+                            }).status(500);
                         }
                     }
                 });
@@ -209,8 +209,8 @@ export class UserController {
                 // no user with id
                 res.json({
                     success: false,
-                    data : "No user with given user id"
-                })
+                    msg: "No user with given user id"
+                }).status(500);
             }
         });
     }

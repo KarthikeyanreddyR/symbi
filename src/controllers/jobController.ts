@@ -11,7 +11,7 @@ export class JobController {
             if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
@@ -27,7 +27,7 @@ export class JobController {
             if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
@@ -40,32 +40,32 @@ export class JobController {
 
     public static GetAllJobsByUserId(req: Request, res: Response) {
         let _id = req.params.id;
-        UserModel.findById(_id).exec((err: any, user:any) => {
-            if(err) {
+        UserModel.findById(_id).exec((err: any, user: any) => {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
-                if(user) {
+                if (user) {
                     JobModel.find({}).where('createdBy').equals(user._id).exec((err: any, docs: IJob[]) => {
-                        if(err) {
+                        if (err) {
                             res.json({
                                 success: false,
-                                data: err
+                                error: err
                             }).status(500);
                         } else {
                             res.json({
                                 success: true,
-                                data : docs
-                            });
+                                data: docs
+                            }).status(200);
                         }
                     });
                 } else {
                     // no user with provided email
                     res.json({
                         success: false,
-                        data: "No user with provided user id"
+                        msg: "No user with provided user id"
                     }).status(500);
                 }
             }
@@ -74,32 +74,32 @@ export class JobController {
 
     public static GetAllJobsForUserId(req: Request, res: Response) {
         let _id = req.params.id;
-        UserModel.findById(_id).exec((err: any, user:any) => {
-            if(err) {
+        UserModel.findById(_id).exec((err: any, user: any) => {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
-                if(user) {
+                if (user) {
                     JobModel.find({}).where('createdFor').equals(user._id).exec((err: any, docs: IJob[]) => {
-                        if(err) {
+                        if (err) {
                             res.json({
                                 success: false,
-                                data: err
+                                error: err
                             }).status(500);
                         } else {
                             res.json({
                                 success: true,
-                                data : docs
-                            });
+                                data: docs
+                            }).status(200);
                         }
                     });
                 } else {
                     // no user with provided email
                     res.json({
                         success: false,
-                        data: "No user with provided user id"
+                        msg: "No user with provided user id"
                     }).status(500);
                 }
             }
@@ -112,25 +112,25 @@ export class JobController {
 
         // validate userId
         UserModel.findById(_userId).count().exec((err: any, count: number) => {
-            if(count > 0) {
-                JobModel.findByIdAndDelete(_jobId).where('createdBy').equals(_userId).exec((err: any, doc:IJob) => {
-                    if(err) {
+            if (count > 0) {
+                JobModel.findByIdAndDelete(_jobId).where('createdBy').equals(_userId).exec((err: any, doc: IJob) => {
+                    if (err) {
                         res.json({
                             success: false,
-                            data: err
-                        })
+                            error: err
+                        }).status(500);
                     } else {
-                        if(doc) {
+                        if (doc) {
                             res.json({
                                 success: true,
                                 data: doc,
                                 msg: "deleted job"
-                            })
+                            }).status(200);
                         } else {
                             res.json({
                                 success: false,
                                 msg: "No job with given job id"
-                            })
+                            }).status(500);
                         }
                     }
                 });
@@ -139,40 +139,40 @@ export class JobController {
                 // no user with id
                 res.json({
                     success: false,
-                    data : "No user with given user id"
-                })
+                    msg: "No user with given user id"
+                }).status(500);
             }
         });
     }
 
     public static GetAllOpenJobs(req: Request, res: Response) {
         JobModel.find().where('jobType').equals(JobType.OPEN_JOB).exec((err: any, docs: IJob[]) => {
-            if(err) {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
                     success: true,
-                    data : docs
-                });
+                    data: docs
+                }).status(200);
             }
         });
     }
 
     public static GetAllScheduledJobs(req: Request, res: Response) {
         JobModel.find().where('jobType').equals(JobType.SCHEDULED_JOB).exec((err: any, docs: IJob[]) => {
-            if(err) {
+            if (err) {
                 res.json({
                     success: false,
-                    data: err
+                    error: err
                 }).status(500);
             } else {
                 res.json({
                     success: true,
-                    data : docs
-                });
+                    data: docs
+                }).status(200);
             }
         });
     }
@@ -182,7 +182,7 @@ export class JobController {
             let _job: IJob = JobModel.schema.statics.defaultObject();
             _job.createdBy = req.body.userId;
             _job.jobName = req.body.jobName;
-            _job.createdAt = new Date();
+            _job.createdAt = req.body.createdAt;
             _job.jobStartTime = req.body.jobStartTime;
             _job.jobEndTime = req.body.jobEndTime;
             _job.jobNotes = req.body.jobNotes;
@@ -194,7 +194,7 @@ export class JobController {
                 if (err) {
                     res.json({
                         success: false,
-                        data: err
+                        error: err
                     }).status(500);
                 } else {
                     res.json({
@@ -206,7 +206,7 @@ export class JobController {
         } catch (error) {
             res.json({
                 success: false,
-                data: error
+                error: error
             }).status(500);
         }
     }
@@ -216,7 +216,7 @@ export class JobController {
             let _job: IJob = JobModel.schema.statics.defaultObject();
             _job.createdBy = req.body.userId;
             _job.jobName = req.body.jobName;
-            _job.createdAt = new Date();
+            _job.createdAt = req.body.createdAt;
             _job.jobStartTime = req.body.jobStartTime;
             _job.jobEndTime = req.body.jobEndTime;
             _job.jobNotes = req.body.jobNotes;
@@ -228,7 +228,7 @@ export class JobController {
                 if (err) {
                     res.json({
                         success: false,
-                        data: err
+                        error: err
                     }).status(500);
                 } else {
                     res.json({
@@ -240,7 +240,7 @@ export class JobController {
         } catch (error) {
             res.json({
                 success: false,
-                data: error
+                error: error
             }).status(500);
         }
     }

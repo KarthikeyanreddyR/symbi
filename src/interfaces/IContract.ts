@@ -1,12 +1,12 @@
 import { ContractStatus } from "./enums";
 
 export interface IContract {
-    jobId : string,
+    jobId: string,
     promiserId: string,
-    promiseeId : string,
-    promiserDate : Date | undefined,
-    promiseeDate : Date | undefined,
-    contractStatus : ContractStatus,
-    contractContent : Buffer,
-    contractCheck : boolean
+    promiseeId: string,
+    promiserDate: string,
+    promiseeDate: string,
+    contractStatus: ContractStatus,
+    contractContent: Buffer,
+    contractCheck: boolean
 }

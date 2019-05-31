@@ -9,13 +9,13 @@
 import { JobType, JobStatus } from "./enums";
 
 export interface IJob {
-    jobName: string;
-    createdBy: string;
-    createdAt: Date | undefined;
-    jobStartTime: Date | undefined;
-    jobEndTime: Date | undefined
-    jobStatus: JobStatus;
-    jobType: JobType;
-    jobNotes: string;
-    createdFor: string | undefined;
+  jobName: string;
+  createdBy: string;
+  createdAt: string;
+  jobStartTime: string;
+  jobEndTime: string;
+  jobStatus: JobStatus;
+  jobType: JobType;
+  jobNotes: string;
+  createdFor: string | undefined;
 }
