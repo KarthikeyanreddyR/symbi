@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  private activeTab: number; //Current active tab
+  constructor() {
+    this.activeTab = 0;
+  }
 
   ngOnInit() {
+   
+  }
+
+
+  changeTab(tabNum: number) {
+    
   }
 
 }

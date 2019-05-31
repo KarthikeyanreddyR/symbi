@@ -16,22 +16,33 @@
     </div>
     <!-- Bottom row -->
     <div class="row">
-      <div class="col profile-tab">
-        Button 1
-      </div>
-      <div class="col profile-tab">
-        Button 2
-      </div>
-      <div class="col profile-tab">
-        Button 3
-      </div>
-      <div class="col profile-tab">
-        Button 4
-      </div>
+      <button (click)="activeTab = 0" class="col profile-tab">
+        Profile Info
+      </button>
+      <button (click)="activeTab = 1" class="col profile-tab">
+        Family
+      </button>
+      <button (click)="activeTab = 2" class="col profile-tab">
+        Jobs
+      </button>
+      <button (click)="activeTab = 3" class="col profile-tab">
+        Experience
+      </button>
     </div>
-    <div class="row">
-      <div class="col basicinfo-box" style=background-color:blueviolet>
-        More random bio
+    <div class="row" >
+      <div class="col basicinfo-box" style=background-color:blueviolet [ngSwitch]="activeTab">
+          <div *ngSwitchCase="0">
+              Basic Info Box
+          </div>
+          <div *ngSwitchCase="1">
+              Family Box
+          </div>
+          <div *ngSwitchCase="2">
+              Jobs Box
+          </div>
+          <div *ngSwitchCase="3">
+              Experience Box
+          </div>
       </div>
     </div>
 </div>
