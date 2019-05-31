@@ -25,6 +25,8 @@ import { JobService } from './services/job.service';
 
 // directives
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
+import { ParentDashboardComponent } from './components/dashboard/parent-dashboard/parent-dashboard.component';
+import { CaregiverDashboardComponent } from './components/dashboard/caregiver-dashboard/caregiver-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AppPasswordDirective } from './shared/directives/app-password.directive
     AppPasswordDirective,
     ReviewComponent,
     ProfileComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ParentDashboardComponent,
+    CaregiverDashboardComponent
   ],
   imports: [
     BrowserModule,
