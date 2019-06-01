@@ -1,41 +1,53 @@
 <!--   ***   Main Body layout   ***   -->
-<div class="row">
-  <div class="app-dashboard">
-    <!--   ***   Dual Column layout for dashboard options   ***   -->
-
-      <div class="col-3">
-        <div class="dashboard-sidebar">
-          <div class="sidebar-logo">Small Symbii Logo</div>
-          <div class="sidebar-content">Left Hand Stuff</div>
-        </div>
-      </div>
-      <div class="col-9">
-        <div class="row">
-        <div class="dashboard-main">
-          <div class="title">Symbii Dashboard Title</div>
-          <div class="text-body">
-            <div class="col-3">
+<div class="row" id="app-dashboard">
+  <!--   ***   Dual Column layout for dashboard options   ***   -->
+  <div class="col-1" id="dashboard-sidebar">
+    <div class="sidebar-logo">Small Symbii Logo</div>
+    <div class="sidebar-content">Left Hand Stuff</div>
+  </div>
+  <div class="col-11" id="dashboard-main">
+    <!-- <div class="dashboard-main"> -->
+      <div class="title">Symbii Dashboard</div>
+        <div class="text-body">
+          <div class="row">
+            <div class="col-2">
               <div class="dashboard-item" id="left">
                 <label>Open Jobs</label>
                 <button type="submit" class="btn btn-primary">Get Open Jobs</button>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-2">
               <div class="dashboard-item" id="mid">
                 <label>Scheduled Jobs</label>
                 <button type="submit" class="btn btn-primary">Get Scheduled Jobs</button>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-2">
               <div class="dashboard-item" id="right">
                 <label>Completed Jobs</label>
                 <button type="submit" class="btn btn-primary">Get Completed Jobs</button>
               </div>
             </div>
+            <div class="col-2">
+                <div class="dashboard-item" id="righty">
+                  <label>Requests</label>
+                  <button type="submit" class="btn btn-primary">Respond to Request</button>
+                </div>
+              </div>
+              <div class="col-2">
+                  <div class="dashboard-item" id="righty2">
+                    <label>Reviews</label>
+                    <button type="submit" class="btn btn-primary">Write Review</button>
+                  </div>
+                </div>
+                <div class="col-2">
+                    <div class="dashboard-item" id="righty3">
+                      <label>Payment History</label>
+                      <button type="submit" class="btn btn-primary">Manage Payments</button>
+                    </div>
+                  </div>
           </div>
           </div>
-        </div>
-      </div>
-
+        <!-- </div> -->
   </div>
 </div>

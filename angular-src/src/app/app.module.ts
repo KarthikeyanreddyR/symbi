@@ -17,6 +17,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ReviewComponent } from './components/review/review.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ParentDashboardComponent } from './components/dashboard/parent-dashboard/parent-dashboard.component';
+import { CaregiverDashboardComponent } from './components/dashboard/caregiver-dashboard/caregiver-dashboard.component';
 
 // services
 import { ValidateService} from './services/validate.service';
@@ -25,8 +27,6 @@ import { JobService } from './services/job.service';
 
 // directives
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
-import { ParentDashboardComponent } from './components/dashboard/parent-dashboard/parent-dashboard.component';
-import { CaregiverDashboardComponent } from './components/dashboard/caregiver-dashboard/caregiver-dashboard.component';
 
 @NgModule({
   declarations: [
