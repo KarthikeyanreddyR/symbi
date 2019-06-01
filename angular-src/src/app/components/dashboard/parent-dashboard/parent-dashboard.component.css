@@ -1,14 +1,15 @@
+.row{
+  background-color: yellow;
+  margin: -25px 0 0 0 ;
+  padding: 0;
+  width: 100%;
+}
 .title{
   font-size: 3vw;
   text-align: center;
   font-family: 'Dancing Script', cursive;
 }
 
-.jumbotron{
-  padding: 1rem 1rem;
-  position: center;
-  background: transparent;
-}
 .text-body{
   font-size: 3vw;
   text-align: center;
@@ -17,16 +18,20 @@
 
 .dashboard-sidebar{
   background-color: aquamarine;
-  border-color: black;
+  margin: 1px 0 0 0;
+  padding: 1px 5px 1px 5px;
 }
 
 .sidebar-logo{
   background-color: pink;
-  border-color: black;
+  margin: 0;
+  padding: 1px 2px 1px 2px;
 }
 
 .sidebar-content{
   background-color: chartreuse;
+  margin: 0;
+  padding: 1px 2px 1px 2px;
 }
 
 .dashboard-main{

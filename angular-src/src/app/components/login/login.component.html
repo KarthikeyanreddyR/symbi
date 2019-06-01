@@ -1,57 +1,61 @@
-<section>
-  <h2>Login</h2>
-  <form (submit)="onLoginSubmit()" [formGroup]="loginForm">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <div class="input-group">
-          <span class="input-group-prepend">
-              <div class="input-group-text"><i class="fas fa-envelope"></i></div>
-          </span>
-          <input type="email" class="form-control" formControlName="email" placeholder="Enter Email" required>
-      </div>
-      <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email.errors.email">
-          Invalid email format
+<div class="container-fluid">
+  <div class="col-6 offset-3">
+    <section>
+      <h2>Login</h2>
+      <form (submit)="onLoginSubmit()" [formGroup]="loginForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+              <span class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+              </span>
+              <input type="email" class="form-control" formControlName="email" placeholder="Enter Email" required>
+          </div>
+          <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.email">
+              Invalid email format
+            </div>
+            <div *ngIf="email.errors.required">
+              Email is required
+            </div>
+          </div>
         </div>
-        <div *ngIf="email.errors.required">
-          Email is required
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-group">
+              <span class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-lock"></i></div>
+              </span>
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter Password"
+              required appPassword>
+          </div>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+            <div *ngIf="password.errors.required">
+              Password is required
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+      </form>
+      <hr>
+      <div>
+        <p>
+          <a href="javascript:void(0)">Forgot password?</a>
+        </p>
+        <p>
+          New to Symbii? <a [routerLink]="['/signup']">Sign up</a>
+        </p>
+      </div>
+    </section>
+  
+    <div id="landingPage" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body container">
+              <app-landing-page></app-landing-page>
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <div class="input-group">
-          <span class="input-group-prepend">
-              <div class="input-group-text"><i class="fas fa-lock"></i></div>
-          </span>
-          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter Password"
-          required appPassword>
-      </div>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
-        <div *ngIf="password.errors.required">
-          Password is required
-        </div>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
-  </form>
-  <hr>
-  <div>
-    <p>
-      <a href="javascript:void(0)">Forgot password?</a>
-    </p>
-    <p>
-      New to Symbii? <a [routerLink]="['/signup']">Sign up</a>
-    </p>
-  </div>
-</section>
-
-<div id="landingPage" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body container">
-            <app-landing-page></app-landing-page>
-        </div>
-      </div>
-    </div>
-  </div>
+  </div> 
+</div>

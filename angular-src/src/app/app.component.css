@@ -1,3 +1,9 @@
+.container-fluid{
+  background-color: darkmagenta;
+  padding: 0;
+  margin: 0;
+}
+
 .foundation-col{
     color: white;
     font-size: 15px;

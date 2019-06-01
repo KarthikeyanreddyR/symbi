@@ -1,55 +1,59 @@
-<section>
-  <h2>Sign up</h2>
-  <form (ngSubmit)="onSignupSubmit()" [formGroup]="signUpForm">
-    <div class="form-group">
-      <label for="email">Name</label>
-      <div class="input-group">
-        <span class="input-group-prepend">
-          <div class="input-group-text"><i class="fas fa-user"></i></div>
-        </span>
-        <input type="text" class="form-control" formControlName="name" placeholder="Enter Name" required>
-      </div>
-      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
-        <div *ngIf="name.errors.required">
-          Name is required.
+<div class="container-fluid">
+  <div class="col-6 offset-3">
+    <section>
+      <h2>Sign up</h2>
+      <form (ngSubmit)="onSignupSubmit()" [formGroup]="signUpForm">
+        <div class="form-group">
+          <label for="email">Name</label>
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-user"></i></div>
+            </span>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter Name" required>
+          </div>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+            <div *ngIf="name.errors.required">
+              Name is required.
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <div class="input-group">
-        <span class="input-group-prepend">
-          <div class="input-group-text"><i class="fas fa-envelope"></i></div>
-        </span>
-        <input type="email" class="form-control" formControlName="email" placeholder="Enter Email" required>
-      </div>
-      <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email.errors.email">
-          Invalid email format
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+            </span>
+            <input type="email" class="form-control" formControlName="email" placeholder="Enter Email" required>
+          </div>
+          <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.email">
+              Invalid email format
+            </div>
+            <div *ngIf="email.errors.required">
+              Email is required
+            </div>
+          </div>
         </div>
-        <div *ngIf="email.errors.required">
-          Email is required
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-lock"></i></div>
+            </span>
+            <input type="password" class="form-control" formControlName="password"
+              placeholder="Enter Password" appPassword required>
+          </div>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+            <div *ngIf="password.errors.minlength || password.errors.maxlength">
+              Password must be 8-16 characters in length
+            </div>
+            <div *ngIf="password.errors.required">
+              Password is required
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <div class="input-group">
-        <span class="input-group-prepend">
-          <div class="input-group-text"><i class="fas fa-lock"></i></div>
-        </span>
-        <input type="password" class="form-control" formControlName="password"
-          placeholder="Enter Password" appPassword required>
-      </div>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
-        <div *ngIf="password.errors.minlength || password.errors.maxlength">
-          Password must be 8-16 characters in length
-        </div>
-        <div *ngIf="password.errors.required">
-          Password is required
-        </div>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Sign up</button>
-  </form>
-</section>
+        <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Sign up</button>
+      </form>
+    </section>
+  </div>
+</div>
