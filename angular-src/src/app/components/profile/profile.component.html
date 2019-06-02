@@ -28,6 +28,9 @@
       <button (click)="activeTab = 3" class="col profile-tab">
         Experience
       </button>
+      <button (click)="activeTab = 4" class="col profile-tab">
+        Payments
+      </button>
     </div>
     <div class="row" >
       <div class="col basicinfo-box" style=background-color:blueviolet [ngSwitch]="activeTab">
@@ -64,6 +67,9 @@
         <!-- Experience Information-->
         <div *ngSwitchCase="3">
             Experience Box
+        </div>
+        <div *ngSwitchCase="4">
+          Payment Information Goes Here
         </div>
       </div>
     </div>
