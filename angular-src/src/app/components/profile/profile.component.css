@@ -10,7 +10,9 @@
 }
 
 .profile-box {
-    height: 30vh;
+    height: 35vh;
+    text-align: center;
+    background-color: grey;
 }
 
 /* Clear floats after the columns */
@@ -21,19 +23,21 @@
 }
 
 .profile-tab{
-    background-color: rgb(211, 183, 183);
+    background-color: rgb(87, 154, 231);
+    color: #ffff;
 }
 .profile-tab:hover{
-    background-color: rgb(149, 224, 229);
+    background-color: rgb(51, 137, 235);
 }
 
 .profile-tab:active{
-    background-color: rgb(110, 169, 173);
+    background-color: rgb(94, 169, 255);
 }
 
 .profile-info{
     overflow: auto;
     height: 36vh;
+    background-color: rgb(233, 245, 255);
 }
 
 button{

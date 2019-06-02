@@ -2,7 +2,7 @@
     <!-- Top row -->
     <div class="row">
       <!-- Profile Box -->  
-      <div class="col-4 profile-box" style="background-color:rgb(240, 245, 176);">
+      <div class="col-4 rounded profile-box">
         <div>
           Profile Picture
         </div>
@@ -16,60 +16,48 @@
     </div>
     <!-- Bottom row -->
     <div class="row">
-      <button (click)="activeTab = 0" class="col profile-tab">
+      <button (click)="activeTab = 0" class="col rounded profile-tab">
         Profile
       </button>
-      <button (click)="activeTab = 1" class="col profile-tab">
+      <button (click)="activeTab = 1" class="col rounded profile-tab">
         Family
       </button>
-      <button (click)="activeTab = 2" class="col profile-tab">
-        Jobs
-      </button>
-      <button (click)="activeTab = 3" class="col profile-tab">
+      <button (click)="activeTab = 2" class="col rounded profile-tab">
         Experience
       </button>
-      <button (click)="activeTab = 4" class="col profile-tab">
+      <button (click)="activeTab = 3" class="col rounded profile-tab">
         Payments
       </button>
     </div>
-    <div class="row overflow-auto" style="height: 37vh">
-      <div class="col basicinfo-box" style=background-color:blueviolet [ngSwitch]="activeTab">
+    <div class="row">
+      <div class="col container-fluid rounded profile-info" [ngSwitch]="activeTab">
         <!-- Profile Box-->
         <div *ngSwitchCase="0">
             Basic Info
-            <ul>
-              <li>Name: {{user.firstName + " " + user.lastName}}</li>
-              <li>Gender: {{user.gender}}</li>
-              <li>Email: {{user.email}}</li>
-              <li>Phone: {{user.phoneNumber}}</li>
-              <li>City: {{user.address.city}}</li>
-              <li>State: {{user.address.state}}</li>
-              <li>Bio: {{user.bio}}</li>
+            <ul class="list-group rounded">
+              <li class="list-group-item">Name: {{user.firstName + " " + user.lastName}}</li>
+              <li class="list-group-item">Gender: {{user.gender}}</li>
+              <li class="list-group-item">Email: {{user.email}}</li>
+              <li class="list-group-item">Phone: {{user.phoneNumber}}</li>
+              <li class="list-group-item">City: {{user.address.city}}</li>
+              <li class="list-group-item">State: {{user.address.state}}</li>
+              <li class="list-group-item">Bio: {{user.bio}}</li>
             </ul>
         </div>
         <!-- Family Information -->
         <div *ngSwitchCase="1">
             Family
-            <ul>
-                <li>Children: {{user.profiles[0].family.children}}</li>
-                <li>Pets: {{user.profiles[0].family.pets}}</li>
-                <li>House Rules: {{user.profile[0].houseRules}}</li>
+            <ul class="list-group">
+                <li class="list-group-item">Children: {{user.profiles[0].family.children}}</li>
+                <li class="list-group-item">Pets: {{user.profiles[0].family.pets}}</li>
+                <li class="list-group-item">House Rules: {{user.profile[0].houseRules}}</li>
               </ul>
         </div>
-        <!-- Jobs Information -->
-        <div *ngSwitchCase="2">
-            Jobs Box
-            <ul>
-              <li>Job 1</li>
-              <li>Job 2</li>
-              <li>Job 3</li>
-            </ul>
-        </div>
         <!-- Experience Information-->
-        <div *ngSwitchCase="3">
+        <div *ngSwitchCase="2">
             Experience Box
-            <ul *ngFor="let exp of user.profiles[1].experience">
-              <li>
+            <ul class="list-group" *ngFor="let exp of user.profiles[1].experience">
+              <li class="list-group-item">
                 {{exp.jobPlace}}<br>
                 {{exp.jobDesignation}}<br>
                 {{exp.jobDescription}}<br>
@@ -78,7 +66,7 @@
               </li>
             </ul>
         </div>
-        <div *ngSwitchCase="4">
+        <div *ngSwitchCase="3">
           Payment Information Goes Here
         </div>
       </div>
