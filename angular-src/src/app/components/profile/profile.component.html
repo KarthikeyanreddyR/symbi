@@ -32,7 +32,7 @@
         Payments
       </button>
     </div>
-    <div class="row" >
+    <div class="row overflow-auto" style="height: 37vh">
       <div class="col basicinfo-box" style=background-color:blueviolet [ngSwitch]="activeTab">
         <!-- Profile Box-->
         <div *ngSwitchCase="0">
@@ -53,20 +53,30 @@
             <ul>
                 <li>Children: {{user.profiles[0].family.children}}</li>
                 <li>Pets: {{user.profiles[0].family.pets}}</li>
-                <li>Email: {{user.email}}</li>
-                <li>Phone: {{user.phoneNumber}}</li>
-                <li>City: {{user.address.city}}</li>
-                <li>State: {{user.address.state}}</li>
-                <li>Bio: {{user.bio}}</li>
+                <li>House Rules: {{user.profile[0].houseRules}}</li>
               </ul>
         </div>
         <!-- Jobs Information -->
         <div *ngSwitchCase="2">
             Jobs Box
+            <ul>
+              <li>Job 1</li>
+              <li>Job 2</li>
+              <li>Job 3</li>
+            </ul>
         </div>
         <!-- Experience Information-->
         <div *ngSwitchCase="3">
             Experience Box
+            <ul *ngFor="let exp of user.profiles[1].experience">
+              <li>
+                {{exp.jobPlace}}<br>
+                {{exp.jobDesignation}}<br>
+                {{exp.jobDescription}}<br>
+                {{exp.startDate}}<br>
+                {{exp.endDate}}
+              </li>
+            </ul>
         </div>
         <div *ngSwitchCase="4">
           Payment Information Goes Here

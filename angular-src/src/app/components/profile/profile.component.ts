@@ -52,6 +52,13 @@ export class ProfileComponent implements OnInit {
             jobDescription: "Absolute monarch of Bob Inc",
             startDate: "0/0/0",
             endDate: "N/A"
+          },
+          {
+            jobPlace: "Bob Home",
+            jobDesignation: "Normal Human",
+            jobDescription: "Bob is a human doing human things now",
+            startDate: "01/01/2012",
+            endDate: "N/A"
           }
         ]
       }

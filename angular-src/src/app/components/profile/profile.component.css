@@ -31,6 +31,11 @@
     background-color: rgb(110, 169, 173);
 }
 
+.profile-info{
+    overflow: auto;
+    height: 36vh;
+}
+
 button{
     background-color: grey;
     border-style: none;
