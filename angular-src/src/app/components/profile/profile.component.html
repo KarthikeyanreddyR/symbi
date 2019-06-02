@@ -1,17 +1,16 @@
-<div>
+<div class="container-fluid">
     <!-- Top row -->
     <div class="row">
       <!-- Profile Box -->  
       <div class="col-4 profile-box" style="background-color:rgb(240, 245, 176);">
         <div>
           Profile Picture
-          {{user.profileImage}}
         </div>
       </div>
       <!-- Bio Box -->
       <div class="col" style="background-color:rgb(207, 218, 248);">
         <div>
-          Welcome back {{user.firstName}}
+          Welcome back {{ user.firstName }}
         </div>
       </div>
     </div>
@@ -29,12 +28,15 @@
       <button (click)="activeTab = 3" class="col profile-tab">
         Experience
       </button>
+      <button (click)="activeTab = 4" class="col profile-tab">
+        Payments
+      </button>
     </div>
     <div class="row" >
       <div class="col basicinfo-box" style=background-color:blueviolet [ngSwitch]="activeTab">
         <!-- Profile Box-->
         <div *ngSwitchCase="0">
-            Basic Info Box
+            Basic Info
             <ul>
               <li>Name: {{user.firstName + " " + user.lastName}}</li>
               <li>Gender: {{user.gender}}</li>
@@ -47,7 +49,16 @@
         </div>
         <!-- Family Information -->
         <div *ngSwitchCase="1">
-            Family Box
+            Family
+            <ul>
+                <li>Children: {{user.profiles[0].family.children}}</li>
+                <li>Pets: {{user.profiles[0].family.pets}}</li>
+                <li>Email: {{user.email}}</li>
+                <li>Phone: {{user.phoneNumber}}</li>
+                <li>City: {{user.address.city}}</li>
+                <li>State: {{user.address.state}}</li>
+                <li>Bio: {{user.bio}}</li>
+              </ul>
         </div>
         <!-- Jobs Information -->
         <div *ngSwitchCase="2">
@@ -56,6 +67,9 @@
         <!-- Experience Information-->
         <div *ngSwitchCase="3">
             Experience Box
+        </div>
+        <div *ngSwitchCase="4">
+          Payment Information Goes Here
         </div>
       </div>
     </div>
