@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="col-6 offset-3">
+  <div class="col-md-6 offset-md-3">
     <section>
       <h2>Sign up</h2>
       <form (ngSubmit)="onSignupSubmit()" [formGroup]="signUpForm">
@@ -54,6 +54,9 @@
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Sign up</button>
       </form>
+      <div class="alert alert-success mt-2" *ngIf="registerSuccess">
+        Successfully created account. <a [routerLink]="['/login']">Login</a> to use Symbii.
+      </div>
     </section>
   </div>
 </div>
