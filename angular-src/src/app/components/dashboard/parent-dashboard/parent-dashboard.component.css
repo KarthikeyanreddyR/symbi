@@ -1,38 +1,43 @@
-#dashboard-main{
-  /* background-color: crimson; */
+#dashboard-main {
+  background-color: ghostwhite;
   margin: 1px 0 0 0;
 }
 
-#dashboard-sidebar{
+#dashboard-sidebar {
   /* background-color: aquamarine; */
   margin: 1px 0 0 0;
   padding: 1px 5px 1px 5px;
 }
 
-#parent-dashboard{
+#parent-dashboard {
   /* background-color: yellow; */
   margin: -25px 0 0 0 ;
   padding: 0;
   width: 100%;
 }
 
-.btn-primary{
+.btn-primary {
   margin: 10px 0 15px 0;
 }
 
-.col-2{
+.col-2 {
   margin: 15px 0 15px 0;
   padding: 10px 5px 10px 5px;
 }
 
-.dashboard-item{
+.dashboard-item {
   background-color: azure;
   border-color: black;
   border-style: outset;
   border-width: thin;
 }
 
-.item-label{
+.data-portal {
+  font-size: 1vw;
+  font-style: normal;
+}
+
+.item-label {
   margin: 5px;
 }
 
@@ -41,7 +46,7 @@
   padding: 0;
 }
 
-.sidebar-content{
+.sidebar-content {
   /* background-color: chartreuse; */
   /* border-color: black;
   border-style: solid;
@@ -51,7 +56,7 @@
   padding: 1px 2px 1px 2px;
 }
 
-.sidebar-logo{
+.sidebar-logo {
   color: palevioletred;
   font-family: 'Dancing Script', cursive;
   font-size: 2vw;
@@ -60,13 +65,13 @@
   text-align: center;
 }
 
-.text-body{
+.text-body {
   font-size: 2vw;
   text-align: center;
   font-style: italic;
 }
 
-.title{
+.title {
   font-family: 'Dancing Script', cursive;
   font-size: 3vw;
   text-align: center;

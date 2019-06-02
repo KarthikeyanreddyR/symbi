@@ -1,20 +1,14 @@
-.container-fluid{
-  /* background-color: darkmagenta; */
-  padding: 0;
-  margin: 0;
-}
-
 .foundation-col{
     color: white;
     font-size: 15px;
     min-height: 10px;
-    text-align: left;
+    text-align: right;
     padding: 15px;
 }
 
 .footer {
   bottom: 0;
-  position: fixed;
   overflow: hidden;
+  position: fixed;
   width: 100%;
 }
