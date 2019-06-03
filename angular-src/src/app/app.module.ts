@@ -30,6 +30,7 @@ import { JobService } from './services/job.service';
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { JobComponent } from './components/job/job.component';
+import { PostOpenJobComponent } from './components/job/post-open-job/post-open-job.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { JobComponent } from './components/job/job.component';
     ParentDashboardComponent,
     CaregiverDashboardComponent,
     SidebarComponent,
-    JobComponent
+    JobComponent,
+    PostOpenJobComponent
   ],
   imports: [
     BrowserModule,

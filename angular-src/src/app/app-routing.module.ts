@@ -7,6 +7,7 @@ import { ReviewComponent } from './components/review/review.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ParentDashboardComponent } from './components/dashboard/parent-dashboard/parent-dashboard.component';
 import { CaregiverDashboardComponent } from './components/dashboard/caregiver-dashboard/caregiver-dashboard.component';
+import { JobComponent } from './components/job/job.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'review', component: ReviewComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'dashboard/parent', component: ParentDashboardComponent },
-  { path: 'dashboard/caregiver', component: CaregiverDashboardComponent }
+  { path: 'dashboard/caregiver', component: CaregiverDashboardComponent },
+  { path: 'jobs', component: JobComponent }
 ];
 
 @NgModule({
