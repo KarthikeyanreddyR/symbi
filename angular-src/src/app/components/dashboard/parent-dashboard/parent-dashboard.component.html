@@ -11,6 +11,7 @@
           <div class="col-2">
             <div class="dashboard-item" id="first-item">
               <label class="item-label">Post a Job</label>
+<<<<<<< HEAD
               <div class="data-portal" id="first-data">
 
 
@@ -69,6 +70,10 @@
                 <!--   ***   End Form for Date Picker   ***   -->
 
               </div>
+=======
+              <div class="data-portal" id="first-data">Data Goes Here</div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+>>>>>>> 0769432836394b94ec0e7e7c6ac3fbe618a5759a
             </div>
           </div>
           <div class="col-2">
@@ -126,44 +131,3 @@
     </div>
   </div>
 </div>
-
-
-<!--   ***   jquery script for date picker   ***   -->
-<script>
-  $(function () {
-      $('#startDate').datetimepicker({
-          sideBySide: true,
-          locale: 'en'
-      });
-      $('#endDate').datetimepicker({
-          sideBySide: true,
-          locale: 'en'
-      });
-  });
-
-  $('#postOpenJob').click((e) => {
-      e.preventDefault();
-      var event = {
-          title: $('#title').val(),
-          startDate: $('#startDateVal').val(),
-          endDate: $('#endDateVal').val(),
-          notes: $('#notes').val()
-      }
-
-      console.log(event);
-      console.log(new Date(event.startDate));
-
-      $.ajax({
-          cache: false,
-          contentType: 'application/json',
-          data: JSON.stringify(event),
-          method: 'POST',
-          url: "openJob",
-          success: function (data) {
-              console.log('request complete', data);
-              $('#outputcode').show();
-              $('#outputcode>pre').html(JSON.stringify(data, undefined, 2));
-          }
-      })
-  });
-</script>

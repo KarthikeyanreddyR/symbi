@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Jobs</h2>
+  <br>
+  <div class="float-right">
+    <button class="btn btn-primary" (click)="openJob()">Post open job</button>
+  </div>
+</div>
+
+<div id="openjobModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body container">
+            <app-post-open-job></app-post-open-job>
+        </div>
+      </div>
+    </div>
+  </div>
