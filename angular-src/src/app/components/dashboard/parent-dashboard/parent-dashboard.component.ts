@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Job } from 'src/app/shared/models/jobs/job';
+import { JobType } from 'src/app/shared/models/enums';
+import { JobService } from 'src/app/services/job.service';
+
+
+  import { from } from 'rxjs';
 
 @Component({
   selector: 'app-parent-dashboard',
