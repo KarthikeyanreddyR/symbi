@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="main-col">
+    <h3>Post open Job</h3>
+    <form>
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="title">Job title</label>
+            <input type="text" class="form-control" id="title">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="startDate">Start date-time</label>
+            <div class="input-group date" id="startDate" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#startDate" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#startDate" id="startDateVal" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="endDate">End date-time</label>
+            <div class="input-group date" id="endDate" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#endDate" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#endDate" id="endDateVal" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="notes"> Notes(optional) </label>
+            <textarea class="form-control" id="notes" cols="30" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-4">
+          <button class="btn btn-dark" (click)="postOpenJob()"> Post Job </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

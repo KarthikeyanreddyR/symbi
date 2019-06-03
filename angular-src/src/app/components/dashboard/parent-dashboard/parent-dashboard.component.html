@@ -11,65 +11,7 @@
           <div class="col-2">
             <div class="dashboard-item" id="first-item">
               <label class="item-label">Post a Job</label>
-              <div class="data-portal" id="first-data">
-
-
-                <!--   ***   Begin Form for Date Picker   ***   -->
-                <form>
-                  <div class="form-row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                              <label for="title">Event title</label>
-                              <input type="text" class="form-control" id="title">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-row">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="startDate">Start date-time</label>
-                              <div class="input-group date" id="startDate" data-target-input="nearest">
-                                  <div class="input-group-prepend" data-target="#startDate"
-                                      data-toggle="datetimepicker">
-                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                  </div>
-                                  <input type="text" class="form-control datetimepicker-input"
-                                      data-target="#startDate" id="startDateVal" />
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="endDate">End date-time</label>
-                              <div class="input-group date" id="endDate" data-target-input="nearest">
-                                  <div class="input-group-prepend" data-target="#endDate"
-                                      data-toggle="datetimepicker">
-                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                  </div>
-                                  <input type="text" class="form-control datetimepicker-input"
-                                      data-target="#endDate" id="endDateVal" />
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                              <label for="notes"> Notes </label>
-                              <textarea class="form-control" id="notes" cols="30" rows="5"></textarea>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-row">
-                      <div class="col-md-4">
-                          <button class="btn btn-dark" id="postOpenJob"> Post Job </button>
-                      </div>
-                  </div>
-                </form>
-                <!--   ***   End Form for Date Picker   ***   -->
-
-
-              </div>
+              <div class="data-portal" id="first-data">Data Goes Here</div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
@@ -113,44 +55,3 @@
     </div>
   </div>
 </div>
-
-
-<!--   ***   jquery script for date picker   ***   -->
-<script>
-  $(function () {
-      $('#startDate').datetimepicker({
-          sideBySide: true,
-          locale: 'en'
-      });
-      $('#endDate').datetimepicker({
-          sideBySide: true,
-          locale: 'en'
-      });
-  });
-
-  $('#postOpenJob').click((e) => {
-      e.preventDefault();
-      var event = {
-          title: $('#title').val(),
-          startDate: $('#startDateVal').val(),
-          endDate: $('#endDateVal').val(),
-          notes: $('#notes').val()
-      }
-
-      console.log(event);
-      console.log(new Date(event.startDate));
-
-      $.ajax({
-          cache: false,
-          contentType: 'application/json',
-          data: JSON.stringify(event),
-          method: 'POST',
-          url: "openJob",
-          success: function (data) {
-              console.log('request complete', data);
-              $('#outputcode').show();
-              $('#outputcode>pre').html(JSON.stringify(data, undefined, 2));
-          }
-      })
-  });
-</script>
