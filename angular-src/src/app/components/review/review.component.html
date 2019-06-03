@@ -1,45 +1,42 @@
-<section>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->  
-<h4> REVIEW</h4>
-<form (submit)="onReviewSubmit()" [formGroup]="reviewForm">
-  <div>
+<section class="container-fluid">
+  <form (submit)="onReviewSubmit()" [formGroup]="reviewForm">
+    <div>
       <div class="form-group">
-          <label for="reviewerId">Parent ID : </label>
-          <div>
-              <input type="reviewerId" class="form-control" formControlName="reviewerId" required>
-          </div>
+        <label for="reviewerId">Parent ID : </label>
+        <div>
+          <input type="reviewerId" class="form-control" formControlName="reviewerId" required>
+        </div>
       </div>
       <div class="form-group">
-          <label for="revieweeId">CareGiver ID : </label>
-          <div>
-              <input type="revieweeId" class="form-control" formControlName="revieweeId" required>
-          </div>
+        <label for="revieweeId">Caregiver ID : </label>
+        <div>
+          <input type="revieweeId" class="form-control" formControlName="revieweeId" required>
+        </div>
       </div>
       <div class="form-group">
-          <div>
-            <label for="reviewDate">Date : </label>
-            <p> {{ date }} </p>    
-          </div>
+        <div>
+          <label for="reviewDate">Date : </label>
+          <p> {{ date }} </p>
+        </div>
       </div>
       <div class="form-group">
 
-          <label for="star-rating">Rating :</label>
-          <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">  
-          <!-- <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i> -->    
-            <i *ngIf="item" class="fa fa-star-o"></i>    
-            <i *ngIf="!item" class="fa fa-star"></i> 
-           </a>  
-          <br>  
-          Rating :- {{rating}} stars  
-        
+        <label for="star-rating">Rating :</label>
+        <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
+          <i *ngIf="item" class="far fa-star"></i>
+          <i *ngIf="!item" class="fas fa-star"></i>
+        </a>
+        <br>
+        Rating :- {{rating}} stars
+
       </div>
       <div class="form-group">
-            <label for="reviewNotes">Comments : </label>
-            <div>
-                <input type="reviewNotes" class="form-control" formControlName="reviewNotes" required>
-            </div>
-      </div>  
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">Submit</button>
-</form>
+        <label for="reviewNotes">Comments : </label>
+        <div>
+          <input type="reviewNotes" class="form-control" formControlName="reviewNotes" required>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">Submit</button>
+  </form>
 </section>
