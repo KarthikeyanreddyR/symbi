@@ -1,10 +1,12 @@
-<div class="sidebar-logo">Symbii</div>
-<div class="sidebar-content">
-  <ul class="left-hand-list">
-    <li><a href="~/../profile">My Profile</a></li>
-    <li><a href="~/../jobs/openJobs/">Jobs</a></li>
-    <li><a href="~/../review">Reviews</a></li>
-    <li>Payments</li>
-    <li>Account Settings</li>
-  </ul>
+<div>
+  <div class="sidebar-logo">Symbii</div>
+  <div class="sidebar-content">
+    <ul class="left-hand-list">
+      <li><i class="fas fa-user-circle"></i><a [routerLink]="['/profile']">My Profile</a></li>
+      <li><i class="fas fa-suitcase"></i><a [routerLink]="['/jobs']">Jobs</a></li>
+      <li><i class="fas fa-comment"></i><a [routerLink]="['/review']">Reviews</a></li>
+      <li>Payments</li>
+      <li>Account Settings</li>
+    </ul>
+  </div>
 </div>
