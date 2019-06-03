@@ -1,42 +1,41 @@
-<section class="container-fluid">
-  <form (submit)="onReviewSubmit()" [formGroup]="reviewForm">
-    <div>
-      <div class="form-group">
-        <label for="reviewerId">Parent ID : </label>
-        <div>
-          <input type="reviewerId" class="form-control" formControlName="reviewerId" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="revieweeId">Caregiver ID : </label>
-        <div>
-          <input type="revieweeId" class="form-control" formControlName="revieweeId" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <div>
-          <label for="reviewDate">Date : </label>
-          <p> {{ date }} </p>
-        </div>
-      </div>
-      <div class="form-group">
+<div class="card" style="width: 50rem;">
+  <div class="card-header">
+    WRITE A REVIEW
+  </div>
+  <section class="container-fluid">
+      <form (submit)="onReviewSubmit()" [formGroup]="reviewForm">
+          <div>
+            <div class="form-group">
+              <label for="reviewTitle">Review Title: </label>
+              <div class="col-sm-100">
+                  <input type="text" class="form-control" placeholder="Enter Review Title" required>
+              </div>
+            </div>
+           
+            
+            <div class="form-group">
+      
+              
+              <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
+                <i *ngIf="item" class="far fa-star"></i>
+                <i *ngIf="!item" class="fas fa-star"></i>
+              </a>
+              <br>
+              
+      
+            </div>
+            <div class="form-group">
+              <label for="reviewNotes">Comments : </label>
+              <div>
+                <input type="reviewNotes" class="form-control" formControlName="reviewNotes" placeholder="Enter Comments (optional)">
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">Submit</button>
+        </form>
+      </section>
+      
 
-        <label for="star-rating">Rating :</label>
-        <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
-          <i *ngIf="item" class="far fa-star"></i>
-          <i *ngIf="!item" class="fas fa-star"></i>
-        </a>
-        <br>
-        Rating :- {{rating}} stars
+</div>
 
-      </div>
-      <div class="form-group">
-        <label for="reviewNotes">Comments : </label>
-        <div>
-          <input type="reviewNotes" class="form-control" formControlName="reviewNotes" required>
-        </div>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">Submit</button>
-  </form>
-</section>
+ 
