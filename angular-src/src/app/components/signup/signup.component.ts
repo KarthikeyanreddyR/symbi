@@ -13,18 +13,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  // name: string;
-  // email: string;
-  // password: string;
 
-  constructor(private validateService: ValidateService, private formBuilder: FormBuilder, private userservice: UserService) { }
+  registerSuccess: boolean;
 
-  // signUpForm: FormGroup = new FormGroup({
-  //   name : new FormControl(''),
-  //   email: new FormControl(''),
-  //   password: new FormControl('')
-  // });
-
+  constructor(private validateService: ValidateService, private formBuilder: FormBuilder, private userservice: UserService) {
+    this.registerSuccess = false;
+  }
 
   signUpForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
@@ -46,35 +40,23 @@ export class SignupComponent implements OnInit {
   }
 
   onSignupSubmit() {
-    // console.log(123);
-    // let user = {
-    //   name: this.name,
-    //   email: this.email,
-    //   password:this.password
-    // }
-
-    // if(!this.validateService.validateSignup(user)) {
-    //   console.log('all fields are required', user);
-    //   return false;
-    // }
-
-    // if(!this.validateService.validateEmail(user.email)) {
-    //   console.log('invalid email', user);
-    //   return false;
-    // }
-
-    // let p = new User();
-    // p.firstName = user.name;
-    // p.email = user.email;
-    // p.password = user.password;
-
-    // console.log(p);
-
     console.log(this.signUpForm.value);
     let _signupInfo = this.signUpForm.value;
 
     this.userservice.registerUser(_signupInfo).subscribe(res => {
       console.log(res);
+      if(res.success) {
+        // registered success
+        this.registerSuccess = true;
+      } else {
+        // fail
+      }
+    },
+    err => {
+      // error handling
+    },
+    () => {
+
     })
   }
 

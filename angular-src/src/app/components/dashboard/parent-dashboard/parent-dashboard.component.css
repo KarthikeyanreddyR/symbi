@@ -1,44 +1,79 @@
-#app-dashboard{
-  background-color: yellow;
-  margin: -25px 0 0 0 ;
-  padding: 0;
-  width: 100%;
-}
-.title{
-  font-size: 3vw;
-  text-align: center;
-  font-family: 'Dancing Script', cursive;
+#dashboard-main {
+  background-color: ghostwhite;
+  margin: 1px 0 0 0;
 }
 
-.text-body{
-  font-size: 3vw;
-  text-align: center;
-  font-style: italic;
-}
-
-#dashboard-sidebar{
-  background-color: aquamarine;
+#dashboard-sidebar {
+  /* background-color: aquamarine; */
   margin: 1px 0 0 0;
   padding: 1px 5px 1px 5px;
 }
 
-.sidebar-logo{
-  background-color: pink;
-  margin: 0;
-  padding: 1px 2px 1px 2px;
+#parent-dashboard {
+  /* background-color: yellow; */
+  margin: -25px 0 0 0 ;
+  padding: 0;
+  width: 100%;
 }
 
-.sidebar-content{
-  background-color: chartreuse;
-  margin: 0;
-  padding: 1px 2px 1px 2px;
+.btn-primary {
+  margin: 10px 0 15px 0;
 }
 
-#dashboard-main{
-  background-color: crimson;
+.col-2 {
+  margin: 15px 0 15px 0;
+  padding: 10px 5px 10px 5px;
 }
 
-.dashboard-item{
+.dashboard-item {
   background-color: azure;
   border-color: black;
+  border-style: outset;
+  border-width: thin;
+}
+
+.data-portal {
+  font-size: 1vw;
+  font-style: normal;
+}
+
+.item-label {
+  font-size: 1.5vw;
+  margin: 1px;
+}
+
+.left-hand-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-content {
+  /* background-color: chartreuse; */
+  /* border-color: black;
+  border-style: solid;
+  border-width: 0 thin 0 0; */
+  font-size: 1vw;
+  margin: 0;
+  padding: 1px 2px 1px 2px;
+}
+
+.sidebar-logo {
+  color: palevioletred;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2vw;
+  margin: 5px 0 5px 0;
+  padding: 1px 2px 1px 2px;
+  text-align: center;
+}
+
+.text-body {
+  font-size: 2vw;
+  text-align: center;
+  font-style: italic;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3vw;
+  text-align: center;
 }

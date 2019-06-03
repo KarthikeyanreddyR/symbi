@@ -1,53 +1,156 @@
-<!--   ***   Main Body layout   ***   -->
-<div class="row" id="app-dashboard">
-  <!--   ***   Dual Column layout for dashboard options   ***   -->
-  <div class="col-1" id="dashboard-sidebar">
-    <div class="sidebar-logo">Small Symbii Logo</div>
-    <div class="sidebar-content">Left Hand Stuff</div>
-  </div>
-  <div class="col-11" id="dashboard-main">
-    <!-- <div class="dashboard-main"> -->
+<!--   ***   Nested Dual Column layout for dashboard options   ***   -->
+<div class="container-fluid">
+  <div class="row" id="parent-dashboard">
+    <div class="col-2" id="dashboard-sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-10" id="dashboard-main">
       <div class="title">Symbii Dashboard</div>
-        <div class="text-body">
-          <div class="row">
-            <div class="col-2">
-              <div class="dashboard-item" id="left">
-                <label>Open Jobs</label>
-                <button type="submit" class="btn btn-primary">Get Open Jobs</button>
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="dashboard-item" id="mid">
-                <label>Scheduled Jobs</label>
-                <button type="submit" class="btn btn-primary">Get Scheduled Jobs</button>
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="dashboard-item" id="right">
-                <label>Completed Jobs</label>
-                <button type="submit" class="btn btn-primary">Get Completed Jobs</button>
-              </div>
-            </div>
-            <div class="col-2">
-                <div class="dashboard-item" id="righty">
-                  <label>Requests</label>
-                  <button type="submit" class="btn btn-primary">Respond to Request</button>
-                </div>
-              </div>
-              <div class="col-2">
-                  <div class="dashboard-item" id="righty2">
-                    <label>Reviews</label>
-                    <button type="submit" class="btn btn-primary">Write Review</button>
+      <div class="text-body">
+        <div class="row" id="item-row">
+          <div class="col-2">
+            <div class="dashboard-item" id="first-item">
+              <label class="item-label">Post a Job</label>
+              <div class="data-portal" id="first-data">
+
+
+                <!--   ***   Begin Form for Date Picker   ***   -->
+                <form>
+                  <div class="form-row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label for="title">Event title</label>
+                              <input type="text" class="form-control" id="title">
+                          </div>
+                      </div>
                   </div>
-                </div>
-                <div class="col-2">
-                    <div class="dashboard-item" id="righty3">
-                      <label>Payment History</label>
-                      <button type="submit" class="btn btn-primary">Manage Payments</button>
-                    </div>
+                  <div class="form-row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="startDate">Start date-time</label>
+                              <div class="input-group date" id="startDate" data-target-input="nearest">
+                                  <div class="input-group-prepend" data-target="#startDate"
+                                      data-toggle="datetimepicker">
+                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                  </div>
+                                  <input type="text" class="form-control datetimepicker-input"
+                                      data-target="#startDate" id="startDateVal" />
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="endDate">End date-time</label>
+                              <div class="input-group date" id="endDate" data-target-input="nearest">
+                                  <div class="input-group-prepend" data-target="#endDate"
+                                      data-toggle="datetimepicker">
+                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                  </div>
+                                  <input type="text" class="form-control datetimepicker-input"
+                                      data-target="#endDate" id="endDateVal" />
+                              </div>
+                          </div>
+                      </div>
                   </div>
+                  <div class="form-row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label for="notes"> Notes </label>
+                              <textarea class="form-control" id="notes" cols="30" rows="5"></textarea>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="col-md-4">
+                          <button class="btn btn-dark" id="postOpenJob"> Post Job </button>
+                      </div>
+                  </div>
+                </form>
+                <!--   ***   End Form for Date Picker   ***   -->
+
+
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </div>
+          <div class="col-2">
+            <div class="dashboard-item" id="second-item">
+              <label class="item-label">Update a Job</label>
+              <div class="data-portal" id="second-data">Data Goes Here</div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </div>
-        <!-- </div> -->
+          <div class="col-2">
+            <div class="dashboard-item" id="third-item">
+              <label class="item-label">Complete a Job</label>
+              <div class="data-portal" id="third-data">Data Goes Here</div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="dashboard-item" id="fourth-item">
+              <label class="item-label">Cancel a Job</label>
+              <div class="data-portal" id="fourth-data">Data Goes Here</div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="dashboard-item" id="fifth-item">
+              <label class="item-label">Find a Caregiver</label>
+              <div class="data-portal" id="fifth-data">Data Goes Here</div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="dashboard-item" id="sixth-item">
+              <label class="item-label">Book a Caregiver</label>
+              <div class="data-portal" id="sixth-data">Data Goes Here</div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<!--   ***   jquery script for date picker   ***   -->
+<script>
+  $(function () {
+      $('#startDate').datetimepicker({
+          sideBySide: true,
+          locale: 'en'
+      });
+      $('#endDate').datetimepicker({
+          sideBySide: true,
+          locale: 'en'
+      });
+  });
+
+  $('#postOpenJob').click((e) => {
+      e.preventDefault();
+      var event = {
+          title: $('#title').val(),
+          startDate: $('#startDateVal').val(),
+          endDate: $('#endDateVal').val(),
+          notes: $('#notes').val()
+      }
+
+      console.log(event);
+      console.log(new Date(event.startDate));
+
+      $.ajax({
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify(event),
+          method: 'POST',
+          url: "openJob",
+          success: function (data) {
+              console.log('request complete', data);
+              $('#outputcode').show();
+              $('#outputcode>pre').html(JSON.stringify(data, undefined, 2));
+          }
+      })
+  });
+</script>
