@@ -20,3 +20,18 @@
   text-shadow: 2px 2px 5px #d29b09;
   top: 0;
 }
+
+label {
+  display: block;
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+.form-control { width: 30%}
+input,
+label {
+  margin: .4rem 0;
+}
+
+.note {
+  font-size: .8em;
+}
