@@ -9,10 +9,6 @@
   padding: 1px 5px 1px 5px;
 }
 
-/* #post-openJob {
-  margin: 0 auto;
-} */
-
 #parent-dashboard {
   /* background-color: yellow; */
   margin: -25px 0 0 0 ;
@@ -24,7 +20,7 @@
   margin: 10px 0 15px 0;
 }
 
-.col-2 {
+.col-md-2 {
   margin: 15px 0 15px 0;
   padding: 10px 5px 10px 5px;
 }
