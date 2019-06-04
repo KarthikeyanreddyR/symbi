@@ -1,21 +1,21 @@
 <!--   ***   Nested Dual Column layout for dashboard options   ***   -->
 <div class="container-fluid">
   <div class="row" id="parent-dashboard">
-    <div class="col-2" id="dashboard-sidebar">
+    <div class="col-md-2" id="dashboard-sidebar">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-10" id="dashboard-main">
+    <div class="col-md-10" id="dashboard-main">
       <div class="title">Symbii Dashboard</div>
       <div class="text-body">
         <div class="row" id="item-row">
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="dashboard-item" id="first-item">
               <label class="item-label">Post a Job</label>
               <div class="data-portal" id="first-data">Data Goes Here</div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="dashboard-item" id="second-item">
               <label class="item-label">Update a Job</label>
               <div class="data-portal" id="second-data">
@@ -27,7 +27,7 @@
               </div>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="dashboard-item" id="third-item">
               <label class="item-label">Complete a Job</label>
               <div class="data-portal" id="third-data">
@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="dashboard-item" id="fourth-item">
               <label class="item-label">Cancel a Job</label>
               <div class="data-portal" id="fourth-data">
@@ -51,14 +51,14 @@
               </div>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="dashboard-item" id="fifth-item">
               <label class="item-label">Find a Caregiver</label>
               <div class="data-portal" id="fifth-data">View Available Caregivers</div>
               <button type="submit" class="btn btn-primary" [routerLink]="['/users']">Submit</button>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="dashboard-item" id="sixth-item">
               <label class="item-label">Book a Caregiver</label>
               <div class="data-portal" id="sixth-data">Search by Date</div>
