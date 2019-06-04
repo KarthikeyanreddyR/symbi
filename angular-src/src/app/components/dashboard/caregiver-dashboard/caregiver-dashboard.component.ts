@@ -9,7 +9,9 @@ export class CaregiverDashboardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
+  viewDate: Date = new Date();
+  events = [];
 
 }
