@@ -20,9 +20,15 @@
         <div *ngSwitchCase="1">
             <h2>Family</h2>
             <ul class="list-group">
-              <li class="list-group-item"><span class="info-title">Children:</span> {{user.profiles[0].family.children}}</li>
+              <li class="list-group-item">
+                <span class="info-title">Children:</span> 
+                {{user.profiles[0].family.children}}
+              </li>
               <li class="list-group-item"><span class="info-title">Pets:</span> {{user.profiles[0].family.pets}}</li>
-              <li class="list-group-item"><span class="info-title">House Rules:</span> {{user.profile[0].houseRules}}</li>
+              <li class="list-group-item">
+                <span class="info-title">House Rules:</span> 
+                <p *ngFor="let rules of user.profiles[0].houseRules">{{rules}}</p>
+              </li>
             </ul>
         </div>
         <!-- Experience Information-->
