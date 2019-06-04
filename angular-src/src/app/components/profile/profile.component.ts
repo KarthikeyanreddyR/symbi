@@ -38,7 +38,8 @@ export class ProfileComponent implements OnInit {
           pets: "Fido"
         },
         houseRules: [
-            "Do not disobey Bob"
+            "Do not disobey Bob",
+            "Do not feed Fido water after midnight."
         ]
       },
       {
