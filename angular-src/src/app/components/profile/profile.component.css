@@ -2,11 +2,30 @@
     box-sizing: border-box;
 }
 
+.background {
+    background-color: #ffffff;
+    padding-left: 6vw;
+}
+
 /* Create two equal columns that floats next to each other */
 [class*="col"] {
     float:left;
     padding: 15px;
-    margin: 5px;
+    margin: 3px;
+}
+
+.main-col{
+    border-style: solid;
+    border-width: thin;
+    border-color: #929292;
+}
+
+.sidebar{
+    float: right;
+}
+
+.sidebar-list{
+    list-style-type: none;
 }
 
 .profile-box {
@@ -15,32 +34,53 @@
     background-color: grey;
 }
 
-/* Clear floats after the columns */
-.row::after {
-    content: "";
-    display: table;
-    clear: both;
+.info-title{
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
 }
 
 .profile-tab{
-    background-color: rgb(87, 154, 231);
-    color: #ffff;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
 }
 .profile-tab:hover{
-    background-color: rgb(51, 137, 235);
+    background-color: rgb(206, 206, 206);
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: rgb(206, 206, 206);
 }
-
 .profile-tab:active{
-    background-color: rgb(94, 169, 255);
+    background-color: rgb(224, 222, 222);
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: rgb(0, 0, 0);
 }
 
 .profile-info{
     overflow: auto;
-    height: 36vh;
-    background-color: rgb(233, 245, 255);
+    height: -webkit-fill-available;
+    background-color: rgb(250, 246, 246);
+}
+
+.profile-row{
+    background-color: white;
+    align-self: center;
+    height: 80vh;
+    width: 90vw;
+    padding: 0px;
 }
 
 button{
     background-color: grey;
     border-style: none;
+    border-width: 0px;
+    border-color: transparent;
+    width: -webkit-fill-available;
+    height: 50px;
+    margin-bottom: 5px;
+    float: right;
+}
+.list-group-item{
+    margin-bottom:1vh;
 }
