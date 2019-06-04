@@ -5,7 +5,12 @@
        <div class="profile-info container" [ngSwitch]="activeTab">
          <!-- Profile Box-->
          <div *ngSwitchCase="0">
-            <h2>Basic Info</h2>
+            <div>
+              <span class="title">Basic Info</span>
+              <button class="btn btn-primary edit-button">
+                <i class="fas fa-edit"></i> Edit Info 
+              </button> 
+            </div>
             <ul class="list-group rounded">
               <li class="list-group-item"><span class="info-title">Name:</span> {{user.firstName + " " + user.lastName}}</li>
               <li class="list-group-item"><span class="info-title">Gender:</span> {{user.gender}}</li>
@@ -18,7 +23,12 @@
         </div>
         <!-- Family Information -->
         <div *ngSwitchCase="1">
-            <h2>Family</h2>
+            <div>
+                <span class="title">Family</span>
+                <button class="btn btn-primary edit-button">
+                  <i class="fas fa-edit"></i> Edit Family 
+                </button> 
+              </div>
             <ul class="list-group">
               <li class="list-group-item">
                 <span class="info-title">Children:</span> 
@@ -33,7 +43,12 @@
         </div>
         <!-- Experience Information-->
         <div *ngSwitchCase="2">
-            <h2>Experience Box</h2>
+            <div>
+              <span class="title">Experience</span>
+                <button class="btn btn-primary edit-button">
+                  <i class="fas fa-edit"></i> Edit Experience 
+                </button> 
+              </div>
             <ul class="list-group" *ngFor="let exp of user.profiles[1].experience">
               <li class="list-group-item">
                 <span class="info-title">{{exp.jobPlace}}</span><br>
@@ -45,7 +60,12 @@
             </ul>
         </div>
         <div *ngSwitchCase="3">
-          <h2>Payment Information</h2>
+            <div>
+                <span class="title">Payment Information</span>
+                <button class="btn btn-primary edit-button">
+                  <i class="fas fa-edit"></i> Edit Payments 
+                </button> 
+              </div>
         </div>
        </div>
      </div>

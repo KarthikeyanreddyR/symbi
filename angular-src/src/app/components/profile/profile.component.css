@@ -43,12 +43,15 @@
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     font-weight: bolder;
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: transparent;
 }
 .profile-tab:hover{
     background-color: rgb(206, 206, 206);
     border-right-style: solid;
     border-right-width: 2px;
-    border-right-color: rgb(206, 206, 206);
+    border-right-color: rgb(122, 122, 122);
 }
 .profile-tab:active{
     background-color: rgb(224, 222, 222);
@@ -76,6 +79,21 @@
     height: 80vh;
     width: 90vw;
     padding: 0px;
+}
+
+span.title {
+    font-weight: initial;
+    font-size: -webkit-xxx-large;
+}
+.edit-button{
+    float: right;
+    border-style: none;
+    width: auto;
+    background-color: transparent;
+    color: black;
+}
+.edit-button:active{
+    color: 
 }
 
 button{
