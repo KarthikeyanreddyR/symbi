@@ -32,6 +32,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { JobComponent } from './components/job/job.component';
 import { PostOpenJobComponent } from './components/job/post-open-job/post-open-job.component';
 import { PostReviewComponent } from './components/review/post-review/post-review.component';
+import { SearchCaregiverComponent } from './components/search-caregiver/search-caregiver.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PostReviewComponent } from './components/review/post-review/post-review
     SidebarComponent,
     JobComponent,
     PostOpenJobComponent,
-    PostReviewComponent
+    PostReviewComponent,
+    SearchCaregiverComponent
   ],
   imports: [
     BrowserModule,
