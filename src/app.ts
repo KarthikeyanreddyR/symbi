@@ -4,6 +4,8 @@ import cors from 'cors';
 import path from 'path';
 import userRoutes from './routes/userRoutes';
 import jobRoutes from './routes/jobRoutes';
+import passport from 'passport';
+import { PassportGoogleStrategy } from './auth/passport-google-strategy';
 /**
  * Class to manage Express app.
  * Middleware such as body-parser, cors are managed.
@@ -29,6 +31,10 @@ export class App {
 
         //set static folder
         this.app.use(express.static(path.join(__dirname, '../public')));
+
+        // passportjs config
+        this.app.use(passport.initialize());
+        new PassportGoogleStrategy();
     }
 
     private routes(): void {

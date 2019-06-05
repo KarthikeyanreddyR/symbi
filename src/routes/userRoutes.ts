@@ -1,7 +1,8 @@
 import express from "express";
 import { Request, Response } from "express";
 import path from "path";
-import {IUser} from "../interfaces/IUser";
+import passport from 'passport';
+import { IUser } from "../interfaces/IUser";
 import { UserModel } from "../models/user";
 import { IReview } from "../interfaces/IReview";
 import { ReviewModel } from "../models/review";
@@ -26,6 +27,15 @@ class UserRoutes {
         /* User Routes */
         this.router.get("/users", (req: Request, res: Response) => {
             UserController.GetAllUsers(req, res);
+        });
+
+        this.router.get('/auth/google',
+            passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+        this.router.get('/auth/google/callback', 
+            passport.authenticate('google', { failureRedirect: '/' }), (req: Request, res: Response) => {
+                // Successful authentication, redirect home.
+                console.log(res);
         });
 
         this.router.get("/users/:userId", (req: Request, res: Response) => {
