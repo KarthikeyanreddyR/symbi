@@ -1,9 +1,11 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-
-<!--   ***   Row with single column for the footer   ***   -->
-<footer class="col-12 footer bg-dark">
-    <div class="foundation-col">
-        <p><i class="fa fa-copyright"></i> 2019 Symbii, Group F, CPSC 5240 19SQ, Seattle University</p>
+<header>
+    <app-navbar></app-navbar>
+</header>
+<main role="main" class="flex-shrink-0">
+    <router-outlet></router-outlet>
+</main>
+<footer class="footer mt-auto py-3 bg-dark fixed-bottom text-white">
+    <div class="container-fluid">
+        <span><i class="fa fa-copyright"></i> 2019 Symbii, Group F, CPSC 5240 19SQ, Seattle University</span>
     </div>
 </footer>

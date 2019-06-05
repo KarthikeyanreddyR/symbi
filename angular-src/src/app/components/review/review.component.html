@@ -1,41 +1,23 @@
 <div class="card" style="width: 50rem;">
-  <div class="card-header">
-    WRITE A REVIEW
-  </div>
-  <section class="container-fluid">
-      <form (submit)="onReviewSubmit()" [formGroup]="reviewForm">
-          <div>
-            <div class="form-group">
-              <label for="reviewTitle">Review Title: </label>
-              <div class="col-sm-100">
-                  <input type="text" class="form-control" placeholder="Enter Review Title" required>
-              </div>
-            </div>
-           
-            
-            <div class="form-group">
-      
-              
-              <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
-                <i *ngIf="item" class="far fa-star"></i>
-                <i *ngIf="!item" class="fas fa-star"></i>
-              </a>
-              <br>
-              
-      
-            </div>
-            <div class="form-group">
-              <label for="reviewNotes">Comments : </label>
-              <div>
-                <input type="reviewNotes" class="form-control" formControlName="reviewNotes" placeholder="Enter Comments (optional)">
-              </div>
-            </div>
+    <div class="card">
+        <div class="card-body">
+          LIST OF REVIEWS
+        </div>
+    </div>
+    
+  
+  
+    <table>
+      <tr *ngFor=" let Review of Reviews">
+          <div class="card" style="width: 50rem;">
+              <td><label for="Parent ID">Parent ID: </label>  {{Review.reviewerID}}</td>
+              <td><label for="Rating">Rating: </label> {{Review.starRating}}</td>
+              <td><label for="Review Date">Review Date: </label> {{Review.reviewDate}}</td>
+              <td><label for="Review Title">Review Title: </label>  {{Review.reviewTitle}}</td>
+              <td><label for="Comments">Comments: </label>    {{Review.reviewNotes}}</td>
           </div>
-          <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">Submit</button>
-        </form>
-      </section>
-      
-
+      </tr>
+    </table>
 </div>
 
  

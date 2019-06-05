@@ -1,0 +1,38 @@
+.star-rating, .back-stars, .front-stars {
+    display: flex;
+  }
+  
+  .star-rating {
+    align-items: center;
+    font-size: 3em;
+  }
+  
+  .back-stars {
+    color: #bb5252;
+    position: relative;
+    text-shadow: 4px 4px 10px #843a3a;
+  }
+  
+  .front-stars {
+    color: #FF9800;
+    overflow: hidden;
+    position: absolute;
+    text-shadow: 2px 2px 5px #d29b09;
+    top: 0;
+  }
+  
+  label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+  }
+  
+  .form-control { width: 30%}
+  input,
+  label {
+    margin: .4rem 0;
+  }
+  
+  .note {
+    font-size: .8em;
+  }
+  

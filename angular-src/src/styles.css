@@ -2,3 +2,7 @@
 
 /* Angular Calendar Styles */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+main .container:first-child,main .container-fluid:first-child {
+  padding-top: 5rem;
+}
