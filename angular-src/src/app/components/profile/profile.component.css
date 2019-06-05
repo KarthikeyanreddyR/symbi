@@ -56,6 +56,13 @@
     border-right-width: 2px;
     border-right-color: rgb(0, 0, 0);
 }
+.profile-tab:focus{
+    background-color: rgb(228, 228, 228);
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: rgb(0, 0, 0);
+}
+
 
 .profile-info{
     overflow: auto;

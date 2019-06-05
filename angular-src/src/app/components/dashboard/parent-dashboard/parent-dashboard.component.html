@@ -5,67 +5,8 @@
       <app-sidebar></app-sidebar>
     </div>
     <div class="col-md-10" id="dashboard-main">
-      <div class="title">Symbii Dashboard</div>
-      <div class="text-body">
-        <div class="row" id="item-row">
-          <div class="col-md-2">
-            <div class="dashboard-item" id="first-item">
-              <label class="item-label">Post a Job</label>
-              <div class="data-portal" id="first-data">Data Goes Here</div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="dashboard-item" id="second-item">
-              <label class="item-label">Update a Job</label>
-              <div class="data-portal" id="second-data">
-                <form>
-                  <label class="input-label-job-id">Enter Job ID</label>
-                  <input type="text" class="input-job-id" placeholder="001" />
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="dashboard-item" id="third-item">
-              <label class="item-label">Complete a Job</label>
-              <div class="data-portal" id="third-data">
-                <form>
-                  <label class="input-label-job-id">Enter Job ID</label>
-                  <input type="text" class="input-job-id" placeholder="001" />
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="dashboard-item" id="fourth-item">
-              <label class="item-label">Cancel a Job</label>
-              <div class="data-portal" id="fourth-data">
-                <form>
-                  <label class="input-label-job-id">Enter Job ID</label>
-                  <input type="text" class="input-job-id" placeholder="001" />
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="dashboard-item" id="fifth-item">
-              <label class="item-label">Find a Caregiver</label>
-              <div class="data-portal" id="fifth-data">View Available Caregivers</div>
-              <button type="submit" class="btn btn-primary" [routerLink]="['/users']">Submit</button>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="dashboard-item" id="sixth-item">
-              <label class="item-label">Book a Caregiver</label>
-              <div class="data-portal" id="sixth-data">Search by Date</div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </div>
+      <div class="row" id="calendar-row">
+        <div class="col-md-12"><mwl-calendar-month-view [viewDate]="viewDate" [events]="events"></mwl-calendar-month-view></div>
       </div>
     </div>
   </div>
