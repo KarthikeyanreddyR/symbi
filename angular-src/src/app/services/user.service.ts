@@ -32,4 +32,9 @@ export class UserService {
   public loginUser(login: any): Observable<ApiResponse> {
     return this.httpClient.post<ApiResponse>(`${this.apiUrl}/login`, login);
   }
+
+  public GetAllReviewsByUser(_userId: string): Observable<ApiResponse> {
+   return this.httpClient.get<ApiResponse>(`${this.apiUrl}/reviewsByUser/${_userId}`);
+    //return this.httpClient.get<IReview[]>(`${this.apiURL}/users/${_userId}`);
+  }
 }
