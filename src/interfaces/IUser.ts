@@ -11,9 +11,10 @@ export interface IUser {
     firstName: string;
     lastName: string;
     gender: string;
-    profileImage: Blob | undefined;
+    profileImage: Blob | String | undefined;
     email: string;
     password: string;
+    googleId:Number;
     address: IAddress;
     phoneNumber: number;
     bio: string;

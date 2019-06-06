@@ -29,13 +29,10 @@ class UserRoutes {
             UserController.GetAllUsers(req, res);
         });
 
-        this.router.get('/auth/google',
-            passport.authenticate('google', { scope: ['profile', 'email'] }));
+        this.router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-        this.router.get('/auth/google/callback', 
-            passport.authenticate('google', { failureRedirect: '/' }), (req: Request, res: Response) => {
-                // Successful authentication, redirect home.
-                console.log(res);
+        this.router.get('/auth/google/callback', passport.authenticate('google'), (req: Request, res: Response) => {
+            console.log('inside google callback');
         });
 
         this.router.get("/users/:userId", (req: Request, res: Response) => {

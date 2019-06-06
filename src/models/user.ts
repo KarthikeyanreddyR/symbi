@@ -37,8 +37,7 @@ const UserSchema:Schema = new Schema({
         type: String
     },
     profileImage: {
-        data: Buffer,
-        contentType: String
+        type: Schema.Types.Mixed
     },
     email: {
         type: String,
@@ -47,7 +46,9 @@ const UserSchema:Schema = new Schema({
     },
     password: {
         type: String,
-        required : true,
+    },
+    googleId: {
+        type: Number
     },
     address: {
         type: AddressSchema
@@ -113,6 +114,7 @@ UserSchema.statics.defaultObject = function(): IUser {
         phoneNumber: 0,
         profileImage: undefined,
         address: _address,
+        googleId: 0,
         profiles: [_parentProfile, __caregiverProfile]
     }
 }
