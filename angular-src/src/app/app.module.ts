@@ -20,6 +20,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ParentDashboardComponent } from './components/dashboard/parent-dashboard/parent-dashboard.component';
 import { CaregiverDashboardComponent } from './components/dashboard/caregiver-dashboard/caregiver-dashboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { JobComponent } from './components/job/job.component';
+import { PostOpenJobComponent } from './components/job/post-open-job/post-open-job.component';
+import { PostReviewComponent } from './components/review/post-review/post-review.component';
+import { SearchCaregiverComponent } from './components/search-caregiver/search-caregiver.component';
 
 // services
 import { ValidateService} from './services/validate.service';
@@ -28,11 +33,7 @@ import { JobService } from './services/job.service';
 
 // directives
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { JobComponent } from './components/job/job.component';
-import { PostOpenJobComponent } from './components/job/post-open-job/post-open-job.component';
-import { PostReviewComponent } from './components/review/post-review/post-review.component';
-import { SearchCaregiverComponent } from './components/search-caregiver/search-caregiver.component';
+
 
 @NgModule({
   declarations: [
