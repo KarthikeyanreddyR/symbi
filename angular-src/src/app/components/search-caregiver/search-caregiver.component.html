@@ -1,3 +1,40 @@
-<p>
-  search-caregiver works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2" id="dashboard-sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="alert alert-danger" *ngIf="fetchError">
+        Unknown error occurred. please try again.
+      </div>
+      <div class="alert alert-info" *ngIf="!user$ || user$.length === 0">
+        No caregivers
+      </div>
+      <div class="card my-3" *ngFor="let user of user$">
+        <div class="card-body">
+          <div class="float-left text-break" style="width: 70%;">
+              <h5 class="card-title">{{user.firstName}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{user.bio}}</h6>
+              <p class="card-text">1500 E Cherry St. , Seattle, WA</p>
+          </div>
+          <div class="float-right" style="width: 28%;">
+            <p>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </p>
+            <a href="#" class="card-link"><i class="fas fa-comment"></i> Reviews</a>
+          </div>
+          <div class="clearfix"></div>
+          <div class="float-right mt-3">
+              <button type="button" class="btn btn-outline-secondary mr-1">Availability</button>
+              <button type="button" class="btn btn-outline-primary mr-1">Schedule</button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
