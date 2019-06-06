@@ -52,3 +52,5 @@ SaaS Team project. MEAN stack; Bootstrap
 ## Run server-side tests with Mocha, Chai
     Open terminal in root folder which has package.json file.
     Execute `npm run tests` to run all the tests present under src/tests folder.
+
+### Symbii
