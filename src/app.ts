@@ -32,6 +32,15 @@ export class App {
         //set static folder
         this.app.use(express.static(path.join(__dirname, '../public')));
 
+        this.app.set('json replacer', function (key: any, value: any) {
+            // undefined values are set to `null`
+            if (typeof value === "undefined") {
+              return "";
+            }
+            return value;
+          }
+        );
+
         // passportjs config
         this.app.use(passport.initialize());
         new PassportGoogleStrategy();

@@ -9,7 +9,7 @@ import { IExperience, ICaregiver } from "../interfaces/ICaregiver";
 /**
  * Interface for UserSchema - extends from IUser and Mongoose.Document
  */
-interface IUserSchema extends IUser, Document {
+export interface IUserSchema extends IUser, Document {
     registerUser(cb: any): void;
 }
 
@@ -115,7 +115,8 @@ UserSchema.statics.defaultObject = function(): IUser {
         profileImage: undefined,
         address: _address,
         googleId: 0,
-        profiles: [_parentProfile, __caregiverProfile]
+        profiles: [_parentProfile, __caregiverProfile],
+        reviews: []
     }
 }
 

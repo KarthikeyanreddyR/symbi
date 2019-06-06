@@ -6,6 +6,7 @@
 import { UserType } from "./enums";
 import { ICaregiver } from "./ICaregiver";
 import { IParent } from "./IParent";
+import { IReview } from "./IReview";
 
 export interface IUser {
     firstName: string;
@@ -19,6 +20,7 @@ export interface IUser {
     phoneNumber: number;
     bio: string;
     profiles: IProfile[];
+    reviews: IReview[];
 }
 
 export interface IProfile {
