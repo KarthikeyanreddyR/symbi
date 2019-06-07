@@ -1,23 +1,26 @@
-<div class="card" style="width: 50rem;">
-    <div class="card">
-        <div class="card-body">
-          LIST OF REVIEWS
-        </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2" id="dashboard-sidebar">
+      <app-sidebar></app-sidebar>
     </div>
-    
-  
-  
-    <table>
-      <tr *ngFor=" let Review of Reviews">
-          <div class="card" style="width: 50rem;">
-              <td><label for="Parent ID">Parent ID: </label>  {{Review.reviewerID}}</td>
-              <td><label for="Rating">Rating: </label> {{Review.starRating}}</td>
-              <td><label for="Review Date">Review Date: </label> {{Review.reviewDate}}</td>
-              <td><label for="Review Title">Review Title: </label>  {{Review.reviewTitle}}</td>
-              <td><label for="Comments">Comments: </label>    {{Review.reviewNotes}}</td>
+    <div class="col-sm-12 col-md-6">
+      <h5>Your Reviews</h5>
+      <div class="card my-3" *ngFor="let r of reviews$">
+        <div class="card-body">
+          <h5 class="card-title text-break">{{r.reviewTitle}}</h5>
+          <div class="float-left" style="width: 70%">
+            <i>{{r.reviewDate}}</i>
           </div>
-      </tr>
-    </table>
+          <div class="float-right text-right" style="width: 28%;">
+            <span *ngFor="let s of getStartRatingsArray(r.starRating)">
+              <i *ngIf="!s" class="far fa-star"></i>
+              <i *ngIf="s" class="fas fa-star"></i>
+            </span>
+          </div>
+          <div class="clearfix"></div>
+          <div class="text-break">{{r.reviewNotes}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
- 
