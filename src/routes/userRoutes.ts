@@ -43,6 +43,10 @@ class UserRoutes {
             UserController.UpdateUserById(req, res);
         });
 
+        this.router.get('/caregivers', (req: Request, res: Response) => {
+            UserController.GetAllCaregivers(req, res);
+        });
+
         // Register
         this.router.post("/register", (req: Request, res: Response) => {
             UserController.RegisterUser(req, res);

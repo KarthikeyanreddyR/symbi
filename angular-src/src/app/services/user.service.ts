@@ -37,4 +37,8 @@ export class UserService {
    return this.httpClient.get<ApiResponse>(`${this.apiUrl}/reviewsByUser/${_userId}`);
     //return this.httpClient.get<IReview[]>(`${this.apiURL}/users/${_userId}`);
   }
+
+  public GetAllCaregiversWithReviewData() : Observable<ApiResponse> {
+    return this.httpClient.get<ApiResponse>(`${this.apiUrl}/caregivers`);
+  }
 }

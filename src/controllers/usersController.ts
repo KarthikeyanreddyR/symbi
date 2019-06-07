@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { UserModel } from "../models/user";
+import { UserModel, IUserSchema } from "../models/user";
 import { IUser } from "../interfaces/IUser";
 import { IReview } from "../interfaces/IReview";
 import { ReviewModel } from "../models/review";
+import Async from 'async';
 
 export class UserController {
     constructor() {
@@ -112,6 +113,51 @@ export class UserController {
                 });
             }
         });
+    }
+
+    public static async GetAllCaregivers(req: Request, res: Response) {
+        try {
+            let _users: IUserSchema[] = await UserModel.find();
+            let _reviews: IReview[] = await ReviewModel.find();
+            res.status(200).json({
+                success: true,
+                data: {
+                    users: _users,
+                    reviews: _reviews
+                }
+            });
+            // if (_users && _users.length > 0) {
+            //     Async.eachOfSeries(_users, (user: IUserSchema, index: any, next: any) => {
+            //         ReviewModel.find({ revieweeID: user._id }).exec((err: any, reviews: IReview[]) => {
+            //             if (err) {
+            //                 _users[index]['reviews'] = [];
+            //             } else if (reviews && reviews.length > 0) {
+            //                 _users[index]['reviews'] = reviews;
+            //             } else {
+            //                 _users[index]['reviews'] = [];
+            //             }
+            //             next();
+            //         });
+            //     }, (err) => {
+            //         if(err) {
+            //             res.status(500).json({
+            //                 success: true,
+            //                 error: err
+            //             });
+            //         } else {
+            //             res.status(200).json({
+            //                 success: true,
+            //                 data: _users
+            //             });
+            //         }
+            //     });
+            // }
+        } catch (error) {
+            res.status(500).json({
+                success: true,
+                error: error
+            });
+        }
     }
 
     /**
