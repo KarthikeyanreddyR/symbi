@@ -3,6 +3,18 @@
 /* Angular Calendar Styles */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
+h3 {
+  margin: 0 0 10px;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+}
+/* Angular Calendar Styles */
+
+
+
 main .container:first-child,main .container-fluid:first-child {
   padding-top: 5rem;
 }
