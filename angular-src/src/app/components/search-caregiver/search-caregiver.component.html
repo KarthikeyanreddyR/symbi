@@ -13,28 +13,69 @@
       <div class="card my-3" *ngFor="let user of user$">
         <div class="card-body">
           <div class="float-left text-break" style="width: 70%;">
-              <h5 class="card-title">{{user.firstName}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{user.bio}}</h6>
-              <p class="card-text">1500 E Cherry St. , Seattle, WA</p>
+            <h5 class="card-title">{{user.firstName}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{user.bio}}</h6>
+            <div class="card-text" *ngIf="user.address">
+              <span *ngIf="user.address.addressLine1">{{user.address.addressLine1}}</span>
+              <span *ngIf="user.address.addressLine2">, {{user.address.addressLine2}}</span> <br>
+              <span *ngIf="user.address.city">{{user.address.city}}</span>
+              <span *ngIf="user.address.state">, {{user.address.state}}</span> <br>
+              <span *ngIf="user.address.country">{{user.address.country}}</span>
+            </div>
           </div>
-          <div class="float-right" style="width: 28%;">
-            <p>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </p>
-            <a href="#" class="card-link"><i class="fas fa-comment"></i> Reviews</a>
+          <div class="float-right text-right" style="width: 28%;">
+            <span *ngFor="let s of getStarRatings(user._id)">
+              <i *ngIf="!s" class="far fa-star"></i>
+              <i *ngIf="s" class="fas fa-star"></i>
+            </span>
+            <br>
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#detailedReview" class="card-link" (click)="showDetailedReviews(user._id)"><i
+                class="fas fa-comment"></i> Reviews</a>
           </div>
           <div class="clearfix"></div>
           <div class="float-right mt-3">
-              <button type="button" class="btn btn-outline-secondary mr-1">Availability</button>
-              <button type="button" class="btn btn-outline-primary mr-1">Schedule</button>
+            <button type="button" class="btn btn-outline-primary" (click)="scheduleCaregiver(user)">Schedule</button>
           </div>
           <div class="clearfix"></div>
         </div>
       </div>
     </div>
   </div>
+  <div id="detailedReview" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reviews</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card my-3" *ngFor="let review of userReviews$">
+                <div class="card-body card-text">
+                  <div class="float-left text-break" style="width: 70%;">
+                    <strong>{{review.reviewTitle}}</strong> <br>
+                    <i>{{review.reviewDate}}</i>
+                  </div>
+                  <div class="float-right" style="width: 28%;">
+                      <span *ngFor="let s of getStartRatingsArray(review.starRating)">
+                          <i *ngIf="!s" class="far fa-star"></i>
+                          <i *ngIf="s" class="fas fa-star"></i>
+                        </span>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="text-break">{{review.reviewNotes}}</div>
+                </div>
+              </div>
+              <div *ngIf="!userReviews$ || userReviews$.length == 0">
+                <strong>No reviews found.</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
