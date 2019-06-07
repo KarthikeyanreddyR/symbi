@@ -17,9 +17,19 @@ class UserRoutes {
         this.init();
     }
 
+    //User validation method
+    private validateAuth(req: Request, res: Response, next:any):void {
+        if (req.isAuthenticated()) { 
+            console.log("user is authenticated"); 
+            return next(); 
+        }
+        console.log("user is not authenticated");
+        res.redirect('/api');
+      }
+
     private init(): void {
         /* User Routes */
-        this.router.get("/users", (req: any, res: Response) => {
+        this.router.get("/users", this.validateAuth,(req: any, res: Response) => {
             UserController.GetAllUsers(req, res);
         });
 
@@ -28,6 +38,7 @@ class UserRoutes {
             passport.authenticate("google", { scope: ["profile", "email"] })
         );
 
+        
         this.router.get(
             "/auth/google/callback",
             passport.authenticate("google", {
@@ -47,20 +58,22 @@ class UserRoutes {
             res.send('failure');
         });
 
-        this.router.get("/users/:userId", (req: Request, res: Response) => {
+
+
+        this.router.get("/users/:userId", this.validateAuth,(req: Request, res: Response) => {
             UserController.GetUserById(req, res);
         });
 
-        this.router.put("/users", (req: Request, res: Response) => {
+        this.router.put("/users",  this.validateAuth, (req: Request, res: Response) => {
             UserController.UpdateUserById(req, res);
         });
 
-        this.router.get("/caregivers", (req: Request, res: Response) => {
+        this.router.get("/caregivers",  this.validateAuth, (req: Request, res: Response) => {
             UserController.GetAllCaregivers(req, res);
         });
 
         // Register
-        this.router.post("/register", (req: Request, res: Response) => {
+        this.router.post("/register",  this.validateAuth, (req: Request, res: Response) => {
             UserController.RegisterUser(req, res);
         });
 
@@ -70,24 +83,20 @@ class UserRoutes {
         });
 
         /* Review Routes */
-        this.router.post("/review", (req: Request, res: Response) => {
+        this.router.post("/review",  this.validateAuth, (req: Request, res: Response) => {
             UserController.AddReview(req, res);
         });
 
-        this.router.get("/reviewsByUser/:userId", (req: Request, res: Response) => {
+        this.router.get("/reviewsByUser/:userId",  this.validateAuth, (req: Request, res: Response) => {
             UserController.GetAllReviewsByUser(req, res);
         });
 
-        this.router.get(
-            "/reviewsForUser/:userId",
-            (req: Request, res: Response) => {
+        this.router.get("/reviewsForUser/:userId", this.validateAuth, (req: Request, res: Response) => {
                 UserController.GetAllReviewsForUser(req, res);
             }
         );
 
-        this.router.delete(
-            "/review/:userId/:reviewId",
-            (req: Request, res: Response) => {
+        this.router.delete("/review/:userId/:reviewId", this.validateAuth, (req: Request, res: Response) => {
                 UserController.DeleteReviewForUserByReviewId(req, res);
             }
         );
