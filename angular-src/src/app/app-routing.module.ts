@@ -9,6 +9,7 @@ import { ParentDashboardComponent } from './components/dashboard/parent-dashboar
 import { CaregiverDashboardComponent } from './components/dashboard/caregiver-dashboard/caregiver-dashboard.component';
 import { JobComponent } from './components/job/job.component';
 import { SearchCaregiverComponent } from './components/search-caregiver/search-caregiver.component';
+import { ScheduleCaregiverComponent } from './components/schedule-caregiver/schedule-caregiver.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'dashboard/parent', component: ParentDashboardComponent },
   { path: 'dashboard/caregiver', component: CaregiverDashboardComponent },
   { path: 'jobs', component: JobComponent },
-  { path: 'caregivers', component: SearchCaregiverComponent }
+  { path: 'caregivers', component: SearchCaregiverComponent },
+  { path: 'caregivers/schedule', component: ScheduleCaregiverComponent }
 ];
 
 @NgModule({

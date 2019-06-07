@@ -30,9 +30,11 @@ import { SearchCaregiverComponent } from './components/search-caregiver/search-c
 import { ValidateService} from './services/validate.service';
 import { UserService } from './services/user.service';
 import { JobService } from './services/job.service';
+import { ScheduleCaregiverService } from './services/schedule-caregiver.service';
 
 // directives
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
+import { ScheduleCaregiverComponent } from './components/schedule-caregiver/schedule-caregiver.component';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { AppPasswordDirective } from './shared/directives/app-password.directive
     JobComponent,
     PostOpenJobComponent,
     PostReviewComponent,
-    SearchCaregiverComponent
+    SearchCaregiverComponent,
+    ScheduleCaregiverComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { AppPasswordDirective } from './shared/directives/app-password.directive
   providers: [
     ValidateService,
     UserService,
-    JobService
+    JobService,
+    ScheduleCaregiverService
   ],
   bootstrap: [AppComponent],
   exports: [AppPasswordDirective]
