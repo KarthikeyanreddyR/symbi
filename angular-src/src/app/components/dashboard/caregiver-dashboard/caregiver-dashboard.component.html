@@ -80,6 +80,8 @@
                   (dayClicked)="dayClicked($event.day)"
                   (eventClicked)="handleEvent('Clicked', $event.event)"
                   (eventTimesChanged)="eventTimesChanged($event)"
+                  (columnHeaderClicked)="clickedColumn = $event"
+                  (dayClicked)="clickedDate = $event.day.date"
                 >
                 </mwl-calendar-month-view>
                 <mwl-calendar-week-view
@@ -89,6 +91,8 @@
                   [refresh]="refresh"
                   (eventClicked)="handleEvent('Clicked', $event.event)"
                   (eventTimesChanged)="eventTimesChanged($event)"
+                  (dayHeaderClicked)="clickedDate = $event.day.date"
+                  (hourSegmentClicked)="clickedDate = $event.date"
                 >
                 </mwl-calendar-week-view>
                 <mwl-calendar-day-view
@@ -98,6 +102,7 @@
                   [refresh]="refresh"
                   (eventClicked)="handleEvent('Clicked', $event.event)"
                   (eventTimesChanged)="eventTimesChanged($event)"
+                  (hourSegmentClicked)="clickedDate = $event.date"
                 >
                 </mwl-calendar-day-view>
               </div>
@@ -190,6 +195,15 @@
               </table>
             </div>
 
+            <div class="alert alert-info">
+                Click on a day or time slot on the view.
+                <strong *ngIf="clickedDate"
+                  >You clicked on this time: {{ clickedDate | date:'medium' }}</strong
+                >
+                <strong *ngIf="clickedColumn != null"
+                  >You clicked on this column: {{ clickedColumn }}</strong
+                >
+              </div>
             
             <!-- <ng-template #modalContent let-close="close">
               <div class="modal-header">
