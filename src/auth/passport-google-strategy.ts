@@ -13,7 +13,7 @@ export class PassportGoogleStrategy {
             clientSecret: 'HduVCVPsD8TJ0o7Jj4KZuDnJ',
             callbackURL: "/api/auth/google/callback"
         },
-            function (accessToken: any, refreshToken: any, profile: any, cb: any) {
+            function (accessToken: any, refreshToken: any, profile: any, done: any) {
                 let _user_google: IUser = UserModel.schema.statics.defaultObject();
                 _user_google.googleId = profile.id;
                 _user_google.firstName = profile.name.givenName;
@@ -22,20 +22,29 @@ export class PassportGoogleStrategy {
                 _user_google.profileImage = profile.photos[0].value;
                 UserModel.findOne({ email: _user_google.email }).exec((err: any, doc: IUser) => {
                     if (err) {
-                        return cb(err);
+                        return done(null, err);
                     } else if (doc) {
-                        return cb(doc);
+                        return done(null, doc);
                     } else {
                         UserModel.create(_user_google, ((err: any, doc: IUser) => {
                             if (err) {
-                                return cb(err);
+                                return done(null, err);
                             } else {
-                                return cb(doc);
+                                return done(null, doc);
                             }
                         }));
                     }
                 })
             }
         ));
+
+        passport.serializeUser((user: any, done: any) => {
+            done(null, user);
+        });
+
+        passport.deserializeUser((user: any, done: any) => {
+            done(null, user);
+        })
     }
+
 }
