@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScheduleCaregiverService } from 'src/app/services/schedule-caregiver.service';
+import { CommonUtilsService } from 'src/app/services/common-utils.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,13 +9,13 @@ import { Subscription } from 'rxjs';
 })
 export class ScheduleCaregiverComponent implements OnInit {
 
-  constructor(private scheduleCaregiverService: ScheduleCaregiverService) { }
+  constructor(private commonUtilsService: CommonUtilsService) { }
 
   private subscription: Subscription = new Subscription();
   caregiver$: any;
 
   ngOnInit() {
-    this.subscription.add(this.scheduleCaregiverService.scheduleCaregiver$.subscribe(res => {
+    this.subscription.add(this.commonUtilsService.scheduleCaregiver$.subscribe(res => {
       console.log(res);
       this.caregiver$ = res;
     }));

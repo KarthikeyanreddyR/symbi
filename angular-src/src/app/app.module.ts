@@ -32,7 +32,7 @@ import { SearchCaregiverComponent } from './components/search-caregiver/search-c
 import { ValidateService} from './services/validate.service';
 import { UserService } from './services/user.service';
 import { JobService } from './services/job.service';
-import { ScheduleCaregiverService } from './services/schedule-caregiver.service';
+import { CommonUtilsService } from './services/common-utils.service';
 
 // directives
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
@@ -79,7 +79,7 @@ import { ScheduleCaregiverComponent } from './components/schedule-caregiver/sche
     ValidateService,
     UserService,
     JobService,
-    ScheduleCaregiverService
+    CommonUtilsService
   ],
   bootstrap: [AppComponent],
   exports: [AppPasswordDirective]
