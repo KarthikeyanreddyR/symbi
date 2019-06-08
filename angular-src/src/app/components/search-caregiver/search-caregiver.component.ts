@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { ScheduleCaregiverService } from 'src/app/services/schedule-caregiver.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "src/app/services/user.service";
+import { Router } from "@angular/router";
+import { CommonUtilsService } from "src/app/services/common-utils.service";
 
 @Component({
-  selector: 'app-search-caregiver',
-  templateUrl: './search-caregiver.component.html',
-  styleUrls: ['./search-caregiver.component.css']
+  selector: "app-search-caregiver",
+  templateUrl: "./search-caregiver.component.html",
+  styleUrls: ["./search-caregiver.component.css"]
 })
 export class SearchCaregiverComponent implements OnInit {
-
-  constructor(private userService: UserService,
-    private scheduleCaregiverService: ScheduleCaregiverService,
-    private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private commonUtilsService: CommonUtilsService,
+    private router: Router
+  ) {}
 
   user$: any;
   reviews$: any;
@@ -27,24 +28,26 @@ export class SearchCaregiverComponent implements OnInit {
 
   public LoadData(): void {
     this.fetchError = false;
-    this.userService.GetAllCaregiversWithReviewData().subscribe(res => {
-      console.log(res);
-      if (res.success) {
-        this.user$ = res.data['users'];
-        this.reviews$ = res.data['reviews'];
-      } else {
-        this.user$ = [];
-        this.reviews$ = [];
-      }
-    },
+    this.userService.GetAllCaregiversWithReviewData().subscribe(
+      res => {
+        console.log(res);
+        if (res.success) {
+          this.user$ = res.data["users"];
+          this.reviews$ = res.data["reviews"];
+        } else {
+          this.user$ = [];
+          this.reviews$ = [];
+        }
+      },
       err => {
         this.fetchError = true;
-      });
+      }
+    );
   }
 
   public getStarRatings(id: string) {
     let _arr: [] = this.getReviewsForId(id).map(rev => {
-      return rev['starRating'];
+      return rev["starRating"];
     });
     let totalRating = _arr.reduce((a, b) => a + b, 0);
     let avgRating = Math.ceil(totalRating / 5);
@@ -61,7 +64,7 @@ export class SearchCaregiverComponent implements OnInit {
 
   public getReviewsForId(id: string) {
     return this.reviews$.filter(rev => {
-      return rev['revieweeID'] == id;
+      return rev["revieweeID"] == id;
     });
   }
 
@@ -70,8 +73,7 @@ export class SearchCaregiverComponent implements OnInit {
   }
 
   public scheduleCaregiver(user: any) {
-    this.scheduleCaregiverService.setCaregiver(user);
-    this.router.navigate(['/caregivers/schedule']);
+    this.commonUtilsService.setCaregiver(user);
+    this.router.navigate(["/caregivers/schedule"]);
   }
-
 }
