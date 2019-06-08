@@ -10,12 +10,18 @@ import {
   endOfDay,
   subDays,
   addDays,
+  startOfMonth,
   endOfMonth,
+  startOfWeek,
+  endOfWeek,
   isSameDay,
   isSameMonth,
-  addHours
+  addHours,
+  format
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Subject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -38,6 +44,17 @@ const colors: any = {
     secondary: '#FDF1BA'
   }
 };
+
+function getTimezoneOffsetString(date: Date): string {
+  const timezoneOffset = date.getTimezoneOffset();
+  const hoursOffset = String(
+    Math.floor(Math.abs(timezoneOffset / 60))
+  ).padStart(2, '0');
+  const minutesOffset = String(Math.abs(timezoneOffset % 60)).padEnd(2, '0');
+  const direction = timezoneOffset > 0 ? '-' : '+';
+
+  return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
+}
 
 @Component({
   selector: 'app-caregiver-dashboard',
@@ -84,9 +101,12 @@ export class CaregiverDashboardComponent implements OnInit {
 
   clickedColumn: number;
 
+  events$: Observable<Array<CalendarEvent<{ }>>>;
+
   activeDayIsOpen: boolean = false;
 
-  constructor(private modal: NgbModal) { }
+  constructor(private modal: NgbModal,
+              private http: HttpClient) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -154,9 +174,26 @@ export class CaregiverDashboardComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
-  ngOnInit() { }
+  ngOnInit(): void {
+    this.fetchEvents();
+  }
+
+  fetchEvents(): void {
+    const getStart: any = {
+      month: startOfMonth,
+      week: startOfWeek,
+      day: startOfDay
+    }[this.view];
+
+    const getEnd: any = {
+      month: endOfMonth,
+      week: endOfWeek,
+      day: endOfDay
+    }[this.view];
+
 
   // viewDate: Date = new Date();
   // events = [];
 
+}
 }

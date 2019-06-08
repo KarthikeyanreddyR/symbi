@@ -20,7 +20,7 @@
                   Previous
                 </div>
                 <div
-                  class="btn btn-outline-secondary"
+                  class="btn btn-primary"
                   mwlCalendarToday
                   [(viewDate)]="viewDate"
                 >
@@ -70,42 +70,44 @@
         </div>
           <div class="row" id="calendar-row">
             <div class="col-md-12" id="calendar-main">
-              <div [ngSwitch]="view">
-                <mwl-calendar-month-view
-                  *ngSwitchCase="CalendarView.Month"
-                  [viewDate]="viewDate"
-                  [events]="events"
-                  [refresh]="refresh"
-                  [activeDayIsOpen]="activeDayIsOpen"
-                  (dayClicked)="dayClicked($event.day)"
-                  (eventClicked)="handleEvent('Clicked', $event.event)"
-                  (eventTimesChanged)="eventTimesChanged($event)"
-                  (columnHeaderClicked)="clickedColumn = $event"
-                  (dayClicked)="clickedDate = $event.day.date"
-                >
-                </mwl-calendar-month-view>
-                <mwl-calendar-week-view
-                  *ngSwitchCase="CalendarView.Week"
-                  [viewDate]="viewDate"
-                  [events]="events"
-                  [refresh]="refresh"
-                  (eventClicked)="handleEvent('Clicked', $event.event)"
-                  (eventTimesChanged)="eventTimesChanged($event)"
-                  (dayHeaderClicked)="clickedDate = $event.day.date"
-                  (hourSegmentClicked)="clickedDate = $event.date"
-                >
-                </mwl-calendar-week-view>
-                <mwl-calendar-day-view
-                  *ngSwitchCase="CalendarView.Day"
-                  [viewDate]="viewDate"
-                  [events]="events"
-                  [refresh]="refresh"
-                  (eventClicked)="handleEvent('Clicked', $event.event)"
-                  (eventTimesChanged)="eventTimesChanged($event)"
-                  (hourSegmentClicked)="clickedDate = $event.date"
-                >
-                </mwl-calendar-day-view>
-              </div>
+              <!-- <div *ngIf="events$ | async; else loading; let events"> -->
+                <div [ngSwitch]="view">
+                  <mwl-calendar-month-view
+                    *ngSwitchCase="CalendarView.Month"
+                    [viewDate]="viewDate"
+                    [events]="events"
+                    [refresh]="refresh"
+                    [activeDayIsOpen]="activeDayIsOpen"
+                    (dayClicked)="dayClicked($event.day)"
+                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)"
+                    (columnHeaderClicked)="clickedColumn = $event"
+                    (dayClicked)="clickedDate = $event.day.date"
+                  >
+                  </mwl-calendar-month-view>
+                  <mwl-calendar-week-view
+                    *ngSwitchCase="CalendarView.Week"
+                    [viewDate]="viewDate"
+                    [events]="events"
+                    [refresh]="refresh"
+                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)"
+                    (dayHeaderClicked)="clickedDate = $event.day.date"
+                    (hourSegmentClicked)="clickedDate = $event.date"
+                  >
+                  </mwl-calendar-week-view>
+                  <mwl-calendar-day-view
+                    *ngSwitchCase="CalendarView.Day"
+                    [viewDate]="viewDate"
+                    [events]="events"
+                    [refresh]="refresh"
+                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)"
+                    (hourSegmentClicked)="clickedDate = $event.date"
+                  >
+                  </mwl-calendar-day-view>
+                </div>
+              <!-- </div> -->
             </div>
           </div>
           <div class="row">
