@@ -72,3 +72,4 @@ dist/
 # package-lock.json
 angular-src/package-lock.json
 package-lock.json
+src/env.ts
