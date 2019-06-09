@@ -42,7 +42,6 @@
     "@types/express-session": "^1.15.12",
     "@types/mongoose": "^5.5.1",
     "@types/passport": "^1.0.0",
-    "nodemon": "^1.19.0",
     "ts-node-dev": "^1.0.0-pre.39",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
