@@ -35,7 +35,7 @@ export class App {
         this.app.use(cors());
 
         //set static folder
-        this.app.use(express.static(path.join(__dirname, '../public')));
+        this.app.use(express.static(path.join(__dirname, '../angular-dist')));
 
         this.app.set('json replacer', function (key: any, value: any) {
             // undefined values are set to `null`
