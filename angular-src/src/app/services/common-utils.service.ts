@@ -9,6 +9,17 @@ export class CommonUtilsService {
   constructor() { }
 
   /**
+   * Fetch Url to call api's
+   */
+  public static getAbsoluteUrl() {
+    if (window.location.host.includes('localhost')) {
+      return 'http://localhost:3000/api';
+    } else {
+      return `${window.location.protocol}//${window.location.host}`;
+    }
+  }
+
+  /**
    * Store logged in user.
    */
   private signedInUser = new BehaviorSubject<any>(null);
