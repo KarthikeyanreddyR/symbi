@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { ApiResponse } from 'src/app/shared/interfaces/response';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonUtilsService } from 'src/app/services/common-utils.service';
 
-declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,9 +24,15 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(private formBuilder: FormBuilder, private userservice: UserService, private route: ActivatedRoute, private router: Router) { }
+  googleLoginUrl: string = CommonUtilsService.getAbsoluteUrl() + '/auth/google';
+
+  constructor(private formBuilder: FormBuilder,
+    private userservice: UserService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+
   }
 
   onLoginSubmit() {
@@ -35,7 +41,7 @@ export class LoginComponent implements OnInit {
       console.log(res);
       if(res.success) {
         // login successful
-        this.showLandingPage();
+        this.router.navigate(['/landing']);
       } else {
         // invalid credentials
       }
@@ -47,11 +53,4 @@ export class LoginComponent implements OnInit {
 
     })
   }
-
-  private showLandingPage() {
-    $('#landingPage').modal({
-      backdrop: 'static'
-    });
-  }
-
 }

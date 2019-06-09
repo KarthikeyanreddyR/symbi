@@ -36,26 +36,20 @@
           </div>
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+        <a [href]="googleLoginUrl" class="ml-3">
+          <img src="assets/images/btn_google_signin_dark_pressed_web.png" alt="Login with Google">
+        </a>
+
       </form>
       <hr>
       <div>
-        <p>
+        <!-- <p>
           <a href="javascript:void(0)">Forgot password?</a>
-        </p>
+        </p> -->
         <p>
           New to Symbii? <a [routerLink]="['/signup']">Sign up</a>
         </p>
       </div>
     </section>
-
-    <div id="landingPage" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-body container">
-              <app-landing-page></app-landing-page>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
