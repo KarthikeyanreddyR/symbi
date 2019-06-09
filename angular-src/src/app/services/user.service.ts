@@ -28,6 +28,10 @@ export class UserService {
     return this.httpClient.post<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/register`, register);
   }
 
+  public logoutUser(): Observable<ApiResponse> {
+    return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/logout`);
+  }
+
   public loginUser(login: any): Observable<ApiResponse> {
     return this.httpClient.post<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/login`, login);
   }

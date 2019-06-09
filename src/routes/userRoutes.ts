@@ -27,8 +27,6 @@ class UserRoutes {
     private getRedirectUrl(req: Request): string {
         let _originUrl = req.get('origin');
         let _host = req.get('host');
-        console.log(_originUrl);
-        
         if(_originUrl) {
             return _originUrl;
         } else if (_host && _host.includes('localhost')) {
@@ -69,13 +67,32 @@ class UserRoutes {
         });
 
         // Register
-        this.router.post("/register", this.validateAuth, (req: Request, res: Response) => {
+        this.router.post("/register", (req: Request, res: Response) => {
             UserController.RegisterUser(req, res);
         });
 
+        //Logout
+        this.router.get("/logout", (req: Request, res: Response) => {
+            req.logOut();
+            req.session!.destroy(function(err) {
+                if(err) {
+                    return res.status(500).json({
+                        success: true,
+                        error: err
+                    });
+                } else {
+                    return res.status(200).json({
+                        success: true,
+                        msg: "User loggout successfully"
+                    }); 
+                }
+            });    
+            delete req.session;       
+        });
+        
         // Login
         this.router.post("/login", passport.authenticate('local', redirectRoutes.local));
-
+        
         this.router.get("/auth/local/success", (req: Request, res: Response) => {
             res.status(200).json({
                 success: true,
@@ -91,10 +108,13 @@ class UserRoutes {
         });
 
         this.router.get('/user/currentUser', this.validateAuth, (req: Request, res: Response) => {
+            console.log("INSIDE CURRENT USER");
+            console.log(req.session);
             res.status(200).json({
                 success: true,
                 data: req.user
             });
+            
         })
 
         /* User Routes */
