@@ -27,11 +27,12 @@ class UserRoutes {
     private getRedirectUrl(req: Request): string {
         let _originUrl = req.get('origin');
         let _host = req.get('host');
+        console.log(_originUrl);
         
         if(_originUrl) {
             return _originUrl;
         } else if (_host && _host.includes('localhost')) {
-            return 'http://localhost:4200';
+            return 'http://localhost:3000';
         } else {
             return req.protocol + '://' + _host;
         }
