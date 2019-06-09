@@ -13,7 +13,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.commonUtilsService.signedInUser$.pipe(map(res => {
-      return true;
+      return res ? true: false;
     }))
   }
 }
