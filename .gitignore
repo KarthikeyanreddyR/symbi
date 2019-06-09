@@ -62,6 +62,10 @@ typings/
 
 # output folder after compiling ts files
 dist/
+angular-dist/
+
+# output folder angular js
+public/
 
 # webstorm files
 .idea/
