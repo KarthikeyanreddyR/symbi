@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import config from './config/database';
+import golbalConfig from './config/globals';
 
 /**
  * Class to manage Mongo DB connection using mongoose
@@ -7,11 +7,11 @@ import config from './config/database';
 export class MongoDBConfig {
     public static init(): void {
         // connection to MongoDB
-        mongoose.connect(config.database, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false });
+        mongoose.connect(golbalConfig.database, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false });
         
         // on connection - connected
         mongoose.connection.on('connected', () => {
-            console.log('connnected to DB ' + config.database);
+            console.log('connnected to DB ' + golbalConfig.database);
         });
         
         // on connection - error

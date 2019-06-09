@@ -7,7 +7,7 @@ import jobRoutes from './routes/jobRoutes';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import config from './config/database';
+import globalConfig from './config/globals';
 import { PassportGoogleStrategy } from './auth/passport-google-strategy';
 import { PassportLocalStrategy } from './auth/passport-local-strategy';
 const MongoStore = require('connect-mongo')(session);
@@ -54,7 +54,7 @@ export class App {
             saveUninitialized: true,
             resave: true,
             store: new MongoStore({
-                url: config.database
+                url: globalConfig.database
             })
         }));
 

@@ -1,6 +1,7 @@
 import passport from 'passport';
 import { UserModel } from '../models/user';
 import { IUser } from '../interfaces/IUser';
+import globalConfig from '../config/globals';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 export class PassportGoogleStrategy {
     constructor() {
@@ -9,8 +10,8 @@ export class PassportGoogleStrategy {
 
     private initialize() {
         passport.use(new GoogleStrategy({
-            clientID: '801049584077-jn5behjsk32e2sui9hlb3nsje5frkg2a.apps.googleusercontent.com',
-            clientSecret: 'HduVCVPsD8TJ0o7Jj4KZuDnJ',
+            clientID: globalConfig.googleOAuth.clientID,
+            clientSecret: globalConfig.googleOAuth.clientSecret,
             callbackURL: "/api/auth/google/callback"
         },
             function (accessToken: any, refreshToken: any, profile: any, done: any) {
