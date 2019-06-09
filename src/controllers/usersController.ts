@@ -10,40 +10,42 @@ export class UserController {
 
     }
 
-    public static AuthenticateUser(req: Request, res: Response) {
-        UserModel.findOne({ email: req.body.email }, (err: any, user: IUser) => {
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    error: err
-                });
-            } else if (user) {
-                if (user.password === req.body.password) {
-                    res.status(200).json({
-                        success: true,
-                        data: user,
-                    });
-                } else {
-                    res.status(200).json({
-                        success: false,
-                        msg: "Invalid password"
-                    });
-                }
-            } else {
-                res.status(200).json({
-                    success: false,
-                    msg: "Invalid email"
-                });
-            }
-        });
-    }
+    // Handled using passport Local strategy.
+    
+    // public static AuthenticateUser(req: Request, res: Response) {
+    //     UserModel.findOne({ email: req.body.email }, (err: any, user: IUser) => {
+    //         if (err) {
+    //             res.status(500).json({
+    //                 success: false,
+    //                 error: err
+    //             });
+    //         } else if (user) {
+    //             if (user.password === req.body.password) {
+    //                 res.status(200).json({
+    //                     success: true,
+    //                     data: user,
+    //                 });
+    //             } else {
+    //                 res.status(200).json({
+    //                     success: false,
+    //                     msg: "Invalid password"
+    //                 });
+    //             }
+    //         } else {
+    //             res.status(200).json({
+    //                 success: false,
+    //                 msg: "Invalid email"
+    //             });
+    //         }
+    //     });
+    // }
 
     public static RegisterUser(req: Request, res: Response) {
         let _user: IUser = UserModel.schema.statics.defaultObject();
 
         _user.firstName = req.body.name;
         _user.email = req.body.email;
-        _user.password = req.body.password;
+        _user.password = UserModel.schema.statics.hashPassword(req.body.password);
 
         try {
             new UserModel(_user).registerUser((err: any, user: IUser) => {

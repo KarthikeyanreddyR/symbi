@@ -5,12 +5,14 @@ import { ProfileSchema } from "./profile";
 import { IFamily, IParent } from "../interfaces/IParent";
 import { UserType } from "../interfaces/enums";
 import { IExperience, ICaregiver } from "../interfaces/ICaregiver";
+const bcrypt = require('bcryptjs');
 
 /**
  * Interface for UserSchema - extends from IUser and Mongoose.Document
  */
 export interface IUserSchema extends IUser, Document {
     registerUser(cb: any): void;
+    validatePassword(password: string) :boolean;
 }
 
 /** UserSchema, used to structure users collection through mongoose schema.
@@ -120,6 +122,14 @@ UserSchema.statics.defaultObject = function(): IUser {
     }
 }
 
+UserSchema.statics.hashPassword = function(password: string) : string {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+}
+
+UserSchema.methods.validatePassword = function(password: string) : boolean {
+    return bcrypt.compareSync(password, this.password);
+}
+
 /**
  * User registration method
  */
@@ -127,21 +137,7 @@ UserSchema.methods.registerUser = function(cb:any): void {
     this.save(cb);
 }
 
-
 /** 
  * Model for User, mongoose model from UserSchema
  */
 export const UserModel: Model<IUserSchema> = model<IUserSchema>("User", UserSchema);
-
-
-/* PASSWORD HASH CODE BELOW - DO NOT TOUCH */
-// bcrypt.genSalt(10, (err: Error, salt: string) => {
-//     if(err) throw err;
-//     bcrypt.hash(newUser.password, salt, (err: Error, hash: string) => {
-//         if (err)
-//             throw err;
-//         newUser.password = hash;
-//         let newUserModel = new UserModel(newUser);
-//         newUserModel.save();
-//     });
-// });

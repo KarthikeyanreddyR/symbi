@@ -1,105 +1,132 @@
-import express from "express";
+import express, { NextFunction } from "express";
 import { Request, Response } from "express";
 import path from "path";
 import passport from "passport";
 import { UserController } from "../controllers/usersController";
 import { RootController } from "../controllers/rootController";
 
+export let redirectRoutes = {
+    google : {
+        successRedirect: "/api/auth/google/success",
+        failureRedirect: "/api/auth/google/failure"
+    },
+    local: {
+        successRedirect: '/api/auth/local/success',
+        failureRedirect: '/api/auth/local/failure'
+    }
+}
+
 class UserRoutes {
     public router: express.Router;
 
     constructor() {
         this.router = express.Router();
-        this.newMethod();
-    }
-
-    private newMethod() {
         this.init();
     }
 
-    //User validation method
-    private validateAuth(req: Request, res: Response, next:any):void {
-        if (req.isAuthenticated()) { 
-            console.log("user is authenticated"); 
-            return next(); 
+    private getRedirectUrl(req: Request): string {
+        let _originUrl = req.get('origin') || undefined;
+        let _host = req.get('host');
+
+        if (_originUrl) {
+            return _originUrl;
+        } else {
+            return req.protocol + '://' + _host;
         }
-        console.log("user is not authenticated");
-        res.redirect('/api');
-      }
+    }
+
+    //User validation method
+    private validateAuth(req: Request, res: Response, next: NextFunction): void {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.status(404).json({
+            success: false,
+            msg: 'Unauthorized access. please Login'
+        });
+        //return next();
+    }
 
     private init(): void {
-        /* User Routes */
-        this.router.get("/users", this.validateAuth,(req: any, res: Response) => {
-            UserController.GetAllUsers(req, res);
+
+        // Google OAuth route
+        this.router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+        // Google OAuth redirect URL - Google calls this route after sign-in
+        this.router.get("/auth/google/callback", passport.authenticate("google", redirectRoutes.google));
+
+        // Google OAuth success route - called when sign-in is OK
+        this.router.get("/auth/google/success", (req: Request, res: Response) => {
+            res.redirect(`${this.getRedirectUrl(req)}/#/landing`);
         });
 
-        this.router.get(
-            "/auth/google",
-            passport.authenticate("google", { scope: ["profile", "email"] })
-        );
-
-        
-        this.router.get(
-            "/auth/google/callback",
-            passport.authenticate("google", {
-                successRedirect: "/api/auth/google/success",
-                failureRedirect: "/api/auth/google/failure"
-            })
-        );
-
-        this.router.get("/auth/google/success", (req: any, res: Response) => {
-            console.log("inside google success");
-            console.log(req.session.passport.user);
-            res.send('authenticated');
-        });
-
+        // Google OAuth failure route - called when sign-in is NOT-OK
         this.router.get("/auth/google/failure", (req: Request, res: Response) => {
-            console.log("inside google failure");
-            res.send('failure');
-        });
-
-
-
-        this.router.get("/users/:userId", this.validateAuth,(req: Request, res: Response) => {
-            UserController.GetUserById(req, res);
-        });
-
-        this.router.put("/users",  this.validateAuth, (req: Request, res: Response) => {
-            UserController.UpdateUserById(req, res);
-        });
-
-        this.router.get("/caregivers",  this.validateAuth, (req: Request, res: Response) => {
-            UserController.GetAllCaregivers(req, res);
+            res.redirect(`${this.getRedirectUrl(req)}/#/unauthorized`);
         });
 
         // Register
-        this.router.post("/register",  this.validateAuth, (req: Request, res: Response) => {
+        this.router.post("/register", this.validateAuth, (req: Request, res: Response) => {
             UserController.RegisterUser(req, res);
         });
 
         // Login
-        this.router.post("/login", (req: Request, res: Response) => {
-            UserController.AuthenticateUser(req, res);
+        this.router.post("/login", passport.authenticate('local', redirectRoutes.local));
+
+        this.router.get("/auth/local/success", (req: Request, res: Response) => {
+            res.status(200).json({
+                success: true,
+                data: req.user
+            })
+        });
+
+        this.router.get("/auth/local/failure", (req: Request, res: Response) => {
+            res.status(404).json({
+                success: false,
+                msg: 'Unauthorized. login again'
+            })
+        });
+
+        this.router.get('/user/currentUser', this.validateAuth, (req: Request, res: Response) => {
+            res.status(200).json({
+                success: true,
+                data: req.user
+            });
+        })
+
+        /* User Routes */
+        this.router.get("/users", this.validateAuth, (req: any, res: Response) => {
+            UserController.GetAllUsers(req, res);
+        });
+
+        this.router.get("/users/:userId", this.validateAuth, (req: Request, res: Response) => {
+            UserController.GetUserById(req, res);
+        });
+
+        this.router.put("/users", this.validateAuth, (req: Request, res: Response) => {
+            UserController.UpdateUserById(req, res);
+        });
+
+        this.router.get("/caregivers", this.validateAuth, (req: Request, res: Response) => {
+            UserController.GetAllCaregivers(req, res);
         });
 
         /* Review Routes */
-        this.router.post("/review",  this.validateAuth, (req: Request, res: Response) => {
+        this.router.post("/review", this.validateAuth, (req: Request, res: Response) => {
             UserController.AddReview(req, res);
         });
 
-        this.router.get("/reviewsByUser/:userId",  this.validateAuth, (req: Request, res: Response) => {
+        this.router.get("/reviewsByUser/:userId", this.validateAuth, (req: Request, res: Response) => {
             UserController.GetAllReviewsByUser(req, res);
         });
 
         this.router.get("/reviewsForUser/:userId", this.validateAuth, (req: Request, res: Response) => {
-                UserController.GetAllReviewsForUser(req, res);
-            }
-        );
+            UserController.GetAllReviewsForUser(req, res);
+        });
 
         this.router.delete("/review/:userId/:reviewId", this.validateAuth, (req: Request, res: Response) => {
-                UserController.DeleteReviewForUserByReviewId(req, res);
-            }
-        );
+            UserController.DeleteReviewForUserByReviewId(req, res);
+        });
 
         this.router.get("/", (req: Request, res: Response) => {
             RootController.ApiRootDocumentation(res);

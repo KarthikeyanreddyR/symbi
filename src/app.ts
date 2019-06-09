@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import config from './config/database';
 import { PassportGoogleStrategy } from './auth/passport-google-strategy';
+import { PassportLocalStrategy } from './auth/passport-local-strategy';
 const MongoStore = require('connect-mongo')(session);
 /**
  * Class to manage Express app.
@@ -59,8 +60,19 @@ export class App {
 
         // passportjs config
         this.app.use(passport.initialize());
-        this.app.use(passport.session())
+        this.app.use(passport.session());
 
+        passport.serializeUser((user: any, done: any) => {
+            done(null, user);
+        });
+
+        passport.deserializeUser((user: any, done: any) => {
+            done(null, user);
+        });
+
+        // initialize google passport strategy
+        new PassportLocalStrategy();
+        
         // initialize google passport strategy
         new PassportGoogleStrategy();
     }
