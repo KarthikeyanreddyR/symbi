@@ -10,18 +10,24 @@ import { CaregiverDashboardComponent } from './components/dashboard/caregiver-da
 import { JobComponent } from './components/job/job.component';
 import { SearchCaregiverComponent } from './components/search-caregiver/search-caregiver.component';
 import { ScheduleCaregiverComponent } from './components/schedule-caregiver/schedule-caregiver.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "signup", component: SignupComponent },
-  { path: "login", component: LoginComponent },
+  { path: '', component: HomeComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'landing',  component: LandingPageComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'dashboard/parent', component: ParentDashboardComponent },
   { path: 'dashboard/caregiver', component: CaregiverDashboardComponent },
   { path: 'jobs', component: JobComponent },
   { path: 'caregivers', component: SearchCaregiverComponent },
-  { path: 'caregivers/schedule', component: ScheduleCaregiverComponent }
+  { path: 'caregivers/schedule', component: ScheduleCaregiverComponent },
+  { path: 'unauthorized', component: ErrorComponent, data: { type: 'Unauthorized' } },
+  { path: '**', component: ErrorComponent, data: { type: 'PageNotFound' } }
 ];
 
 @NgModule({

@@ -33,11 +33,12 @@ import { ValidateService} from './services/validate.service';
 import { UserService } from './services/user.service';
 import { JobService } from './services/job.service';
 import { CommonUtilsService } from './services/common-utils.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 // directives
 import { AppPasswordDirective } from './shared/directives/app-password.directive';
 import { ScheduleCaregiverComponent } from './components/schedule-caregiver/schedule-caregiver.component';
-
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ScheduleCaregiverComponent } from './components/schedule-caregiver/sche
     PostOpenJobComponent,
     PostReviewComponent,
     SearchCaregiverComponent,
-    ScheduleCaregiverComponent
+    ScheduleCaregiverComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ import { ScheduleCaregiverComponent } from './components/schedule-caregiver/sche
     ValidateService,
     UserService,
     JobService,
-    CommonUtilsService
+    CommonUtilsService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent],
   exports: [AppPasswordDirective]

@@ -1,26 +1,34 @@
-<div>
-  <h3>Please choose a profile type for this session:</h3>
-
-  <!--   ***   Dual Column layout for profile options   ***   -->
-  <div class="row" style="padding: 1rem 0;">
-    <div class="col-6">
-      <div class="left-col">
-        <div class="card card-custom" (click)="openDashboard(0)">
-          <div class="card-body">
-            <h5 class="card-title">Proceed as a Parent</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="right-col">
-        <div class="card card-custom" (click)="openDashboard(1)">
-          <div class="card-body">
-            <h5 class="card-title">Proceed as a Caregiver</h5>
+<div class="container-fluid">
+  <div id="landingPage" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body container">
+          <div>
+            <h3>Please choose a profile type for this session:</h3>
+            <!--   ***   Dual Column layout for profile options   ***   -->
+            <div class="row" style="padding: 1rem 0;">
+              <div class="col-6">
+                <div class="left-col">
+                  <div class="card card-custom" (click)="openDashboard(0)">
+                    <div class="card-body">
+                      <h5 class="card-title">Proceed as a Parent</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="right-col">
+                  <div class="card card-custom" (click)="openDashboard(1)">
+                    <div class="card-body">
+                      <h5 class="card-title">Proceed as a Caregiver</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
