@@ -107,13 +107,13 @@ if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
 fi
 
 # 2. Select node version
-selectNodeVersion
+# selectNodeVersion
 
 # 3. Install NPM packages
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install --prouction
-  eval $NPM_CMD install --only=dev
+  eval npm install --prouction
+  eval npm install --only=dev
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
@@ -121,8 +121,8 @@ fi
 # 3. Install NPM packages
 if [ -e "$DEPLOYMENT_TARGET/angular-src/package.json" ]; then
   cd "$DEPLOYMENT_TARGET/angular-src"
-  eval $NPM_CMD install
-  eval $NPM_CMD install --only=dev
+  eval npm install
+  eval npm install --only=dev
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
@@ -130,7 +130,7 @@ fi
 # 3. Build Node server code
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD run build
+  eval npm run build
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
@@ -138,7 +138,7 @@ fi
 # 3. Build Angular code
 if [ -e "$DEPLOYMENT_TARGET/angular-src/package.json" ]; then
   cd "$DEPLOYMENT_TARGET/angular-src"
-  eval $NPM_CMD run build
+  eval npm run build
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
