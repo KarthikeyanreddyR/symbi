@@ -11,8 +11,6 @@
   "author": "Vic, Tejas, Valerio, Karthikeyan",
   "license": "ISC",
   "dependencies": {
-    "angular-calendar": "^0.27.8",
-    "angular-font-awesome": "^3.1.2",
     "async": "^3.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -21,10 +19,8 @@
     "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
-    "date-fns": "^1.30.1",
     "express": "^4.17.0",
     "express-session": "^1.16.1",
-    "font-awesome": "^4.7.0",
     "mocha": "^6.1.4",
     "mongoose": "^5.5.11",
     "passport": "^0.4.0",
@@ -32,7 +28,6 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.2",
     "@types/async": "^3.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/connect-mongo": "0.0.42",
