@@ -129,6 +129,7 @@
                     <th>Secondary color</th>
                     <th>Starts at</th>
                     <th>Ends at</th>
+                    <th>Submit</th>
                     <th>Remove</th>
                   </tr>
                 </thead>
@@ -186,6 +187,11 @@
                         altFormat="F j, Y H:i"
                         placeholder="Not set"
                       />
+                    </td>
+                    <td>
+                      <button class="btn btn-primary" (click)="postOpenJob()">
+                        Submit
+                      </button>
                     </td>
                     <td>
                       <button class="btn btn-danger" (click)="deleteEvent(event)">
