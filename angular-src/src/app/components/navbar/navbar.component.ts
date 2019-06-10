@@ -16,11 +16,7 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.commonUtilsService.changeSignedInUser(null);
-    this.userService.logoutUser().then(res => {
-      console.log('navbar - logged out')
-    }, err => {
-      console.log('navbar - logged out error')
-    });
+    this.userService.logoutUser();
   }
 
   ngOnInit() {

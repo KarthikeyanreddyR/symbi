@@ -71,6 +71,10 @@ class UserRoutes {
             UserController.RegisterUser(req, res);
         });
 
+        this.router.delete("/users/:email", (req: Request, res: Response) => {
+            UserController.DeleteUserByEmail(req, res);
+        });
+
         //Logout
         this.router.get("/logout", (req: Request, res: Response) => {
             req.logOut();
@@ -115,7 +119,14 @@ class UserRoutes {
                 data: req.user
             });
             
-        })
+        });
+
+        /**
+         * THIS ROUTE IS ONLY FOR MOCHA TESTING. 
+         */
+        this.router.get("/test/users", (req: any, res: Response) => {
+            UserController.GetAllUsers(req, res);
+        });
 
         /* User Routes */
         this.router.get("/users", this.validateAuth, (req: any, res: Response) => {
