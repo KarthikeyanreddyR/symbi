@@ -1,5 +1,5 @@
-import {Child} from './Child';
-import {Pet} from './Pet';
+import {Child} from './child';
+import {Pet} from './pet';
 
 export class Family {
   children:Child[];
