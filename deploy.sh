@@ -109,11 +109,27 @@ fi
 # 2. Select node version
 # selectNodeVersion
 
+# clean up - delete node_modules
+if [ -e "$DEPLOYMENT_TARGET/node_modules" ]; then
+  cd "$DEPLOYMENT_TARGET"
+  eval rm -rf node_modules
+  exitWithMessageOnError "node clean-up failed"
+  cd - > /dev/null
+fi
+
+# clean up - delete angular node_modules
+if [ -e "$DEPLOYMENT_TARGET/angular-src/node_modules" ]; then
+  cd "$DEPLOYMENT_TARGET/angular-src"
+  eval rm -rf node_modules
+  exitWithMessageOnError "angular clean-up failed"
+  cd - > /dev/null
+fi
+
 # 3. Install NPM packages
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval npm install --prouction
-  eval npm install --only=dev
+  eval npm install
+  # eval npm install --only=dev
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
@@ -122,7 +138,7 @@ fi
 if [ -e "$DEPLOYMENT_TARGET/angular-src/package.json" ]; then
   cd "$DEPLOYMENT_TARGET/angular-src"
   eval npm install
-  eval npm install --only=dev
+  # eval npm install --only=dev
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
