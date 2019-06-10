@@ -11,12 +11,16 @@ import { UserService } from 'src/app/services/user.service';
 export class NavbarComponent implements OnInit {
 
   navbarCheck : boolean;
-  
+
   constructor(private userService: UserService, private commonUtilsService: CommonUtilsService) { }
 
   logOut() {
     this.commonUtilsService.changeSignedInUser(null);
-    this.userService.logoutUser().subscribe();
+    this.userService.logoutUser().then(res => {
+      console.log('navbar - logged out')
+    }, err => {
+      console.log('navbar - logged out error')
+    });
   }
 
   ngOnInit() {

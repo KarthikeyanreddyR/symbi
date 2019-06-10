@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private userservice:UserService) { }
 
   ngOnInit() {
-    this.userservice.GetSignedInUser().subscribe(res=> {
+    this.userservice.GetSignedInUser().then(res=> {
       console.log(res);
     }, err => {
       console.log(err)

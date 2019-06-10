@@ -28,8 +28,9 @@ export class UserService {
     return this.httpClient.post<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/register`, register);
   }
 
-  public logoutUser(): Observable<ApiResponse> {
-    return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/logout`);
+  public async logoutUser(): Promise<ApiResponse> {
+    console.log('userservice - logoutUser');
+    return await this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/logout`).toPromise();
   }
 
   public loginUser(login: any): Observable<ApiResponse> {
@@ -44,7 +45,7 @@ export class UserService {
     return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/caregivers`);
   }
 
-  public GetSignedInUser() : Observable<ApiResponse> {
-    return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/user/currentUser`);
+  public async GetSignedInUser() : Promise<ApiResponse> {
+    return await this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/user/currentUser`).toPromise();
   }
 }

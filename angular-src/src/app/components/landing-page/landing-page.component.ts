@@ -14,19 +14,18 @@ export class LandingPageComponent implements OnInit {
   constructor(private router: Router, private userService: UserService, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
-    this.userService.GetSignedInUser().subscribe(res => {
+    this.userService.GetSignedInUser().then(res => {
       if (res.success) {
         this.commonUtilsService.changeSignedInUser(res.data);
       } else {
         this.commonUtilsService.changeSignedInUser(null);
       }
+      this.showLandingPage();
     }, err => {
       if (err.status == 404) {
         this.router.navigate(['/unauthorized']);
       }
       this.commonUtilsService.changeSignedInUser(null);
-    }, () => {
-      this.showLandingPage();
     })
   }
 
