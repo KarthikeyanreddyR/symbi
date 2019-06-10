@@ -38,4 +38,21 @@ export class ReviewComponent implements OnInit {
     }
     return finArr;
   }
+
+  public deleteReview(review:any){
+    this.userservice.DeleteReviewForUserByReviewId("5ce3581d5fba742e68b35972").subscribe(
+      res => {
+        console.log(res);
+        this.reviews$ = this.reviews$.filter(review => review !== this.reviews$);
+      },
+      err => {
+        // error handling
+        console.log(err);
+      },
+      () => {}
+    );
+  
+  }
 }
+
+
