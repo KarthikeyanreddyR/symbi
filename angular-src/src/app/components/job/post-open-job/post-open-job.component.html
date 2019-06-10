@@ -1,12 +1,17 @@
 <div class="container-fluid">
   <div class="main-col">
     <h3>Post open Job</h3>
-    <form>
+    <form (submit)="postOpenJob()" [formGroup]="postOpenJobForm">
       <div class="form-row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="title">Job title</label>
-            <input type="text" class="form-control" id="title">
+            <label for="title">Job name</label>
+            <input type="text" class="form-control" formControlName="jobName">
+            <div *ngIf="jobName.invalid && (jobName.dirty || jobName.touched)" class="text-danger">
+                <div *ngIf="jobName.errors.required">
+                  Job name is required
+                </div>
+            </div>
           </div>
         </div>
       </div>
@@ -18,8 +23,14 @@
               <div class="input-group-prepend" data-target="#startDate" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
               </div>
-              <input type="text" class="form-control datetimepicker-input" data-target="#startDate" id="startDateVal" />
+              <input type="text" class="form-control datetimepicker-input" data-target="#startDate"
+                formControlName="jobStartTime" />
             </div>
+          </div>
+          <div *ngIf="jobStartTime.invalid && (jobStartTime.dirty || jobStartTime.touched)" class="text-danger">
+              <div *ngIf="jobStartTime.errors.required">
+                Job name is required
+              </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -29,8 +40,14 @@
               <div class="input-group-prepend" data-target="#endDate" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
               </div>
-              <input type="text" class="form-control datetimepicker-input" data-target="#endDate" id="endDateVal" />
+              <input type="text" class="form-control datetimepicker-input" data-target="#endDate"
+                formControlName="jobEndTime" />
             </div>
+          </div>
+          <div *ngIf="jobEndTime.invalid && (jobEndTime.dirty || jobEndTime.touched)" class="text-danger">
+              <div *ngIf="jobEndTime.errors.required">
+                Job name is required
+              </div>
           </div>
         </div>
       </div>
@@ -38,15 +55,18 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for="notes"> Notes(optional) </label>
-            <textarea class="form-control" id="notes" cols="30" rows="5"></textarea>
+            <textarea class="form-control" id="notes" cols="30" rows="5" formControlName="jobNotes"></textarea>
           </div>
         </div>
       </div>
       <div class="form-row">
         <div class="col-md-4">
-          <button class="btn btn-dark" (click)="postOpenJob()"> Post Job </button>
+          <button type="submit" class="btn btn-primary" [disabled]="!postOpenJobForm.valid"> Post Job </button>
         </div>
       </div>
     </form>
+    <div class="alert alert-success" *ngIf="postSuccess">
+      Job posted successfully.
+    </div>
   </div>
 </div>
