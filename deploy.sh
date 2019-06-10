@@ -149,7 +149,7 @@ fi
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
   eval npm install
-  # eval npm install --only=dev
+  eval npm install --only=dev
   exitWithMessageOnError "npm failed"
    echo "node packages installed"
   cd - > /dev/null
@@ -159,7 +159,7 @@ fi
 if [ -e "$DEPLOYMENT_TARGET/angular-src/package.json" ]; then
   cd "$DEPLOYMENT_TARGET/angular-src"
   eval npm install
-  # eval npm install --only=dev
+  eval npm install --only=dev
   exitWithMessageOnError "npm failed"
   echo "angular packages installed"
   cd - > /dev/null
