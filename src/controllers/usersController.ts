@@ -69,6 +69,22 @@ export class UserController {
         }
     }
 
+    public static DeleteUserByEmail(req: Request, res: Response) {
+        UserModel.remove({email: req.params.email}).exec(function(err: any, doc:IUser) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    error: err
+                });
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: doc
+                });
+            }
+        });
+    }
+
     public static GetAllUsers(req: Request, res: Response) {
         UserModel.find({}).exec((err: any, docs: IUser[]) => {
             if (err) {
