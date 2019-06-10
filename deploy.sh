@@ -110,10 +110,29 @@ fi
 # selectNodeVersion
 
 # clean up - delete node_modules
+if [ -e "$DEPLOYMENT_TARGET/dist" ]; then
+  cd "$DEPLOYMENT_TARGET"
+  eval rm -rf dist
+  exitWithMessageOnError "node clean-up failed"
+   echo "dist clean-up passed"
+  cd - > /dev/null
+fi
+
+# clean up - delete node_modules
+if [ -e "$DEPLOYMENT_TARGET/angular-dist" ]; then
+  cd "$DEPLOYMENT_TARGET"
+  eval rm -rf angular-dist
+  exitWithMessageOnError "angular dist delete failed"
+   echo "angular-dist clean-up passed"
+  cd - > /dev/null
+fi
+
+# clean up - delete node_modules
 if [ -e "$DEPLOYMENT_TARGET/node_modules" ]; then
   cd "$DEPLOYMENT_TARGET"
   eval rm -rf node_modules
   exitWithMessageOnError "node clean-up failed"
+   echo "node_modules clean-up passed"
   cd - > /dev/null
 fi
 
@@ -122,6 +141,7 @@ if [ -e "$DEPLOYMENT_TARGET/angular-src/node_modules" ]; then
   cd "$DEPLOYMENT_TARGET/angular-src"
   eval rm -rf node_modules
   exitWithMessageOnError "angular clean-up failed"
+  echo "angular node_modules clean-up passed"
   cd - > /dev/null
 fi
 
@@ -131,6 +151,7 @@ if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   eval npm install
   # eval npm install --only=dev
   exitWithMessageOnError "npm failed"
+   echo "node packages installed"
   cd - > /dev/null
 fi
 
@@ -140,6 +161,7 @@ if [ -e "$DEPLOYMENT_TARGET/angular-src/package.json" ]; then
   eval npm install
   # eval npm install --only=dev
   exitWithMessageOnError "npm failed"
+  echo "angular packages installed"
   cd - > /dev/null
 fi
 
@@ -148,6 +170,7 @@ if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
   eval npm run build
   exitWithMessageOnError "npm failed"
+  echo "node build passed"
   cd - > /dev/null
 fi
 
@@ -156,6 +179,7 @@ if [ -e "$DEPLOYMENT_TARGET/angular-src/package.json" ]; then
   cd "$DEPLOYMENT_TARGET/angular-src"
   eval npm run build
   exitWithMessageOnError "npm failed"
+  echo "angular build passed"
   cd - > /dev/null
 fi
 
