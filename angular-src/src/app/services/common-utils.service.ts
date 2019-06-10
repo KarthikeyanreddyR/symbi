@@ -15,7 +15,7 @@ export class CommonUtilsService {
     if (window.location.host.includes('localhost')) {
       return 'http://localhost:3000/api';
     } else {
-      return `${window.location.protocol}//${window.location.host}`;
+      return `${window.location.protocol}//${window.location.host}/api`;
     }
   }
 
