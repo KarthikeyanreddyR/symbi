@@ -61,7 +61,7 @@ typings/
 .next
 
 # output folder after compiling ts files
-# dist/
+dist/
 # angular-dist/
 
 # output folder angular js
