@@ -5,6 +5,11 @@
     </div>
     <div class="col-sm-12 col-md-6">
       <h5>Your Reviews</h5>
+
+      <div class="alert alert-info" *ngIf="!reviews$ || reviews$.length === 0">
+        No Reviews
+      </div>
+
       <div class="card my-3" *ngFor="let r of reviews$">
         <div class="card-body">
           <h5 class="card-title text-break">{{r.reviewTitle}}</h5>
