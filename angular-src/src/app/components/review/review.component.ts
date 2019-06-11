@@ -18,7 +18,7 @@ export class ReviewComponent implements OnInit {
   constructor(private userservice: UserService) {}
 
   ngOnInit() {
-    this.userservice.GetAllReviewsByUser("5ce3581d5fba742e68b35972").subscribe(
+    this.userservice.GetAllReviewsByUser("this.loggedInUser['_id']").subscribe(
       res => {
         console.log(res);
         this.reviews$ = res.data;
@@ -40,7 +40,7 @@ export class ReviewComponent implements OnInit {
   }
 
   public deleteReview(review:any){
-    this.userservice.DeleteReviewForUserByReviewId("5ce3581d5fba742e68b35972").subscribe(
+    this.userservice.DeleteReviewForUserByReviewId("this.loggedInUser['_id']").subscribe(
       res => {
         console.log(res);
         this.reviews$ = this.reviews$.filter(review => review !== this.reviews$);
