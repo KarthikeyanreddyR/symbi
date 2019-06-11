@@ -112,8 +112,6 @@ class UserRoutes {
         });
 
         this.router.get('/user/currentUser', this.validateAuth, (req: Request, res: Response) => {
-            console.log("INSIDE CURRENT USER");
-            console.log(req.session);
             res.status(200).json({
                 success: true,
                 data: req.user

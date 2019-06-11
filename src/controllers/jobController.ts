@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
-import { JobModel } from "../models/job";
+import { JobModel, IJobSchema } from "../models/job";
 import { IJob } from "../interfaces/IJob";
-import { JobStatus, JobType } from "../interfaces/enums";
+import { JobStatus, JobType, ContractStatus } from "../interfaces/enums";
 import { UserModel } from "../models/user";
+import { IContract } from "../interfaces/IContract";
+import { ContractModel } from "../models/contract";
 
 export class JobController {
 
@@ -190,16 +192,42 @@ export class JobController {
             _job.jobType = JobType.OPEN_JOB;
             _job.createdFor = undefined;
 
-            new JobModel(_job).createJob((err: any, doc: IJob) => {
+            new JobModel(_job).createJob((err: any, doc: IJobSchema) => {
                 if (err) {
                     res.status(500).json({
                         success: false,
                         error: err
                     });
                 } else {
-                    res.status(200).json({
-                        success: true,
-                        data: doc
+                    let _contract: IContract = {
+                        contractCheck: false,
+                        contractContent: undefined,
+                        contractStatus: ContractStatus.CREATED,
+                        jobId: doc._id,
+                        promiseeDate: '',
+                        promiserDate: doc.createdAt,
+                        promiseeId: undefined,
+                        promiserId: doc.createdBy
+                    }
+                    return JobController.CreateNewContract(_contract, (contract:any) => {
+                        if(contract.success) {
+                            return res.status(200).json({
+                                success: true,
+                                data: {
+                                    job: doc,
+                                    contract: contract.data
+                                }
+                            });
+                        } else {
+                            return res.status(200).json({
+                                success: false,
+                                data: {
+                                    job: doc,
+                                    contract: contract.error
+                                },
+                                msg: 'Job created but contract creation failed'
+                            });
+                        }
                     });
                 }
             });
@@ -224,16 +252,42 @@ export class JobController {
             _job.jobType = JobType.SCHEDULED_JOB;
             _job.createdFor = req.body.createdFor;
 
-            new JobModel(_job).createJob((err: any, doc: IJob) => {
+            new JobModel(_job).createJob((err: any, doc: IJobSchema) => {
                 if (err) {
                     res.status(500).json({
                         success: false,
                         error: err
                     });
                 } else {
-                    res.status(200).json({
-                        success: true,
-                        data: doc
+                    let _contract: IContract = {
+                        contractCheck: false,
+                        contractContent: undefined,
+                        contractStatus: ContractStatus.CREATED,
+                        jobId: doc._id,
+                        promiseeDate: '',
+                        promiserDate: doc.createdAt,
+                        promiseeId: undefined,
+                        promiserId: doc.createdBy
+                    }
+                    return JobController.CreateNewContract(_contract, (contract:any) => {
+                        if(contract.success) {
+                            return res.status(200).json({
+                                success: true,
+                                data: {
+                                    job: doc,
+                                    contract: contract.data
+                                }
+                            });
+                        } else {
+                            return res.status(200).json({
+                                success: false,
+                                data: {
+                                    job: doc,
+                                    contract: contract.error
+                                },
+                                msg: 'Job created but contract creation failed'
+                            });
+                        }
                     });
                 }
             });
@@ -243,5 +297,23 @@ export class JobController {
                 error: error
             });
         }
+    }
+
+    public static CreateNewContract(_contract: IContract, done:any) : void {
+        new ContractModel(_contract).createContract((err:any, doc: IContract) => {
+            if (err) {
+                console.log(err);
+                return done({
+                    success: false,
+                    error: err
+                });
+            } else {
+                console.log(doc);
+                return done({
+                    success: true,
+                    data: doc
+                });
+            }
+        })
     }
 }

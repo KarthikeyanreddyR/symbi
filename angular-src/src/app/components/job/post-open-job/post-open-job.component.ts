@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 // Initialize JQuery
 declare var $: any;
 
+declare var moment: any;
+
 @Component({
   selector: 'app-post-open-job',
   templateUrl: './post-open-job.component.html',
@@ -86,7 +88,7 @@ export class PostOpenJobComponent implements OnInit {
     this.postSuccess = false;
     let job: any = {
       userId: this.loggedInUser['_id'],
-      createdAt: new Date().toDateString()
+      createdAt: moment().format('MM/DD/YYYY hh:mm A Z')
     }
     job = Object.assign({}, job, this.postOpenJobForm.value)
     this.jobService.postOpenJob(job).then(res => {

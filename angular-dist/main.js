@@ -899,7 +899,7 @@ var PostOpenJobComponent = /** @class */ (function () {
         this.postSuccess = false;
         var job = {
             userId: this.loggedInUser['_id'],
-            createdAt: new Date().toDateString()
+            createdAt: moment().format('MM/DD/YYYY hh:mm A Z')
         };
         job = Object.assign({}, job, this.postOpenJobForm.value);
         this.jobService.postOpenJob(job).then(function (res) {

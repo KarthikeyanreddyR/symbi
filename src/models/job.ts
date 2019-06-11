@@ -5,7 +5,7 @@ import { Schema, Document, model, Model } from "mongoose";
 import { JobStatus, JobType } from "../interfaces/enums"
 import { IJob } from "../interfaces/IJob";
 
-interface IJobSchema extends IJob, Document {
+export interface IJobSchema extends IJob, Document {
     createJob(cb: any): void;
 }
 

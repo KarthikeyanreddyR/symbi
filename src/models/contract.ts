@@ -2,8 +2,8 @@ import { Schema, Model, model, Document } from "mongoose";
 import { ContractStatus } from "../interfaces/enums";
 import { IContract } from "../interfaces/IContract";
 
-interface IContractSchema extends IContract, Document {
-
+export interface IContractSchema extends IContract, Document {
+    createContract(cb:any):void;
 }
 
 const ContractSchema: Schema = new Schema({
@@ -17,7 +17,8 @@ const ContractSchema: Schema = new Schema({
     },
     promiseeId: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: false
     },
     promiserDate: {
         type: String
@@ -39,4 +40,9 @@ const ContractSchema: Schema = new Schema({
     }
 });
 
-export const ContractModel: Model<IContractSchema> = model<IContractSchema>("Job", ContractSchema);
+ContractSchema.methods.createContract = function(cb: any): void {
+    this.save(cb);
+}
+
+export const ContractModel: Model<IContractSchema> = model<IContractSchema>("Contract", ContractSchema);
+
