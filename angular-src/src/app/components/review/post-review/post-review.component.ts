@@ -1,5 +1,10 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { FormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { CommonUtilsService } from 'src/app/services/common-utils.service';
+import { Subscription } from 'rxjs';
+
+declare var moment: any;
 
 @Component({
   selector: 'app-post-review',
@@ -9,31 +14,64 @@ import { FormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
 export class PostReviewComponent implements OnInit {
 
   reviewForm: FormGroup = this.formBuilder.group({
-    reviewerId: ['', [Validators.required]],
-    revieweeId: ['', [Validators.required]],
-    reviewDate: [''],
-    starRating: ['', [Validators.required]],
+    reviewTitle: ['', [Validators.required]],
+    starRating: ['', [Validators.required, Validators.min(1)]],
     reviewNotes: ['']
   });
 
-  starList: boolean[] = [true,true,true,true,true];       // create a list which contains status of 5 stars
-  rating:number; 
+  starList: boolean[] = [true, true, true, true, true];
 
-  setStar(data:any){
-    this.rating=data+1;                               
-    for(var i=0;i<=4;i++){  
-      if(i<=data){  
-        this.starList[i]=false;  
-      }  
-      else{  
-        this.starList[i]=true;  
-      }  
-  }  
-}
+  private sub: Subscription = new Subscription();
 
-  constructor(private formBuilder: FormBuilder) { }
+  private caregiverId: string;
+
+  private loggedInUser: any;
+
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService,
+    private commonUtilsService: CommonUtilsService) {
+    this.sub.add(this.commonUtilsService.signedInUser$.subscribe(res => {
+      this.loggedInUser = res
+    }, err => {
+      // error handling
+    }));
+  }
 
   ngOnInit() {
+    this.sub.add(this.commonUtilsService.reviewCaregiverId$.subscribe(res => {
+      this.caregiverId = res;
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  public setStar(data: number) {
+    this.starList = [true, true, true, true, true];
+    for (var i = 0; i < data + 1; i++) {
+      this.starList[i] = false;
+    }
+    this.reviewForm.patchValue({
+      starRating: data + 1
+    });
+  }
+
+  public submitReview() {
+    let review: any = {
+      reviewerID: this.loggedInUser['_id'],
+      revieweeID: this.caregiverId,
+      reviewDate: moment().format('MM/DD/YYYY hh:mm A Z')
+    }
+
+    review = Object.assign({}, review, this.reviewForm.value);
+
+    this.userService.PostNewReview(review).then(res => {
+      console.log(res)
+    }, err => {
+      console.log(err);
+      alert(err);
+    })
   }
 
 }

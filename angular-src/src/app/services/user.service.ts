@@ -20,7 +20,7 @@ export class UserService {
     return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/users/${_userId}`);
   }
 
-  public updateUser(user: User): Observable<Object>  {
+  public updateUser(user: User): Observable<Object> {
     return this.httpClient.put<Object>(`${CommonUtilsService.getAbsoluteUrl()}/users`, user);
   }
 
@@ -38,18 +38,22 @@ export class UserService {
   }
 
   public GetAllReviewsByUser(_userId: string): Observable<ApiResponse> {
-   return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/reviewsByUser/${_userId}`);
+    return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/reviewsByUser/${_userId}`);
   }
 
   public DeleteReviewForUserByReviewId(_userId: string, _reviewId: string): Observable<ApiResponse> {
     return this.httpClient.delete<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/review/${_userId}/${_reviewId}`);
-   }
+  }
 
-  public GetAllCaregiversWithReviewData() : Observable<ApiResponse> {
+  public PostNewReview(_review: any) : Promise<ApiResponse> {
+    return this.httpClient.post<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/review`, _review).toPromise();
+  }
+
+  public GetAllCaregiversWithReviewData(): Observable<ApiResponse> {
     return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/caregivers`);
   }
 
-  public async GetSignedInUser() : Promise<ApiResponse> {
+  public async GetSignedInUser(): Promise<ApiResponse> {
     return await this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/user/currentUser`).toPromise();
   }
 }

@@ -38,4 +38,14 @@ export class CommonUtilsService {
   setCaregiver(caregiver: any) {
     this.scheduleCaregiver.next(caregiver);
   }
+
+  /**
+   * Store caregiver id for posting review
+   */
+  private reviewCaregiverId = new BehaviorSubject<string>(null);
+  reviewCaregiverId$ = this.reviewCaregiverId.asObservable();
+
+  setReviewCaregiverId(id: string) {
+    this.reviewCaregiverId.next(id);
+  }
 }

@@ -1280,7 +1280,7 @@ var ProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".star-rating, .back-stars, .front-stars {\r\n    display: flex;\r\n  }\r\n  \r\n  .star-rating {\r\n    align-items: center;\r\n    font-size: 3em;\r\n  }\r\n  \r\n  .back-stars {\r\n    color: #bb5252;\r\n    position: relative;\r\n    text-shadow: 4px 4px 10px #843a3a;\r\n  }\r\n  \r\n  .front-stars {\r\n    color: #FF9800;\r\n    overflow: hidden;\r\n    position: absolute;\r\n    text-shadow: 2px 2px 5px #d29b09;\r\n    top: 0;\r\n  }\r\n  \r\n  label {\r\n    display: block;\r\n    font: 1rem 'Fira Sans', sans-serif;\r\n  }\r\n  \r\n  .form-control { width: 30%}\r\n  \r\n  input,\r\n  label {\r\n    margin: .4rem 0;\r\n  }\r\n  \r\n  .note {\r\n    font-size: .8em;\r\n  }\r\n  \r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9yZXZpZXcvcG9zdC1yZXZpZXcvcG9zdC1yZXZpZXcuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7RUFDZjs7RUFFQTtJQUNFLG1CQUFtQjtJQUNuQixjQUFjO0VBQ2hCOztFQUVBO0lBQ0UsY0FBYztJQUNkLGtCQUFrQjtJQUNsQixpQ0FBaUM7RUFDbkM7O0VBRUE7SUFDRSxjQUFjO0lBQ2QsZ0JBQWdCO0lBQ2hCLGtCQUFrQjtJQUNsQixnQ0FBZ0M7SUFDaEMsTUFBTTtFQUNSOztFQUVBO0lBQ0UsY0FBYztJQUNkLGtDQUFrQztFQUNwQzs7RUFFQSxnQkFBZ0IsVUFBVTs7RUFDMUI7O0lBRUUsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLGVBQWU7RUFDakIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3Jldmlldy9wb3N0LXJldmlldy9wb3N0LXJldmlldy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnN0YXItcmF0aW5nLCAuYmFjay1zdGFycywgLmZyb250LXN0YXJzIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgfVxyXG4gIFxyXG4gIC5zdGFyLXJhdGluZyB7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgZm9udC1zaXplOiAzZW07XHJcbiAgfVxyXG4gIFxyXG4gIC5iYWNrLXN0YXJzIHtcclxuICAgIGNvbG9yOiAjYmI1MjUyO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgdGV4dC1zaGFkb3c6IDRweCA0cHggMTBweCAjODQzYTNhO1xyXG4gIH1cclxuICBcclxuICAuZnJvbnQtc3RhcnMge1xyXG4gICAgY29sb3I6ICNGRjk4MDA7XHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgdGV4dC1zaGFkb3c6IDJweCAycHggNXB4ICNkMjliMDk7XHJcbiAgICB0b3A6IDA7XHJcbiAgfVxyXG4gIFxyXG4gIGxhYmVsIHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgZm9udDogMXJlbSAnRmlyYSBTYW5zJywgc2Fucy1zZXJpZjtcclxuICB9XHJcbiAgXHJcbiAgLmZvcm0tY29udHJvbCB7IHdpZHRoOiAzMCV9XHJcbiAgaW5wdXQsXHJcbiAgbGFiZWwge1xyXG4gICAgbWFyZ2luOiAuNHJlbSAwO1xyXG4gIH1cclxuICBcclxuICAubm90ZSB7XHJcbiAgICBmb250LXNpemU6IC44ZW07XHJcbiAgfVxyXG4gICJdfQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcmV2aWV3L3Bvc3QtcmV2aWV3L3Bvc3QtcmV2aWV3LmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -1291,7 +1291,7 @@ module.exports = ".star-rating, .back-stars, .front-stars {\r\n    display: flex
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" style=\"width: 50rem;\">\r\n    <div class=\"card-body\">\r\n      <div class=\"card-header\">\r\n        REVIEWS\r\n      </div>\r\n    <section class=\"container-fluid\">\r\n        <form (submit)=\"onReviewSubmit()\" [formGroup]=\"reviewForm\">\r\n            <div>\r\n              <div class=\"form-group\">\r\n                <label for=\"reviewTitle\">Review Title: </label>\r\n                <div class=\"col-sm-100\">\r\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Enter Review Title\" required>\r\n                </div>\r\n              </div>\r\n             \r\n              \r\n              <div class=\"form-group\">\r\n        \r\n                \r\n                <a *ngFor=\"let item of starList; let i=index \" (click)=\"setStar(i)\">\r\n                  <i *ngIf=\"item\" class=\"far fa-star\"></i>\r\n                  <i *ngIf=\"!item\" class=\"fas fa-star\"></i>\r\n                </a>\r\n                <br>\r\n                \r\n        \r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"reviewNotes\">Comments : </label>\r\n                <div>\r\n                  <input type=\"reviewNotes\" class=\"form-control\" formControlName=\"reviewNotes\" placeholder=\"Enter Comments (optional)\">\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!reviewForm.valid\">Submit</button>\r\n          </form>\r\n        </section>\r\n  \r\n        </div>\r\n  </div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"card\" style=\"width: 50rem;\">\r\n    <div class=\"card-body\">\r\n      <div class=\"card-title\">\r\n        <h5>Write a Review</h5>\r\n      </div>\r\n      <div class=\"card-text\">\r\n        <form (submit)=\"submitReview()\" [formGroup]=\"reviewForm\">\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"reviewTitle\" class=\"col-sm-2\">Review Title : </label>\r\n            <input type=\"text\" class=\"form-control col-sm-10\" placeholder=\"Review Title\" formControlName=\"reviewTitle\"\r\n              required>\r\n          </div>\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"starRating\" class=\"col-sm-2\"> Ratings : </label>\r\n            <div class=\"col-sm-10\">\r\n              <span *ngFor=\"let item of starList; let i = index\" (click)=\"setStar(i)\">\r\n                <i *ngIf=\"item\" class=\"far fa-star\"></i>\r\n                <i *ngIf=\"!item\" class=\"fas fa-star\"></i>\r\n              </span>\r\n            </div>\r\n            <br>\r\n          </div>\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"reviewNotes\" class=\"col-sm-2\">Review Notes : </label>\r\n            <textarea cols=\"30\" rows=\"5\" class=\"form-control col-sm-10\" formControlName=\"reviewNotes\"\r\n              placeholder=\"Review Notes (optional)\"></textarea>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!reviewForm.valid\">Submit</button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1308,33 +1308,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/common-utils.service */ "./src/app/services/common-utils.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
 
 
 
 var PostReviewComponent = /** @class */ (function () {
-    function PostReviewComponent(formBuilder) {
+    function PostReviewComponent(formBuilder, userService, commonUtilsService) {
+        var _this = this;
         this.formBuilder = formBuilder;
+        this.userService = userService;
+        this.commonUtilsService = commonUtilsService;
         this.reviewForm = this.formBuilder.group({
-            reviewerId: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
-            revieweeId: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
-            reviewDate: [''],
-            starRating: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            reviewTitle: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            starRating: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].min(1)]],
             reviewNotes: ['']
         });
-        this.starList = [true, true, true, true, true]; // create a list which contains status of 5 stars
+        this.starList = [true, true, true, true, true];
+        this.sub = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subscription"]();
+        this.sub.add(this.commonUtilsService.signedInUser$.subscribe(function (res) {
+            _this.loggedInUser = res;
+        }, function (err) {
+            // error handling
+        }));
     }
-    PostReviewComponent.prototype.setStar = function (data) {
-        this.rating = data + 1;
-        for (var i = 0; i <= 4; i++) {
-            if (i <= data) {
-                this.starList[i] = false;
-            }
-            else {
-                this.starList[i] = true;
-            }
-        }
-    };
     PostReviewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub.add(this.commonUtilsService.reviewCaregiverId$.subscribe(function (res) {
+            _this.caregiverId = res;
+        }));
+    };
+    PostReviewComponent.prototype.ngOnDestroy = function () {
+        this.sub.unsubscribe();
+    };
+    PostReviewComponent.prototype.setStar = function (data) {
+        this.starList = [true, true, true, true, true];
+        for (var i = 0; i < data + 1; i++) {
+            this.starList[i] = false;
+        }
+        this.reviewForm.patchValue({
+            starRating: data + 1
+        });
+    };
+    PostReviewComponent.prototype.submitReview = function () {
+        var review = {
+            reviewerID: this.loggedInUser['_id'],
+            revieweeID: this.caregiverId,
+            reviewDate: moment().format('MM/DD/YYYY hh:mm A Z')
+        };
+        review = Object.assign({}, review, this.reviewForm.value);
+        this.userService.PostNewReview(review).then(function (res) {
+            console.log(res);
+        }, function (err) {
+            console.log(err);
+            alert(err);
+        });
     };
     PostReviewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1342,7 +1374,9 @@ var PostReviewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./post-review.component.html */ "./src/app/components/review/post-review/post-review.component.html"),
             styles: [__webpack_require__(/*! ./post-review.component.css */ "./src/app/components/review/post-review/post-review.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
+            src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_4__["CommonUtilsService"]])
     ], PostReviewComponent);
     return PostReviewComponent;
 }());
@@ -1921,6 +1955,11 @@ var CommonUtilsService = /** @class */ (function () {
          */
         this.scheduleCaregiver = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
         this.scheduleCaregiver$ = this.scheduleCaregiver.asObservable();
+        /**
+         * Store caregiver id for posting review
+         */
+        this.reviewCaregiverId = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+        this.reviewCaregiverId$ = this.reviewCaregiverId.asObservable();
     }
     /**
      * Fetch Url to call api's
@@ -1938,6 +1977,9 @@ var CommonUtilsService = /** @class */ (function () {
     };
     CommonUtilsService.prototype.setCaregiver = function (caregiver) {
         this.scheduleCaregiver.next(caregiver);
+    };
+    CommonUtilsService.prototype.setReviewCaregiverId = function (id) {
+        this.reviewCaregiverId.next(id);
     };
     CommonUtilsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2047,6 +2089,9 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.DeleteReviewForUserByReviewId = function (_userId, _reviewId) {
         return this.httpClient.delete(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/review/" + _userId + "/" + _reviewId);
+    };
+    UserService.prototype.PostNewReview = function (_review) {
+        return this.httpClient.post(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/review", _review).toPromise();
     };
     UserService.prototype.GetAllCaregiversWithReviewData = function () {
         return this.httpClient.get(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/caregivers");
