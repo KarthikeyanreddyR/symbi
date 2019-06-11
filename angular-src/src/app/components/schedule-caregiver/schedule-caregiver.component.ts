@@ -138,11 +138,6 @@ export class ScheduleCaregiverComponent implements OnInit {
     this.caregiverReviews = this.getReviewsForId(id);
   }
 
-  public scheduleCaregiver(user: any) {
-    this.commonUtilsService.setCaregiver(user);
-    this.router.navigate(["/caregivers/schedule"]);
-  }
-
   public scheduleJob() {
     this.postSuccess = false;
     let job: any = {
