@@ -41,8 +41,8 @@ export class UserService {
    return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/reviewsByUser/${_userId}`);
   }
 
-  public DeleteReviewForUserByReviewId(_userId: string): Observable<ApiResponse> {
-    return this.httpClient.delete<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/review/${_userId}/reviewId`);
+  public DeleteReviewForUserByReviewId(_userId: string, _reviewId: string): Observable<ApiResponse> {
+    return this.httpClient.delete<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/review/${_userId}/${_reviewId}`);
    }
 
   public GetAllCaregiversWithReviewData() : Observable<ApiResponse> {

@@ -21,7 +21,6 @@ export class JobComponent implements OnInit {
   fetchError: boolean;
 
   constructor(private jobService: JobService, private commonUtilsService: CommonUtilsService) {
-    let self = this;
     this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(res => {
       this.loggedInUser = res
     }, err => {

@@ -721,7 +721,6 @@ var JobComponent = /** @class */ (function () {
         this.jobService = jobService;
         this.commonUtilsService = commonUtilsService;
         this.subscription = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
-        var self = this;
         this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(function (res) {
             _this.loggedInUser = res;
         }, function (err) {
@@ -1370,7 +1369,7 @@ module.exports = ".card {\r\n  transition: box-shadow 0.3s ease-in-out;\r\n}\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\r\n      <app-sidebar></app-sidebar>\r\n    </div>\r\n    <div class=\"col-sm-12 col-md-6\">\r\n      <h5>Your Reviews</h5>\r\n      <div class=\"card my-3\" *ngFor=\"let r of reviews$\">\r\n        <div class=\"card-body\">\r\n          <h5 class=\"card-title text-break\">{{r.reviewTitle}}</h5>\r\n          <div class=\"float-left\" style=\"width: 70%\">\r\n            <i>{{r.reviewDate}}</i>\r\n          </div>\r\n          <div class=\"float-right text-right\" style=\"width: 28%;\">\r\n            <span *ngFor=\"let s of getStartRatingsArray(r.starRating)\">\r\n              <i *ngIf=\"!s\" class=\"far fa-star\"></i>\r\n              <i *ngIf=\"s\" class=\"fas fa-star\"></i>\r\n            </span>\r\n          </div>\r\n          <div class=\"clearfix\"></div>\r\n          <div class=\"text-break\">{{r.reviewNotes}}</div>\r\n          <div>\r\n              <button  type=\"button\" (click)=\"deleteReview(r)\" class=\"btn btn-info\" >Delete</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\r\n      <app-sidebar></app-sidebar>\r\n    </div>\r\n    <div class=\"col-sm-12 col-md-6\">\r\n      <h5>Your Reviews</h5>\r\n\r\n      <div class=\"alert alert-info\" *ngIf=\"!reviews$ || reviews$.length === 0\">\r\n        No Reviews\r\n      </div>\r\n\r\n      <div class=\"card my-3\" *ngFor=\"let r of reviews$\">\r\n        <div class=\"card-body\">\r\n          <h5 class=\"card-title text-break\">{{r.reviewTitle}}</h5>\r\n          <div class=\"float-left\" style=\"width: 70%\">\r\n            <i>{{r.reviewDate}}</i>\r\n          </div>\r\n          <div class=\"float-right text-right\" style=\"width: 28%;\">\r\n            <span *ngFor=\"let s of getStartRatingsArray(r.starRating)\">\r\n              <i *ngIf=\"!s\" class=\"far fa-star\"></i>\r\n              <i *ngIf=\"s\" class=\"fas fa-star\"></i>\r\n            </span>\r\n          </div>\r\n          <div class=\"clearfix\"></div>\r\n          <div class=\"text-break\">{{r.reviewNotes}}</div>\r\n          <div class=\"float-right mt-3\">\r\n              <button type=\"button\" (click)=\"deleteReview(r)\" class=\"btn btn-sm btn-danger\"><i class=\"fas fa-trash\"></i> Delete</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1387,23 +1386,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/common-utils.service */ "./src/app/services/common-utils.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
 
 
 
 var ReviewComponent = /** @class */ (function () {
-    function ReviewComponent(userservice) {
+    function ReviewComponent(userservice, commonUtilsService) {
+        var _this = this;
         this.userservice = userservice;
+        this.commonUtilsService = commonUtilsService;
         this.reviews$ = [];
+        this.subscription = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
+        this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(function (res) {
+            _this.loggedInUser = res;
+        }, function (err) {
+            // error handling
+        }));
     }
     ReviewComponent.prototype.ngOnInit = function () {
+        this.fetchData();
+    };
+    ReviewComponent.prototype.fetchData = function () {
         var _this = this;
-        this.userservice.GetAllReviewsByUser("5ce3581d5fba742e68b35972").subscribe(function (res) {
-            console.log(res);
+        this.subscription.add(this.userservice.GetAllReviewsByUser(this.loggedInUser['_id']).subscribe(function (res) {
             _this.reviews$ = res.data;
         }, function (err) {
             // error handling
             console.log(err);
-        }, function () { });
+        }, function () { }));
+    };
+    ReviewComponent.prototype.ngOnDestroy = function () {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        this.subscription.unsubscribe();
     };
     ReviewComponent.prototype.getStartRatingsArray = function (rating) {
         var finArr = [false, false, false, false, false];
@@ -1414,13 +1432,17 @@ var ReviewComponent = /** @class */ (function () {
     };
     ReviewComponent.prototype.deleteReview = function (review) {
         var _this = this;
-        this.userservice.DeleteReviewForUserByReviewId("5ce3581d5fba742e68b35972").subscribe(function (res) {
-            console.log(res);
-            _this.reviews$ = _this.reviews$.filter(function (review) { return review !== _this.reviews$; });
+        this.subscription.add(this.userservice.DeleteReviewForUserByReviewId(this.loggedInUser['_id'], review['_id']).subscribe(function (res) {
+            if (res.success) {
+                _this.fetchData();
+            }
+            else {
+                // error during deletion
+            }
         }, function (err) {
             // error handling
             console.log(err);
-        }, function () { });
+        }, function () { }));
     };
     ReviewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1428,7 +1450,7 @@ var ReviewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./review.component.html */ "./src/app/components/review/review.component.html"),
             styles: [__webpack_require__(/*! ./review.component.css */ "./src/app/components/review/review.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"]])
     ], ReviewComponent);
     return ReviewComponent;
 }());
@@ -2023,8 +2045,8 @@ var UserService = /** @class */ (function () {
     UserService.prototype.GetAllReviewsByUser = function (_userId) {
         return this.httpClient.get(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/reviewsByUser/" + _userId);
     };
-    UserService.prototype.DeleteReviewForUserByReviewId = function (_userId) {
-        return this.httpClient.delete(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/review/" + _userId + "/reviewId");
+    UserService.prototype.DeleteReviewForUserByReviewId = function (_userId, _reviewId) {
+        return this.httpClient.delete(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/review/" + _userId + "/" + _reviewId);
     };
     UserService.prototype.GetAllCaregiversWithReviewData = function () {
         return this.httpClient.get(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/caregivers");

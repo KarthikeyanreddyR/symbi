@@ -6,6 +6,8 @@ import {
   FormGroup
 } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
+import { CommonUtilsService } from 'src/app/services/common-utils.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-review",
@@ -15,12 +17,25 @@ import { UserService } from "src/app/services/user.service";
 export class ReviewComponent implements OnInit {
   reviews$: any = [];
 
-  constructor(private userservice: UserService) {}
+  private subscription: Subscription = new Subscription();
+
+  private loggedInUser: any;
+
+  constructor(private userservice: UserService, private commonUtilsService: CommonUtilsService) {
+    this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(res => {
+      this.loggedInUser = res
+    }, err => {
+      // error handling
+    }));
+  }
 
   ngOnInit() {
-    this.userservice.GetAllReviewsByUser("this.loggedInUser['_id']").subscribe(
+    this.fetchData();
+  }
+
+  public fetchData() {
+    this.subscription.add(this.userservice.GetAllReviewsByUser(this.loggedInUser['_id']).subscribe(
       res => {
-        console.log(res);
         this.reviews$ = res.data;
       },
       err => {
@@ -28,7 +43,13 @@ export class ReviewComponent implements OnInit {
         console.log(err);
       },
       () => {}
-    );
+    ));
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.subscription.unsubscribe();
   }
 
   public getStartRatingsArray(rating: number) {
@@ -40,18 +61,21 @@ export class ReviewComponent implements OnInit {
   }
 
   public deleteReview(review:any){
-    this.userservice.DeleteReviewForUserByReviewId("this.loggedInUser['_id']").subscribe(
+    this.subscription.add(this.userservice.DeleteReviewForUserByReviewId(this.loggedInUser['_id'], review['_id']).subscribe(
       res => {
-        console.log(res);
-        this.reviews$ = this.reviews$.filter(review => review !== this.reviews$);
+        if(res.success) {
+          this.fetchData();
+        } else {
+          // error during deletion
+        }
       },
       err => {
         // error handling
         console.log(err);
       },
       () => {}
-    );
-  
+    ));
+
   }
 }
 
