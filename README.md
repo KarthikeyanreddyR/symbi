@@ -3,6 +3,10 @@
 
 SaaS Team project. MEAN stack; Bootstrap
 
+## Resources
+* Trello : [https://trello.com/b/tzzIrQ7d/childcare-manager]
+* Symbii : [https://symbii-dev.azurewebsites.net/#/]
+
 ## Install [Node.js](https://nodejs.org/en/)
     verify successful node installation, open terminal and run for versions of node and npm
         node -v
