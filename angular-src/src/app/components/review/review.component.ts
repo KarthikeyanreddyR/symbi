@@ -40,7 +40,7 @@ export class ReviewComponent implements OnInit {
   }
 
   public deleteReview(review:any){
-    this.userservice.DeleteReviewForUserByReviewId("lthis.loggedInUser['_id']").subscribe(
+    this.userservice.DeleteReviewForUserByReviewId("this.loggedInUser['_id']").subscribe(
       res => {
         console.log(res);
         this.reviews$ = this.reviews$.filter(review => review !== this.reviews$);
