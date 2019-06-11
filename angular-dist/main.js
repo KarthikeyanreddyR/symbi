@@ -662,7 +662,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvam9iL2pvYi5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".card {\r\n  transition: box-shadow 0.3s ease-in-out;\r\n}\r\n\r\n.card:hover {\r\n  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9qb2Ivam9iLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx1Q0FBdUM7QUFDekM7O0FBRUE7RUFDRTtBQUNGIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9qb2Ivam9iLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XHJcbiAgdHJhbnNpdGlvbjogYm94LXNoYWRvdyAwLjNzIGVhc2UtaW4tb3V0O1xyXG59XHJcblxyXG4uY2FyZDpob3ZlciB7XHJcbiAgYm94LXNoYWRvdzogMCAuNXJlbSAxcmVtIHJnYmEoMCwwLDAsLjE1KSFpbXBvcnRhbnRcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -673,7 +673,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\n      <app-sidebar></app-sidebar>\n    </div>\n    <div class=\"col-sm-12 col-md-6\">\n      <h2 class=\"d-inline\">Jobs</h2>\n      <div class=\"float-right\">\n        <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#openjobModal\">Post open job</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <br>\n      <div class=\"alert alert-danger\" *ngIf=\"fetchError\">\n          Unknown error occurred. please try again.\n        </div>\n        <div class=\"alert alert-info\" *ngIf=\"!jobs$ || jobs$.length === 0\">\n          No jobs\n        </div>\n        <div class=\"float-right\">\n            <button class=\"btn btn-outline-light text-dark\" (click)=\"fetchData()\">Refresh</button>\n          </div>\n          <div class=\"clearfix\"></div>\n        <div class=\"card my-3\" *ngFor=\"let job of jobs$\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title text-break\">{{job.jobName}}</h5>\n              <div></div>\n              <div class=\"text-break\">{{job.jobNotes}}</div>\n            </div>\n          </div>\n    </div>\n  </div>\n\n  <div id=\"openjobModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-xl modal-dialog modal-dialog-centered\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-body\">\n          <app-post-open-job></app-post-open-job>\n        </div>\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\n      <app-sidebar></app-sidebar>\n    </div>\n    <div class=\"col-sm-12 col-md-6\">\n      <h2 class=\"d-inline\">Jobs</h2>\n      <div class=\"float-right\">\n        <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#openjobModal\">Post open job</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <br>\n      <div class=\"alert alert-danger\" *ngIf=\"fetchError\">\n        Unknown error occurred. please try again.\n      </div>\n      <div class=\"alert alert-info\" *ngIf=\"!jobs$ || jobs$.length === 0\">\n        No jobs\n      </div>\n      <div class=\"float-right\">\n        <button class=\"btn btn-outline-light text-dark\" (click)=\"fetchData()\">Refresh</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <div class=\"card my-3\" *ngFor=\"let job of jobs$\">\n        <div class=\"card-body\">\n          <!-- <div class=\"float-left\" style=\"width: 55%;\">\n            <h5 class=\"card-title text-break font-weight-bold\">{{job.jobName}}</h5>\n          </div>\n          <div class=\"float-right text-right\" style=\"width: 44%;\">\n            <span>Job Type : </span><span class=\"font-italic badge badge-pill badge-warning\">{{getJobType(job.jobType)  | titlecase}}</span>\n            <span class=\"ml-3\">Job Status : </span><span class=\"font-italic badge badge-pill badge-success\">{{getJobStatus(job.jobStatus)  | titlecase}}</span>\n          </div>\n          <div class=\"clearfix\"></div>\n          <div class=\"float-left\">\n            <span>Job Start Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobStartTime}}</span>\n          </div>\n          <div class=\"float-right\">\n            <span>Job End Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobEndTime}}</span>\n          </div>\n          <div class=\"clearfix\"></div>\n          <div class=\"text-break mt-3\">\n            <span>Job Notes : </span>\n            <p class=\"font-italic font-weight-light\">{{job.jobNotes ? job.jobNotes : N/A}}</p>\n          </div> -->\n          <div class=\"row\">\n            <div class=\"col-md-5 text-break\">\n                <h5 class=\"card-title text-break font-weight-bold\">{{job.jobName}}</h5>\n            </div>\n            <div class=\"col-md-7\">\n              <div class=\"row\">\n                  <div class=\"col-md-6\">\n                      <span>Job Type : </span><span class=\"font-italic badge badge-pill badge-warning\">{{getJobType(job.jobType)  | titlecase}}</span>\n                  </div>\n                  <div class=\"col-md-6\">\n                      <span>Job Status : </span><span class=\"font-italic badge badge-pill badge-success\">{{getJobStatus(job.jobStatus)  | titlecase}}</span>\n                  </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <span>Job Start Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobStartTime}}</span>\n            </div>\n            <div class=\"col-md-6\">\n                <span>Job End Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobEndTime}}</span>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-12 text-break mt-3\">\n                <span>Job Notes : </span>\n                <p class=\"font-italic font-weight-light\">{{job.jobNotes ? job.jobNotes : N/A}}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div id=\"openjobModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-xl modal-dialog modal-dialog-centered\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-body\">\n          <app-post-open-job></app-post-open-job>\n        </div>\n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -692,6 +692,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_job_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/job.service */ "./src/app/services/job.service.ts");
 /* harmony import */ var src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/common-utils.service */ "./src/app/services/common-utils.service.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/models/enums */ "./src/app/shared/models/enums.ts");
+
 
 
 
@@ -709,9 +711,6 @@ var JobComponent = /** @class */ (function () {
         }, function (err) {
             // error handling
         }));
-        $('#openjobModal').on('hide.bs.modal', function (e) {
-            self.fetchData();
-        });
     }
     JobComponent.prototype.ngOnInit = function () {
         this.fetchData();
@@ -732,6 +731,12 @@ var JobComponent = /** @class */ (function () {
         //Called once, before the instance is destroyed.
         //Add 'implements OnDestroy' to the class.
         this.subscription.unsubscribe();
+    };
+    JobComponent.prototype.getJobType = function (type) {
+        return src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["JobType"][type];
+    };
+    JobComponent.prototype.getJobStatus = function (type) {
+        return src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["JobStatus"][type];
     };
     JobComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -870,19 +875,18 @@ var PostOpenJobComponent = /** @class */ (function () {
     };
     PostOpenJobComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
+        this.postOpenJobForm.reset();
+        this.postSuccess = false;
     };
     PostOpenJobComponent.prototype.postOpenJob = function () {
         var _this = this;
         this.postSuccess = false;
-        console.log(this.postOpenJobForm.value);
         var job = {
             userId: this.loggedInUser['_id'],
             createdAt: new Date().toDateString()
         };
         job = Object.assign({}, job, this.postOpenJobForm.value);
-        console.log(job);
         this.jobService.postOpenJob(job).then(function (res) {
-            console.log(res);
             if (res.success) {
                 _this.postSuccess = true;
             }
@@ -2119,6 +2123,91 @@ var AppPasswordDirective = /** @class */ (function () {
     return AppPasswordDirective;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/shared/models/enums.ts":
+/*!****************************************!*\
+  !*** ./src/app/shared/models/enums.ts ***!
+  \****************************************/
+/*! exports provided: UserType, JobType, JobStatus, ContractStatus */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserType", function() { return UserType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JobType", function() { return JobType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JobStatus", function() { return JobStatus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContractStatus", function() { return ContractStatus; });
+/**
+ * Filename: enum.ts
+ * Created: 4.28.2019
+ * Description: A collection of the enums that will be used
+ *              throughout the Symbii program.
+ */
+/**
+ * Helps define which type of user is currently using the
+ * program.
+ * PARENT - A parent user
+ * CAREGIVER - caregiver user
+ */
+var UserType;
+(function (UserType) {
+    UserType[UserType["UNKNOWN"] = 0] = "UNKNOWN";
+    UserType[UserType["PARENT"] = 1] = "PARENT";
+    UserType[UserType["CAREGIVER"] = 2] = "CAREGIVER";
+})(UserType || (UserType = {}));
+/**
+ * Helps define the type of job that is being inserted
+ * into the database.
+ * OPEN_JOB - Has yet to be accepted by a caregiver
+ * SCHEDULED_JOB - A job that has been taken by a caregiver
+ */
+var JobType;
+(function (JobType) {
+    JobType[JobType["UNKNOWN"] = 0] = "UNKNOWN";
+    JobType[JobType["Open"] = 1] = "Open";
+    JobType[JobType["Scheduled"] = 2] = "Scheduled";
+})(JobType || (JobType = {}));
+/**
+ * Defines the status of a current job. As the parent and
+ * the caregiver communicate, the status of the job changes.
+ * CREATED - A newly created job
+ * POSTED - Job has been posted publicly
+ * ACCEPTED - Job has been accepted by a caregiver and the parent
+ * has agreed
+ * INPROGRESS - The job is currently in progress of completion
+ * COMPLETED - The job has been completed
+ * REJECTED - The parent/caregiver have rejected the job
+ */
+var JobStatus;
+(function (JobStatus) {
+    JobStatus[JobStatus["UNKNOWN"] = 0] = "UNKNOWN";
+    JobStatus[JobStatus["CREATED"] = 1] = "CREATED";
+    JobStatus[JobStatus["POSTED"] = 2] = "POSTED";
+    JobStatus[JobStatus["ACCEPTED"] = 3] = "ACCEPTED";
+    JobStatus[JobStatus["INPROGRESS"] = 4] = "INPROGRESS";
+    JobStatus[JobStatus["COMPLETED"] = 5] = "COMPLETED";
+    JobStatus[JobStatus["REJECTED"] = 6] = "REJECTED";
+})(JobStatus || (JobStatus = {}));
+/**
+ * Keeps track of the status of a contract
+ * CREATED - Newly made contract
+ * PARENT_SIGNED - Parent has accepted and signed the contract
+ * CAREGIVER_SIGNED - Caregiver has accepted and signed the contract
+ * COMPLETED - Both parties have accepted the contract
+ * REJECTED - One or both parties have rejected the proposed contract
+ */
+var ContractStatus;
+(function (ContractStatus) {
+    ContractStatus[ContractStatus["UNKNOWN"] = 0] = "UNKNOWN";
+    ContractStatus[ContractStatus["CREATED"] = 1] = "CREATED";
+    ContractStatus[ContractStatus["PARENT_SIGNED"] = 2] = "PARENT_SIGNED";
+    ContractStatus[ContractStatus["CAREGIVER_SIGNED"] = 3] = "CAREGIVER_SIGNED";
+    ContractStatus[ContractStatus["COMPLETED"] = 4] = "COMPLETED";
+    ContractStatus[ContractStatus["REJECTED"] = 5] = "REJECTED";
+})(ContractStatus || (ContractStatus = {}));
 
 
 /***/ }),

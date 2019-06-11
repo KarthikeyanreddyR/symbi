@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobService } from 'src/app/services/job.service';
 import { CommonUtilsService } from 'src/app/services/common-utils.service';
 import { Subscription } from 'rxjs';
+import { JobType, JobStatus } from 'src/app/shared/models/enums';
 
 declare var $: any;
 @Component({
@@ -26,9 +27,6 @@ export class JobComponent implements OnInit {
     }, err => {
       // error handling
     }));
-    $('#openjobModal').on('hide.bs.modal', function(e) {
-      self.fetchData();
-    });
    }
 
   ngOnInit() {
@@ -51,6 +49,14 @@ export class JobComponent implements OnInit {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.subscription.unsubscribe();
+  }
+
+  public getJobType(type: number) {
+    return JobType[type];
+  }
+
+  public getJobStatus(type: number) {
+    return JobStatus[type];
   }
 
 }

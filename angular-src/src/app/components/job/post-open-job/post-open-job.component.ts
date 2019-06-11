@@ -15,24 +15,23 @@ declare var $: any;
 export class PostOpenJobComponent implements OnInit {
 
   private subscription: Subscription = new Subscription();
-
+  postOpenJobForm: FormGroup;
   private loggedInUser: any;
   postSuccess: boolean;
 
   constructor(private formBuilder: FormBuilder, private jobService: JobService, private commonUtilsService: CommonUtilsService) {
+    this.postOpenJobForm  = this.formBuilder.group({
+      jobName: ['', [Validators.required]],
+      jobStartTime: ['', [Validators.required]],
+      jobEndTime: ['', [Validators.required]],
+      jobNotes: ['']
+    });
     this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(res => {
       this.loggedInUser = res
     }, err => {
       // error handling
     }));
    }
-
-  postOpenJobForm: FormGroup = this.formBuilder.group({
-    jobName: ['', [Validators.required]],
-    jobStartTime: ['', [Validators.required]],
-    jobEndTime: ['', [Validators.required]],
-    jobNotes: ['']
-  });
 
   get jobName() {
     return this.postOpenJobForm.get('jobName');
@@ -79,23 +78,18 @@ export class PostOpenJobComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.postOpenJobForm.reset();
+    this.postSuccess = false;
   }
 
   public postOpenJob() {
     this.postSuccess = false;
-    console.log(this.postOpenJobForm.value);
-
     let job: any = {
       userId: this.loggedInUser['_id'],
       createdAt: new Date().toDateString()
     }
-
     job = Object.assign({}, job, this.postOpenJobForm.value)
-
-    console.log(job);
-
     this.jobService.postOpenJob(job).then(res => {
-      console.log(res);
       if(res.success) {
         this.postSuccess = true;
       }

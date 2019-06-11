@@ -11,22 +11,48 @@
       <div class="clearfix"></div>
       <br>
       <div class="alert alert-danger" *ngIf="fetchError">
-          Unknown error occurred. please try again.
-        </div>
-        <div class="alert alert-info" *ngIf="!jobs$ || jobs$.length === 0">
-          No jobs
-        </div>
-        <div class="float-right">
-            <button class="btn btn-outline-light text-dark" (click)="fetchData()">Refresh</button>
-          </div>
-          <div class="clearfix"></div>
-        <div class="card my-3" *ngFor="let job of jobs$">
-            <div class="card-body">
-              <h5 class="card-title text-break">{{job.jobName}}</h5>
-              <div></div>
-              <div class="text-break">{{job.jobNotes}}</div>
+        Unknown error occurred. please try again.
+      </div>
+      <div class="alert alert-info" *ngIf="!jobs$ || jobs$.length === 0">
+        No jobs
+      </div>
+      <div class="float-right">
+        <button class="btn btn-outline-light text-dark" (click)="fetchData()">Refresh</button>
+      </div>
+      <div class="clearfix"></div>
+      <div class="card my-3" *ngFor="let job of jobs$">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5 text-break">
+                <h5 class="card-title text-break font-weight-bold">{{job.jobName}}</h5>
+            </div>
+            <div class="col-md-7">
+              <div class="row">
+                  <div class="col-md-6">
+                      <span>Job Type : </span><span class="font-italic badge badge-pill badge-warning">{{getJobType(job.jobType)  | titlecase}}</span>
+                  </div>
+                  <div class="col-md-6">
+                      <span>Job Status : </span><span class="font-italic badge badge-pill badge-success">{{getJobStatus(job.jobStatus)  | titlecase}}</span>
+                  </div>
+              </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-6">
+                <span>Job Start Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobStartTime}}</span>
+            </div>
+            <div class="col-md-6">
+                <span>Job End Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobEndTime}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-break mt-3">
+                <span>Job Notes : </span>
+                <p class="font-italic font-weight-light">{{job.jobNotes ? job.jobNotes : N/A}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
