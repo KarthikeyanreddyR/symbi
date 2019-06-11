@@ -47,7 +47,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_search_caregiver_search_caregiver_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/search-caregiver/search-caregiver.component */ "./src/app/components/search-caregiver/search-caregiver.component.ts");
 /* harmony import */ var _components_schedule_caregiver_schedule_caregiver_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/schedule-caregiver/schedule-caregiver.component */ "./src/app/components/schedule-caregiver/schedule-caregiver.component.ts");
 /* harmony import */ var _components_landing_page_landing_page_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/landing-page/landing-page.component */ "./src/app/components/landing-page/landing-page.component.ts");
-/* harmony import */ var _components_error_error_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/error/error.component */ "./src/app/components/error/error.component.ts");
+/* harmony import */ var _services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/auth-guard.service */ "./src/app/services/auth-guard.service.ts");
+/* harmony import */ var _components_error_error_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/error/error.component */ "./src/app/components/error/error.component.ts");
+
 
 
 
@@ -68,15 +70,15 @@ var routes = [
     { path: 'signup', component: _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_4__["SignupComponent"] },
     { path: 'landing', component: _components_landing_page_landing_page_component__WEBPACK_IMPORTED_MODULE_13__["LandingPageComponent"] },
     { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] },
-    { path: 'review', component: _components_review_review_component__WEBPACK_IMPORTED_MODULE_6__["ReviewComponent"] },
-    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_7__["ProfileComponent"] },
-    { path: 'dashboard/parent', component: _components_dashboard_parent_dashboard_parent_dashboard_component__WEBPACK_IMPORTED_MODULE_8__["ParentDashboardComponent"] },
-    { path: 'dashboard/caregiver', component: _components_dashboard_caregiver_dashboard_caregiver_dashboard_component__WEBPACK_IMPORTED_MODULE_9__["CaregiverDashboardComponent"] },
-    { path: 'jobs', component: _components_job_job_component__WEBPACK_IMPORTED_MODULE_10__["JobComponent"] },
-    { path: 'caregivers', component: _components_search_caregiver_search_caregiver_component__WEBPACK_IMPORTED_MODULE_11__["SearchCaregiverComponent"] },
-    { path: 'caregivers/schedule', component: _components_schedule_caregiver_schedule_caregiver_component__WEBPACK_IMPORTED_MODULE_12__["ScheduleCaregiverComponent"] },
-    { path: 'unauthorized', component: _components_error_error_component__WEBPACK_IMPORTED_MODULE_14__["ErrorComponent"], data: { type: 'Unauthorized' } },
-    { path: '**', component: _components_error_error_component__WEBPACK_IMPORTED_MODULE_14__["ErrorComponent"], data: { type: 'PageNotFound' } }
+    { path: 'review', canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__["AuthGuardService"]], component: _components_review_review_component__WEBPACK_IMPORTED_MODULE_6__["ReviewComponent"] },
+    { path: 'profile', canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__["AuthGuardService"]], component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_7__["ProfileComponent"] },
+    { path: 'dashboard/parent', canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__["AuthGuardService"]], component: _components_dashboard_parent_dashboard_parent_dashboard_component__WEBPACK_IMPORTED_MODULE_8__["ParentDashboardComponent"] },
+    { path: 'dashboard/caregiver', canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__["AuthGuardService"]], component: _components_dashboard_caregiver_dashboard_caregiver_dashboard_component__WEBPACK_IMPORTED_MODULE_9__["CaregiverDashboardComponent"] },
+    { path: 'jobs', canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__["AuthGuardService"]], component: _components_job_job_component__WEBPACK_IMPORTED_MODULE_10__["JobComponent"] },
+    { path: 'caregivers', canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__["AuthGuardService"]], component: _components_search_caregiver_search_caregiver_component__WEBPACK_IMPORTED_MODULE_11__["SearchCaregiverComponent"] },
+    { path: 'caregivers/schedule', canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_14__["AuthGuardService"]], component: _components_schedule_caregiver_schedule_caregiver_component__WEBPACK_IMPORTED_MODULE_12__["ScheduleCaregiverComponent"] },
+    { path: 'unauthorized', component: _components_error_error_component__WEBPACK_IMPORTED_MODULE_15__["ErrorComponent"], data: { type: 'Unauthorized' } },
+    { path: '**', component: _components_error_error_component__WEBPACK_IMPORTED_MODULE_15__["ErrorComponent"], data: { type: 'PageNotFound' } }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -553,7 +555,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  error works!\n</p>\n"
+module.exports = "<div class=\"jumbotron jumbotron-fluid\" *ngIf=\"type === 'Unauthorized'\">\n  <div class=\"container\">\n    <h1 class=\"display-4\">Unauthorized access</h1>\n    <p class=\"lead\"><a [routerLink]=\"['/login']\" routerLinkActive=\"\">Login</a> from here to gain access</p>\n  </div>\n</div>\n\n<div class=\"jumbotron jumbotron-fluid\" *ngIf=\"type === 'PageNotFound'\">\n  <div class=\"container\">\n    <h1 class=\"display-4\">Page not found</h1>\n    <p class=\"lead\"><a [routerLink]=\"['/login']\" routerLinkActive=\"\">Click</a> here to navigate to home page</p>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -569,12 +571,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorComponent", function() { return ErrorComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 var ErrorComponent = /** @class */ (function () {
-    function ErrorComponent() {
+    function ErrorComponent(route) {
+        this.route = route;
+        this.type = 'PageNotFound';
     }
     ErrorComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this.route.data.subscribe(function (res) {
+            console.log(res);
+            _this.type = res.type;
+        });
+    };
+    ErrorComponent.prototype.ngOnDestroy = function () {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        this.sub.unsubscribe();
     };
     ErrorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -582,7 +598,7 @@ var ErrorComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./error.component.html */ "./src/app/components/error/error.component.html"),
             styles: [__webpack_require__(/*! ./error.component.css */ "./src/app/components/error/error.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], ErrorComponent);
     return ErrorComponent;
 }());
@@ -673,7 +689,7 @@ module.exports = ".card {\r\n  transition: box-shadow 0.3s ease-in-out;\r\n}\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\n      <app-sidebar></app-sidebar>\n    </div>\n    <div class=\"col-sm-12 col-md-6\">\n      <h2 class=\"d-inline\">Jobs</h2>\n      <div class=\"float-right\">\n        <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#openjobModal\">Post open job</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <br>\n      <div class=\"alert alert-danger\" *ngIf=\"fetchError\">\n        Unknown error occurred. please try again.\n      </div>\n      <div class=\"alert alert-info\" *ngIf=\"!jobs$ || jobs$.length === 0\">\n        No jobs\n      </div>\n      <div class=\"float-right\">\n        <button class=\"btn btn-outline-light text-dark\" (click)=\"fetchData()\">Refresh</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <div class=\"card my-3\" *ngFor=\"let job of jobs$\">\n        <div class=\"card-body\">\n          <!-- <div class=\"float-left\" style=\"width: 55%;\">\n            <h5 class=\"card-title text-break font-weight-bold\">{{job.jobName}}</h5>\n          </div>\n          <div class=\"float-right text-right\" style=\"width: 44%;\">\n            <span>Job Type : </span><span class=\"font-italic badge badge-pill badge-warning\">{{getJobType(job.jobType)  | titlecase}}</span>\n            <span class=\"ml-3\">Job Status : </span><span class=\"font-italic badge badge-pill badge-success\">{{getJobStatus(job.jobStatus)  | titlecase}}</span>\n          </div>\n          <div class=\"clearfix\"></div>\n          <div class=\"float-left\">\n            <span>Job Start Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobStartTime}}</span>\n          </div>\n          <div class=\"float-right\">\n            <span>Job End Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobEndTime}}</span>\n          </div>\n          <div class=\"clearfix\"></div>\n          <div class=\"text-break mt-3\">\n            <span>Job Notes : </span>\n            <p class=\"font-italic font-weight-light\">{{job.jobNotes ? job.jobNotes : N/A}}</p>\n          </div> -->\n          <div class=\"row\">\n            <div class=\"col-md-5 text-break\">\n                <h5 class=\"card-title text-break font-weight-bold\">{{job.jobName}}</h5>\n            </div>\n            <div class=\"col-md-7\">\n              <div class=\"row\">\n                  <div class=\"col-md-6\">\n                      <span>Job Type : </span><span class=\"font-italic badge badge-pill badge-warning\">{{getJobType(job.jobType)  | titlecase}}</span>\n                  </div>\n                  <div class=\"col-md-6\">\n                      <span>Job Status : </span><span class=\"font-italic badge badge-pill badge-success\">{{getJobStatus(job.jobStatus)  | titlecase}}</span>\n                  </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <span>Job Start Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobStartTime}}</span>\n            </div>\n            <div class=\"col-md-6\">\n                <span>Job End Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobEndTime}}</span>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-12 text-break mt-3\">\n                <span>Job Notes : </span>\n                <p class=\"font-italic font-weight-light\">{{job.jobNotes ? job.jobNotes : N/A}}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div id=\"openjobModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-xl modal-dialog modal-dialog-centered\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-body\">\n          <app-post-open-job></app-post-open-job>\n        </div>\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\n      <app-sidebar></app-sidebar>\n    </div>\n    <div class=\"col-sm-12 col-md-6\">\n      <h2 class=\"d-inline\">Jobs</h2>\n      <div class=\"float-right\">\n        <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#openjobModal\">Post open job</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <br>\n      <div class=\"alert alert-danger\" *ngIf=\"fetchError\">\n        Unknown error occurred. please try again.\n      </div>\n      <div class=\"alert alert-info\" *ngIf=\"!jobs$ || jobs$.length === 0\">\n        No jobs\n      </div>\n      <div class=\"float-right\">\n        <button class=\"btn btn-outline-light text-dark\" (click)=\"fetchData()\">Refresh</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <div class=\"card my-3\" *ngFor=\"let job of jobs$\">\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-5 text-break\">\n                <h5 class=\"card-title text-break font-weight-bold\">{{job.jobName}}</h5>\n            </div>\n            <div class=\"col-md-7\">\n              <div class=\"row\">\n                  <div class=\"col-md-6\">\n                      <span>Job Type : </span><span class=\"font-italic badge badge-pill badge-warning\">{{getJobType(job.jobType)  | titlecase}}</span>\n                  </div>\n                  <div class=\"col-md-6\">\n                      <span>Job Status : </span><span class=\"font-italic badge badge-pill badge-success\">{{getJobStatus(job.jobStatus)  | titlecase}}</span>\n                  </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <span>Job Start Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobStartTime}}</span>\n            </div>\n            <div class=\"col-md-6\">\n                <span>Job End Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobEndTime}}</span>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-12 text-break mt-3\">\n                <span>Job Notes : </span>\n                <p class=\"font-italic font-weight-light\">{{job.jobNotes ? job.jobNotes : N/A}}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div id=\"openjobModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-xl modal-dialog modal-dialog-centered\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-body\">\n          <app-post-open-job></app-post-open-job>\n        </div>\n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1832,8 +1848,14 @@ var AuthGuardService = /** @class */ (function () {
         this.router = router;
     }
     AuthGuardService.prototype.canActivate = function () {
+        var _this = this;
         return this.commonUtilsService.signedInUser$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (res) {
-            return res ? true : false;
+            if (!res) {
+                return _this.router.parseUrl('/unauthorized');
+            }
+            else {
+                return true;
+            }
         }));
     };
     AuthGuardService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

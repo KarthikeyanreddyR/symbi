@@ -11,9 +11,13 @@ export class AuthGuardService implements CanActivate {
 
   constructor(private commonUtilsService: CommonUtilsService, private router: Router) {}
 
-  canActivate(): Observable<boolean> {
+  canActivate() {
     return this.commonUtilsService.signedInUser$.pipe(map(res => {
-      return res ? true: false;
-    }))
+      if(!res) {
+        return this.router.parseUrl('/unauthorized');
+      } else {
+        return true;
+      }
+    }));
   }
 }

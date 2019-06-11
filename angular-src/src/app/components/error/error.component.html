@@ -1,3 +1,13 @@
-<p>
-  error works!
-</p>
+<div class="jumbotron jumbotron-fluid" *ngIf="type === 'Unauthorized'">
+  <div class="container">
+    <h1 class="display-4">Unauthorized access</h1>
+    <p class="lead"><a [routerLink]="['/login']" routerLinkActive="">Login</a> from here to gain access</p>
+  </div>
+</div>
+
+<div class="jumbotron jumbotron-fluid" *ngIf="type === 'PageNotFound'">
+  <div class="container">
+    <h1 class="display-4">Page not found</h1>
+    <p class="lead"><a [routerLink]="['/login']" routerLinkActive="">Click</a> here to navigate to home page</p>
+  </div>
+</div>

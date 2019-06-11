@@ -17,15 +17,15 @@ import { ErrorComponent } from './components/error/error.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'landing',  component: LandingPageComponent },
+  { path: 'landing', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'review', component: ReviewComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'dashboard/parent', component: ParentDashboardComponent },
-  { path: 'dashboard/caregiver', component: CaregiverDashboardComponent },
-  { path: 'jobs', component: JobComponent },
-  { path: 'caregivers', component: SearchCaregiverComponent },
-  { path: 'caregivers/schedule', component: ScheduleCaregiverComponent },
+  { path: 'review', canActivate: [AuthGuardService], component: ReviewComponent },
+  { path: 'profile', canActivate: [AuthGuardService], component: ProfileComponent },
+  { path: 'dashboard/parent', canActivate: [AuthGuardService], component: ParentDashboardComponent },
+  { path: 'dashboard/caregiver', canActivate: [AuthGuardService], component: CaregiverDashboardComponent },
+  { path: 'jobs', canActivate: [AuthGuardService], component: JobComponent },
+  { path: 'caregivers', canActivate: [AuthGuardService], component: SearchCaregiverComponent },
+  { path: 'caregivers/schedule', canActivate: [AuthGuardService], component: ScheduleCaregiverComponent },
   { path: 'unauthorized', component: ErrorComponent, data: { type: 'Unauthorized' } },
   { path: '**', component: ErrorComponent, data: { type: 'PageNotFound' } }
 ];
