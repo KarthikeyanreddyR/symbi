@@ -39,7 +39,7 @@ export class JobController {
     }
 
     public static GetAllJobsByUserId(req: Request, res: Response) {
-        let _id = req.params.id;
+        let _id = req.params.userId;
         UserModel.findById(_id).exec((err: any, user: any) => {
             if (err) {
                 res.status(500).json({
@@ -73,7 +73,7 @@ export class JobController {
     }
 
     public static GetAllJobsForUserId(req: Request, res: Response) {
-        let _id = req.params.id;
+        let _id = req.params.userId;
         UserModel.findById(_id).exec((err: any, user: any) => {
             if (err) {
                 res.status(500).json({

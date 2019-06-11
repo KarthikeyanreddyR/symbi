@@ -12,8 +12,8 @@ export class JobService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAllJobsForUser(id:string): Observable<Object> {
-    return this.httpClient.get<Object>(`${CommonUtilsService.getAbsoluteUrl()}/jobs/jobsByUser/${id}`);
+  public getAllJobsForUser(id:string): Promise<ApiResponse> {
+    return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/jobs/jobsByUser/${id}`).toPromise();
   }
 
   public postOpenJob(job: any): Promise<ApiResponse> {

@@ -1,16 +1,40 @@
-<div class="container">
-  <h2>Jobs</h2>
-  <br>
-  <div class="float-right">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#openjobModal">Post open job</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2" id="dashboard-sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <h2 class="d-inline">Jobs</h2>
+      <div class="float-right">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#openjobModal">Post open job</button>
+      </div>
+      <div class="clearfix"></div>
+      <br>
+      <div class="alert alert-danger" *ngIf="fetchError">
+          Unknown error occurred. please try again.
+        </div>
+        <div class="alert alert-info" *ngIf="!jobs$ || jobs$.length === 0">
+          No jobs
+        </div>
+        <div class="float-right">
+            <button class="btn btn-outline-light text-dark" (click)="fetchData()">Refresh</button>
+          </div>
+          <div class="clearfix"></div>
+        <div class="card my-3" *ngFor="let job of jobs$">
+            <div class="card-body">
+              <h5 class="card-title text-break">{{job.jobName}}</h5>
+              <div></div>
+              <div class="text-break">{{job.jobNotes}}</div>
+            </div>
+          </div>
+    </div>
   </div>
-</div>
 
-<div id="openjobModal" class="modal fade" tabindex="-1" role="dialog">
+  <div id="openjobModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-            <app-post-open-job></app-post-open-job>
+          <app-post-open-job></app-post-open-job>
         </div>
       </div>
     </div>
