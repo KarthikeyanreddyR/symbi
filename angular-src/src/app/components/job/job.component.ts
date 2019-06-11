@@ -58,4 +58,17 @@ export class JobComponent implements OnInit {
     return JobStatus[type];
   }
 
+  public writeReview(job: any) {
+    this.commonUtilsService.setReviewCaregiverId(job['createdFor']);
+    this.showNewReviewModal();
+  }
+
+  private showNewReviewModal() {
+    var self = this;
+    $('#openNewReviewModal').modal();
+    $('#openNewReviewModal').on('hidden.bs.modal', function (e) {
+      self.commonUtilsService.setReviewCaregiverId(undefined);
+    })
+  }
+
 }

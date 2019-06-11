@@ -27,6 +27,8 @@ export class PostReviewComponent implements OnInit {
 
   private loggedInUser: any;
 
+  postReviewSuccess: boolean = false;
+
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private commonUtilsService: CommonUtilsService) {
@@ -58,6 +60,7 @@ export class PostReviewComponent implements OnInit {
   }
 
   public submitReview() {
+    this.postReviewSuccess = false;
     let review: any = {
       reviewerID: this.loggedInUser['_id'],
       revieweeID: this.caregiverId,
@@ -67,9 +70,8 @@ export class PostReviewComponent implements OnInit {
     review = Object.assign({}, review, this.reviewForm.value);
 
     this.userService.PostNewReview(review).then(res => {
-      console.log(res)
+      this.postReviewSuccess = true;
     }, err => {
-      console.log(err);
       alert(err);
     })
   }

@@ -50,9 +50,17 @@
               <span>Job Created On : </span>
               <span class="font-italic font-weight-light ml-2">{{job.createdAt | date: 'medium'}}</span>
             </div>
-            <div class="col-md-12 text-break mt-3">
+            <div class="col-md-12 text-break my-2">
                 <span>Job Notes : </span>
                 <p class="font-italic font-weight-light">{{job.jobNotes ? job.jobNotes : '--N/A--'}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 float-right text-right">
+              <span *ngIf="job.jobStatus > 4">
+                <!-- Job Status with COMPLETED(5) or REJECTED(6) can write a review -->
+                <a href="javascript:void(0)" (click)="writeReview(job)"><i class="fas fa-pencil-alt"></i> Write a Review</a>
+              </span>
             </div>
           </div>
         </div>
@@ -69,3 +77,13 @@
       </div>
     </div>
   </div>
+
+  <div id="openNewReviewModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <app-post-review></app-post-review>
+          </div>
+        </div>
+      </div>
+    </div>

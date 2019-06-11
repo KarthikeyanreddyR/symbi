@@ -689,7 +689,7 @@ module.exports = ".card {\r\n  transition: box-shadow 0.3s ease-in-out;\r\n}\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\n      <app-sidebar></app-sidebar>\n    </div>\n    <div class=\"col-sm-12 col-md-6\">\n      <h2 class=\"d-inline\">Jobs</h2>\n      <div class=\"float-right\">\n        <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#openjobModal\">Post open job</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <br>\n      <div class=\"alert alert-danger\" *ngIf=\"fetchError\">\n        Unknown error occurred. please try again.\n      </div>\n      <div class=\"alert alert-info\" *ngIf=\"!jobs$ || jobs$.length === 0\">\n        No jobs\n      </div>\n      <div class=\"float-right\">\n        <button class=\"btn btn-outline-light text-dark\" (click)=\"fetchData()\">Refresh</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <div class=\"card my-3\" *ngFor=\"let job of jobs$\">\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-5 text-break\">\n                <h5 class=\"card-title text-break font-weight-bold\">{{job.jobName}}</h5>\n            </div>\n            <div class=\"col-md-7\">\n              <div class=\"row\">\n                  <div class=\"col-md-6\">\n                      <span>Job Type : </span><span class=\"font-italic badge badge-pill badge-warning\">{{getJobType(job.jobType)  | titlecase}}</span>\n                  </div>\n                  <div class=\"col-md-6\">\n                      <span>Job Status : </span><span class=\"font-italic badge badge-pill badge-success\">{{getJobStatus(job.jobStatus)  | titlecase}}</span>\n                  </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <span>Job Start Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobStartTime | date: 'medium'}}</span>\n            </div>\n            <div class=\"col-md-6\">\n                <span>Job End Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobEndTime | date: 'medium'}}</span>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-12\">\n              <span>Job Created On : </span>\n              <span class=\"font-italic font-weight-light ml-2\">{{job.createdAt | date: 'medium'}}</span>\n            </div>\n            <div class=\"col-md-12 text-break mt-3\">\n                <span>Job Notes : </span>\n                <p class=\"font-italic font-weight-light\">{{job.jobNotes ? job.jobNotes : '--N/A--'}}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div id=\"openjobModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-xl modal-dialog modal-dialog-centered\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-body\">\n          <app-post-open-job></app-post-open-job>\n        </div>\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\n      <app-sidebar></app-sidebar>\n    </div>\n    <div class=\"col-sm-12 col-md-6\">\n      <h2 class=\"d-inline\">Jobs</h2>\n      <div class=\"float-right\">\n        <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#openjobModal\">Post open job</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <br>\n      <div class=\"alert alert-danger\" *ngIf=\"fetchError\">\n        Unknown error occurred. please try again.\n      </div>\n      <div class=\"alert alert-info\" *ngIf=\"!jobs$ || jobs$.length === 0\">\n        No jobs\n      </div>\n      <div class=\"float-right\">\n        <button class=\"btn btn-outline-light text-dark\" (click)=\"fetchData()\">Refresh</button>\n      </div>\n      <div class=\"clearfix\"></div>\n      <div class=\"card my-3\" *ngFor=\"let job of jobs$\">\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-5 text-break\">\n                <h5 class=\"card-title text-break font-weight-bold\">{{job.jobName}}</h5>\n            </div>\n            <div class=\"col-md-7\">\n              <div class=\"row\">\n                  <div class=\"col-md-6\">\n                      <span>Job Type : </span><span class=\"font-italic badge badge-pill badge-warning\">{{getJobType(job.jobType)  | titlecase}}</span>\n                  </div>\n                  <div class=\"col-md-6\">\n                      <span>Job Status : </span><span class=\"font-italic badge badge-pill badge-success\">{{getJobStatus(job.jobStatus)  | titlecase}}</span>\n                  </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <span>Job Start Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobStartTime | date: 'medium'}}</span>\n            </div>\n            <div class=\"col-md-6\">\n                <span>Job End Date : </span><span class=\"font-italic font-weight-light ml-2\">{{job.jobEndTime | date: 'medium'}}</span>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-12\">\n              <span>Job Created On : </span>\n              <span class=\"font-italic font-weight-light ml-2\">{{job.createdAt | date: 'medium'}}</span>\n            </div>\n            <div class=\"col-md-12 text-break my-2\">\n                <span>Job Notes : </span>\n                <p class=\"font-italic font-weight-light\">{{job.jobNotes ? job.jobNotes : '--N/A--'}}</p>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-12 float-right text-right\">\n              <span *ngIf=\"job.jobStatus > 4\">\n                <!-- Job Status with COMPLETED(5) or REJECTED(6) can write a review -->\n                <a href=\"javascript:void(0)\" (click)=\"writeReview(job)\"><i class=\"fas fa-pencil-alt\"></i> Write a Review</a>\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div id=\"openjobModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-xl modal-dialog modal-dialog-centered\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-body\">\n          <app-post-open-job></app-post-open-job>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div id=\"openNewReviewModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n      <div class=\"modal-xl modal-dialog modal-dialog-centered\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-body\">\n            <app-post-review></app-post-review>\n          </div>\n        </div>\n      </div>\n    </div>\n"
 
 /***/ }),
 
@@ -752,6 +752,17 @@ var JobComponent = /** @class */ (function () {
     };
     JobComponent.prototype.getJobStatus = function (type) {
         return src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["JobStatus"][type];
+    };
+    JobComponent.prototype.writeReview = function (job) {
+        this.commonUtilsService.setReviewCaregiverId(job['createdFor']);
+        this.showNewReviewModal();
+    };
+    JobComponent.prototype.showNewReviewModal = function () {
+        var self = this;
+        $('#openNewReviewModal').modal();
+        $('#openNewReviewModal').on('hidden.bs.modal', function (e) {
+            self.commonUtilsService.setReviewCaregiverId(undefined);
+        });
     };
     JobComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1280,7 +1291,7 @@ var ProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcmV2aWV3L3Bvc3QtcmV2aWV3L3Bvc3QtcmV2aWV3LmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = ".container-fluid {\r\n  padding-top: 0 !important;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9yZXZpZXcvcG9zdC1yZXZpZXcvcG9zdC1yZXZpZXcuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHlCQUF5QjtBQUMzQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcmV2aWV3L3Bvc3QtcmV2aWV3L3Bvc3QtcmV2aWV3LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVyLWZsdWlkIHtcclxuICBwYWRkaW5nLXRvcDogMCAhaW1wb3J0YW50O1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -1291,7 +1302,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"card\" style=\"width: 50rem;\">\r\n    <div class=\"card-body\">\r\n      <div class=\"card-title\">\r\n        <h5>Write a Review</h5>\r\n      </div>\r\n      <div class=\"card-text\">\r\n        <form (submit)=\"submitReview()\" [formGroup]=\"reviewForm\">\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"reviewTitle\" class=\"col-sm-2\">Review Title : </label>\r\n            <input type=\"text\" class=\"form-control col-sm-10\" placeholder=\"Review Title\" formControlName=\"reviewTitle\"\r\n              required>\r\n          </div>\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"starRating\" class=\"col-sm-2\"> Ratings : </label>\r\n            <div class=\"col-sm-10\">\r\n              <span *ngFor=\"let item of starList; let i = index\" (click)=\"setStar(i)\">\r\n                <i *ngIf=\"item\" class=\"far fa-star\"></i>\r\n                <i *ngIf=\"!item\" class=\"fas fa-star\"></i>\r\n              </span>\r\n            </div>\r\n            <br>\r\n          </div>\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"reviewNotes\" class=\"col-sm-2\">Review Notes : </label>\r\n            <textarea cols=\"30\" rows=\"5\" class=\"form-control col-sm-10\" formControlName=\"reviewNotes\"\r\n              placeholder=\"Review Notes (optional)\"></textarea>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!reviewForm.valid\">Submit</button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"card\">\r\n    <div class=\"card-body\">\r\n      <div class=\"card-title\">\r\n        <h5>Write a Review</h5>\r\n      </div>\r\n      <div class=\"card-text\">\r\n        <form (submit)=\"submitReview()\" [formGroup]=\"reviewForm\">\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"reviewTitle\" class=\"col-sm-2\">Review Title : </label>\r\n            <input type=\"text\" class=\"form-control col-sm-10\" placeholder=\"Review Title\" formControlName=\"reviewTitle\"\r\n              required>\r\n          </div>\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"starRating\" class=\"col-sm-2\"> Ratings : </label>\r\n            <div class=\"col-sm-10\">\r\n              <span *ngFor=\"let item of starList; let i = index\" (click)=\"setStar(i)\">\r\n                <i *ngIf=\"item\" class=\"far fa-star\"></i>\r\n                <i *ngIf=\"!item\" class=\"fas fa-star\"></i>\r\n              </span>\r\n            </div>\r\n            <br>\r\n          </div>\r\n          <div class=\"form-group form-row\">\r\n            <label for=\"reviewNotes\" class=\"col-sm-2\">Review Notes : </label>\r\n            <textarea cols=\"30\" rows=\"5\" class=\"form-control col-sm-10\" formControlName=\"reviewNotes\"\r\n              placeholder=\"Review Notes (optional)\"></textarea>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!reviewForm.valid\">Submit</button>\r\n        </form>\r\n        <div class=\"alert alert-success mt-3\" *ngIf=\"postReviewSuccess\">\r\n          Review posted successfully\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1330,6 +1341,7 @@ var PostReviewComponent = /** @class */ (function () {
         });
         this.starList = [true, true, true, true, true];
         this.sub = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subscription"]();
+        this.postReviewSuccess = false;
         this.sub.add(this.commonUtilsService.signedInUser$.subscribe(function (res) {
             _this.loggedInUser = res;
         }, function (err) {
@@ -1355,6 +1367,8 @@ var PostReviewComponent = /** @class */ (function () {
         });
     };
     PostReviewComponent.prototype.submitReview = function () {
+        var _this = this;
+        this.postReviewSuccess = false;
         var review = {
             reviewerID: this.loggedInUser['_id'],
             revieweeID: this.caregiverId,
@@ -1362,9 +1376,8 @@ var PostReviewComponent = /** @class */ (function () {
         };
         review = Object.assign({}, review, this.reviewForm.value);
         this.userService.PostNewReview(review).then(function (res) {
-            console.log(res);
+            _this.postReviewSuccess = true;
         }, function (err) {
-            console.log(err);
             alert(err);
         });
     };

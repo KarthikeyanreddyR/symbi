@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="card" style="width: 50rem;">
+  <div class="card">
     <div class="card-body">
       <div class="card-title">
         <h5>Write a Review</h5>
@@ -28,6 +28,9 @@
           </div>
           <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">Submit</button>
         </form>
+        <div class="alert alert-success mt-3" *ngIf="postReviewSuccess">
+          Review posted successfully
+        </div>
       </div>
     </div>
   </div>
