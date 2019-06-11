@@ -5,7 +5,7 @@
         </div>
 
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Card image cap">
+            <img class="card-img-top" src="{{caregiver.profileImage}}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"> {{caregiver.firstName}} </h5>
                 <div class="card-text" *ngIf="caregiver.address">
@@ -26,14 +26,14 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title"> Experience </h5>
-                <div *ngIf="caregiver.experience != null; else expBlock">
-                    <div *ngFor="let exp of caregiver.experience">
+                <div *ngIf="getCaregiverExp().length > 0; else expBlock">
+                    <div *ngFor="let exp of getCaregiverExp()[0].profileData.experience">
                         <i>
-                            {{exp.jobPlace}}<br>
-                            {{exp.jobDesignation}}<br>
-                            {{exp.jobDescription}}<br>
-                            {{exp.startDate}}<br>
-                            {{exp.endDate}}
+                            Location: {{exp.jobPlace}}<br>
+                            Designation: {{exp.jobDesignation}}<br>
+                            Description: {{exp.jobDescription}}<br>
+                            Started: {{exp.startDate}}<br>
+                            Ended: {{exp.endDate}}
                         </i>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                               </div>
                               <div class="form-row">
                                 <div class="col-md-4">
-                                  <button type="submit" class="btn btn-primary" [disabled]="!scheduleForm.valid"> Post Job </button>
+                                  <button type="submit" class="btn btn-primary" [disabled]="!scheduleForm.valid"> Schedule Job </button>
                                 </div>
                               </div>
                         </form>

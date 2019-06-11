@@ -21,6 +21,7 @@ export class ScheduleCaregiverComponent implements OnInit {
 
   private subscription: Subscription = new Subscription();
   caregiver: any;
+  caregiverExp: any[];
   user: any;
   reviews$: any;
   fetchError: boolean;
@@ -54,6 +55,10 @@ export class ScheduleCaregiverComponent implements OnInit {
     this.subscription.add(this.commonUtilsService.scheduleCaregiver$.subscribe(res => {
       console.log(res);
       this.caregiver = res;
+      this.caregiverExp = this.caregiver['profiles'].filter(e => {
+        if(e['userType'] === 1)
+          return e;
+      });
     }));
 
     /**
@@ -111,6 +116,10 @@ export class ScheduleCaregiverComponent implements OnInit {
     this.postSuccess = false;
   }
 
+  public getCaregiverExp() {
+    return this.caregiverExp;
+  }
+
   public getStarRatings(id: string) {
     let _arr: [] = this.getReviewsForId(id).map(rev => {
       return rev["starRating"];
@@ -137,6 +146,7 @@ export class ScheduleCaregiverComponent implements OnInit {
   public showDetailedReviews(id: string) {
     this.caregiverReviews = this.getReviewsForId(id);
   }
+
 
   public scheduleJob() {
     this.postSuccess = false;
