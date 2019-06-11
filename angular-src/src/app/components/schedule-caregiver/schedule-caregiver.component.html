@@ -15,7 +15,7 @@
                     <span *ngIf="caregiver.address.state">, {{caregiver.address.state}}</span> <br>
                     <span *ngIf="caregiver.address.country">{{caregiver.address.country}}</span>
                 </div>
-                <a href="#" class="btn btn-primary">Schedule</a>
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#openjobModal">Schedule</a>
             </div>
         </div>
 
@@ -66,6 +66,83 @@
                                 <strong>No reviews found.</strong>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Modal Window -->
+    <div id="openjobModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-x1 modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="main-col">
+                        <h3>Schedule {{caregiver.firstName}}</h3>
+                        <form (submit)="scheduleJob()" [formGroup]='scheduleForm'>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="title">Job Name</label>
+                                        <input type="text" class="form-control" formControlName="jobName">
+                                        <div *ngIf="jobName.invalid && (jobName.dirty || jobName.touched)" class="text-danger">
+                                            <div *ngIf="jobName.errors.required">
+                                                Job name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label for="startDate">Start date-time</label>
+                                      <div class="input-group date" id="startDate" data-target-input="nearest">
+                                        <div class="input-group-prepend" data-target="#startDate" data-toggle="datetimepicker">
+                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#startDate"
+                                          formControlName="jobStartTime" />
+                                      </div>
+                                    </div>
+                                    <div *ngIf="jobStartTime.invalid && (jobStartTime.dirty || jobStartTime.touched)" class="text-danger">
+                                        <div *ngIf="jobStartTime.errors.required">
+                                          Job name is required
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label for="endDate">End date-time</label>
+                                      <div class="input-group date" id="endDate" data-target-input="nearest">
+                                        <div class="input-group-prepend" data-target="#endDate" data-toggle="datetimepicker">
+                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#endDate"
+                                          formControlName="jobEndTime" />
+                                      </div>
+                                    </div>
+                                    <div *ngIf="jobEndTime.invalid && (jobEndTime.dirty || jobEndTime.touched)" class="text-danger">
+                                        <div *ngIf="jobEndTime.errors.required">
+                                          Job name is required
+                                        </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label for="notes"> Notes(optional) </label>
+                                    <textarea class="form-control" id="notes" cols="30" rows="5" formControlName="jobNotes"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="col-md-4">
+                                  <button type="submit" class="btn btn-primary" [disabled]="!postOpenJobForm.valid"> Post Job </button>
+                                </div>
+                              </div>
+                        </form>
                     </div>
                 </div>
             </div>

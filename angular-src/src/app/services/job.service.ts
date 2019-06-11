@@ -20,4 +20,8 @@ export class JobService {
     return this.httpClient.post<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/jobs/openJob`, job).toPromise();
   }
 
+  public postScheduleJob(job: any): Promise<ApiResponse> {
+    return this.httpClient.post<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/jobs/scheduleJob`, job).toPromise();
+  }
+
 }
