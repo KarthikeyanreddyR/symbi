@@ -15,7 +15,10 @@ pre {
 /* Angular Calendar Styles */
 
 
-
 main .container:first-child,main .container-fluid:first-child {
   padding-top: 5rem;
+}
+
+i.fas.fa-star {
+  color: goldenrod;
 }
