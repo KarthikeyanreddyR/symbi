@@ -39,16 +39,20 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-                <span>Job Start Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobStartTime}}</span>
+                <span>Job Start Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobStartTime | date: 'medium'}}</span>
             </div>
             <div class="col-md-6">
-                <span>Job End Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobEndTime}}</span>
+                <span>Job End Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobEndTime | date: 'medium'}}</span>
             </div>
           </div>
           <div class="row">
+            <div class="col-md-12">
+              <span>Job Created On : </span>
+              <span class="font-italic font-weight-light ml-2">{{job.createdAt | date: 'medium'}}</span>
+            </div>
             <div class="col-md-12 text-break mt-3">
                 <span>Job Notes : </span>
-                <p class="font-italic font-weight-light">{{job.jobNotes ? job.jobNotes : N/A}}</p>
+                <p class="font-italic font-weight-light">{{job.jobNotes ? job.jobNotes : '--N/A--'}}</p>
             </div>
           </div>
         </div>
