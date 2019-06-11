@@ -54,7 +54,8 @@ export class ScheduleCaregiverComponent implements OnInit {
   ngOnInit() {
     this.subscription.add(this.commonUtilsService.scheduleCaregiver$.subscribe(res => {
       console.log(res);
-      this.caregiver = res;
+      this.caregiver = res['caregiver'];
+      this.reviews$ = res['reviews'];
       this.caregiverExp = this.caregiver['profiles'].filter(e => {
         if(e['userType'] === 1)
           return e;
@@ -120,8 +121,8 @@ export class ScheduleCaregiverComponent implements OnInit {
     return this.caregiverExp;
   }
 
-  public getStarRatings(id: string) {
-    let _arr: [] = this.getReviewsForId(id).map(rev => {
+  public getStarRatings() {
+    let _arr: [] = this.getReviewsForId().map(rev => {
       return rev["starRating"];
     });
     let totalRating = _arr.reduce((a, b) => a + b, 0);
@@ -137,14 +138,12 @@ export class ScheduleCaregiverComponent implements OnInit {
     return finArr;
   }
 
-  public getReviewsForId(id: string) {
-    return this.reviews$.filter(rev => {
-      return rev["revieweeID"] == id;
-    });
+  public getReviewsForId() {
+    return this.reviews$;
   }
 
   public showDetailedReviews(id: string) {
-    this.caregiverReviews = this.getReviewsForId(id);
+    this.caregiverReviews = this.getReviewsForId();
   }
 
 

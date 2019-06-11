@@ -73,7 +73,8 @@ export class SearchCaregiverComponent implements OnInit {
   }
 
   public scheduleCaregiver(user: any) {
-    this.commonUtilsService.setCaregiver(user);
+    let review = this.getReviewsForId(user['_id']);
+    this.commonUtilsService.setCaregiver({caregiver: user, reviews: review});
     this.router.navigate(["/caregivers/schedule"]);
   }
 }

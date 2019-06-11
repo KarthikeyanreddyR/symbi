@@ -43,26 +43,28 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title"> Reviews </h5>
+
+
                 <div class="modal-body container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card my-3" *ngFor="let review of caregiverReviews">
+                            <div class="card my-3 overflow-auto" *ngFor="let review of reviews$">
                                 <div class="card-body card-text">
                                     <div class="float-left text-break" style="width: 70%;">
                                         <strong>{{review.reviewTitle}}</strong> <br>
                                         <i>{{review.reviewDate}}</i>
                                     </div>
                                     <div class="float-right" style="width: 28%;">
-                                        <span *ngFor="let s of getStartRatingsArray(review.starRating)">
+                                        <span *ngFor="let s of getStarRatings()">
                                             <i *ngIf="!s" class="far fa-star"></i>
                                             <i *ngIf="s" class="fas fa-star"></i>
-                                            </span>
+                                        </span>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="text-break">{{review.reviewNotes}}</div>
                                 </div>
                             </div>
-                            <div *ngIf="!caregiverReviews || caregiverReviews.length == 0">
+                            <div *ngIf="!reviews$ || reviews$.length == 0">
                                 <strong>No reviews found.</strong>
                             </div>
                         </div>
