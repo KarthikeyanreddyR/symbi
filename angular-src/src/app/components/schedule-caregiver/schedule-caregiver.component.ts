@@ -14,11 +14,11 @@ import { User } from 'src/app/shared/models/user';
 export class ScheduleCaregiverComponent implements OnInit {
 
   private subscription: Subscription = new Subscription();
-  caregiver$: any;
-  user$: any;
+  caregiver: any;
+  user: any;
   reviews$: any;
   fetchError: boolean;
-  userReviews$: [any];
+  caregiverReviews: [any];
 
   constructor(
     private commonUtilsService: CommonUtilsService,
@@ -29,34 +29,14 @@ export class ScheduleCaregiverComponent implements OnInit {
   ngOnInit() {
     this.subscription.add(this.commonUtilsService.scheduleCaregiver$.subscribe(res => {
       console.log(res);
-      this.caregiver$ = res;
+      this.caregiver = res;
     }));
-    this.LoadData();
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.subscription.unsubscribe();
-  }
-
-  public LoadData(): void {
-    this.fetchError = false;
-    this.userService.GetAllCaregiversWithReviewData().subscribe(
-      res => {
-        console.log(res);
-        if (res.success) {
-          this.user$ = res.data["users"];
-          this.reviews$ = res.data["reviews"];
-        } else {
-          this.user$ = [];
-          this.reviews$ = [];
-        }
-      },
-      err => {
-        this.fetchError = true;
-      }
-    );
   }
 
   public getStarRatings(id: string) {
@@ -83,7 +63,7 @@ export class ScheduleCaregiverComponent implements OnInit {
   }
 
   public showDetailedReviews(id: string) {
-    this.userReviews$ = this.getReviewsForId(id);
+    this.caregiverReviews = this.getReviewsForId(id);
   }
 
   public scheduleCaregiver(user: any) {

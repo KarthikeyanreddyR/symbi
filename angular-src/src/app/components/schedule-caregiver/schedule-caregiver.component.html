@@ -3,79 +3,72 @@
         <div class="col-md-2" id="dashboard-sidebar">
           <app-sidebar></app-sidebar>
         </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="alert alert-danger" *ngIf="fetchError">
-            Unknown error occurred. please try again.
-          </div>
-          <div class="alert alert-info" *ngIf="!user$ || user$.length === 0">
-            No caregivers
-          </div>
-          <div class="card my-3" *ngFor="let user of user$">
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Card image cap">
             <div class="card-body">
-              <div class="float-left text-break" style="width: 70%;">
-                <h5 class="card-title">{{user.firstName}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{user.bio}}</h6>
-                <div class="card-text" *ngIf="user.address">
-                  <span *ngIf="user.address.addressLine1">{{user.address.addressLine1}}</span>
-                  <span *ngIf="user.address.addressLine2">, {{user.address.addressLine2}}</span> <br>
-                  <span *ngIf="user.address.city">{{user.address.city}}</span>
-                  <span *ngIf="user.address.state">, {{user.address.state}}</span> <br>
-                  <span *ngIf="user.address.country">{{user.address.country}}</span>
+                <h5 class="card-title"> {{caregiver.firstName}} </h5>
+                <div class="card-text" *ngIf="caregiver.address">
+                    <span *ngIf="caregiver.address.addressLine1">{{caregiver.address.addressLine1}}</span>
+                    <span *ngIf="caregiver.address.addressLine2">, {{caregiver.address.addressLine2}}</span> <br>
+                    <span *ngIf="caregiver.address.city">{{caregiver.address.city}}</span>
+                    <span *ngIf="caregiver.address.state">, {{caregiver.address.state}}</span> <br>
+                    <span *ngIf="caregiver.address.country">{{caregiver.address.country}}</span>
                 </div>
-              </div>
-              <div class="float-right text-right" style="width: 28%;">
-                <span *ngFor="let s of getStarRatings(user._id)">
-                  <i *ngIf="!s" class="far fa-star"></i>
-                  <i *ngIf="s" class="fas fa-star"></i>
-                </span>
-                <br>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#detailedReview" class="card-link" (click)="showDetailedReviews(user._id)"><i
-                    class="fas fa-comment"></i> Reviews</a>
-              </div>
-              <div class="clearfix"></div>
-              <div class="float-right mt-3">
-                <button type="button" class="btn btn-outline-primary" (click)="scheduleCaregiver(user)">Schedule</button>
-              </div>
-              <div class="clearfix"></div>
+                <a href="#" class="btn btn-primary">Schedule</a>
             </div>
-          </div>
         </div>
-      </div>
-      <div id="detailedReview" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Reviews</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+
+        <div class="card ml-3" style="width: 40rem;">
+            <div class="card-body">
+                <h5 class="card-title"> About {{caregiver.firstName}}</h5>
+                {{caregiver.bio}}
             </div>
-            <div class="modal-body container-fluid">
-              <div class="row">
-                <div class="col-12">
-                  <div class="card my-3" *ngFor="let review of userReviews$">
-                    <div class="card-body card-text">
-                      <div class="float-left text-break" style="width: 70%;">
-                        <strong>{{review.reviewTitle}}</strong> <br>
-                        <i>{{review.reviewDate}}</i>
-                      </div>
-                      <div class="float-right" style="width: 28%;">
-                          <span *ngFor="let s of getStartRatingsArray(review.starRating)">
-                              <i *ngIf="!s" class="far fa-star"></i>
-                              <i *ngIf="s" class="fas fa-star"></i>
-                            </span>
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="text-break">{{review.reviewNotes}}</div>
+            <div class="card-body">
+                <h5 class="card-title"> Experience </h5>
+                <div *ngIf="caregiver.experience != null; else expBlock">
+                    <div *ngFor="let exp of caregiver.experience">
+                        <i>
+                            {{exp.jobPlace}}<br>
+                            {{exp.jobDesignation}}<br>
+                            {{exp.jobDescription}}<br>
+                            {{exp.startDate}}<br>
+                            {{exp.endDate}}
+                        </i>
                     </div>
-                  </div>
-                  <div *ngIf="!userReviews$ || userReviews$.length == 0">
-                    <strong>No reviews found.</strong>
-                  </div>
                 </div>
-              </div>
+                <ng-template #expBlock>
+                    This Caregiver has not added any experience
+                </ng-template>
             </div>
-          </div>
+            <div class="card-body">
+                <h5 class="card-title"> Reviews </h5>
+                <div class="modal-body container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card my-3" *ngFor="let review of caregiverReviews">
+                                <div class="card-body card-text">
+                                    <div class="float-left text-break" style="width: 70%;">
+                                        <strong>{{review.reviewTitle}}</strong> <br>
+                                        <i>{{review.reviewDate}}</i>
+                                    </div>
+                                    <div class="float-right" style="width: 28%;">
+                                        <span *ngFor="let s of getStartRatingsArray(review.starRating)">
+                                            <i *ngIf="!s" class="far fa-star"></i>
+                                            <i *ngIf="s" class="fas fa-star"></i>
+                                            </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="text-break">{{review.reviewNotes}}</div>
+                                </div>
+                            </div>
+                            <div *ngIf="!caregiverReviews || caregiverReviews.length == 0">
+                                <strong>No reviews found.</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
 </div>
