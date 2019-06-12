@@ -40,12 +40,14 @@ export class PostReviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.postReviewSuccess = false;
     this.sub.add(this.commonUtilsService.reviewCaregiverId$.subscribe(res => {
       this.caregiverId = res;
     }));
   }
 
   ngOnDestroy(): void {
+    this.postReviewSuccess = false;
     this.sub.unsubscribe();
   }
 

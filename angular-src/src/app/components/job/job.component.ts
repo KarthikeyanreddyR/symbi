@@ -41,6 +41,7 @@ export class JobComponent implements OnInit {
   }
 
   public fetchData() {
+    this.fetchError = false;
     if (this.loggedInUserType == UserType.PARENT) {
       this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(res => {
         if (res.success) {
@@ -97,6 +98,9 @@ export class JobComponent implements OnInit {
     this.jobService.updateJobStatus(job['_id'], JobStatus.ACCEPTED).then(res => {
       if(res.success) {
         this.acceptJobSuccess = true;
+        setTimeout(() => {
+          this.acceptJobSuccess = false;
+        }, 2000)
         this.fetchData();
       }
     }, err => {
