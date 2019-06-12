@@ -135,7 +135,7 @@ export class UserController {
 
     public static async GetAllCaregivers(req: Request, res: Response) {
         try {
-            let _users: IUserSchema[] = await UserModel.find();
+            let _users: IUserSchema[] = await UserModel.find().where('email').ne(req.user['email']);
             let _reviews: IReview[] = await ReviewModel.find();
             res.status(200).json({
                 success: true,
