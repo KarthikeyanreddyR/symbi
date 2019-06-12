@@ -1784,7 +1784,7 @@ var SearchCaregiverComponent = /** @class */ (function () {
             return rev["starRating"];
         });
         var totalRating = _arr.reduce(function (a, b) { return a + b; }, 0);
-        var avgRating = Math.ceil(totalRating / 5);
+        var avgRating = Math.ceil(totalRating / _arr.length);
         return this.getStarRatingsArray(avgRating);
     };
     SearchCaregiverComponent.prototype.getStarRatingsArray = function (rating) {
