@@ -5,62 +5,82 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <div *ngIf="navbarCheck; else elseBlock">
+    <div *ngIf="navbarCheck; else elseBlock" class="mt-2 mt-md-0 overflow-auto" style="max-height: 30vh;">
       <ul class="navbar-nav">
         <li>
           <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search caregivers...">
-              <div class="input-group-append">
-                <button class="btn btn-secondary" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
+            <input type="text" class="form-control" placeholder="Search caregivers...">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="button">
+                <i class="fa fa-search"></i>
+              </button>
             </div>
+          </div>
         </li>
         <!-- Profile -->
-        <li class="nav-item"  [routerLinkActive]="['active']">
+        <li class="nav-item" [routerLinkActive]="['active']" title="Profile" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" [routerLink]="['/profile']" [routerLinkActive]="['active']">
             <i class="fas fa-user"></i> <span class="sr-only">(current)</span>
+            <span class="d-inline d-md-none ml-2">Profile</span>
           </a>
         </li>
-        
         <!-- Parent Dashboard -->
-        <li class="nav-item"  [routerLinkActive]="['active']">
-            <a class="nav-link" [routerLink]="['/dashboard/parent']" [routerLinkActive]="['active']">
-              <i class="fas fa-home"></i> <span class="sr-only">(current)</span>
-            </a>
+        <li class="nav-item" [routerLinkActive]="['active']" title="Parent Dashboard" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" [routerLink]="['/dashboard/parent']" [routerLinkActive]="['active']">
+            <i class="fas fa-home"></i> <span class="sr-only">(current)</span>
+            <span class="d-inline d-md-none ml-2">Parent Dashboard</span>
+          </a>
         </li>
-        <!-- Caregiver Dashboard-->
-        <li class="nav-item"  [routerLinkActive]="['active']">
-            <a class="nav-link" [routerLink]="['/dashboard/caregiver']" [routerLinkActive]="['active']">
-              <i class="fas fa-umbrella"></i> <span class="sr-only">(current)</span>
-            </a>
+        <!-- Caregiver Dashboard -->
+        <li class="nav-item" [routerLinkActive]="['active']" title="Caregiver Dashboard" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" [routerLink]="['/dashboard/caregiver']" [routerLinkActive]="['active']">
+            <i class="fas fa-umbrella"></i> <span class="sr-only">(current)</span>
+            <span class="d-inline d-md-none ml-2">Caregivers Dashboard</span>
+          </a>
         </li>
-
-
+        <!-- Jobs -->
+        <li class="nav-item d-block d-md-none" [routerLinkActive]="['active']" title="Caregiver Dashboard" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" [routerLink]="['/jobs']" [routerLinkActive]="['active']">
+            <i class="fas fa-suitcase"></i> <span class="sr-only">(current)</span>
+            <span class="ml-2">Jobs</span>
+          </a>
+        </li>
+        <!-- Reviews -->
+        <li class="nav-item d-block d-md-none" [routerLinkActive]="['active']" title="Caregiver Dashboard" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" [routerLink]="['/review']" [routerLinkActive]="['active']">
+            <i class="fas fa-comment"></i> <span class="sr-only">(current)</span>
+            <span class="ml-2">Reviews</span>
+          </a>
+        </li>
+        <!-- Caregivers -->
+        <li class="nav-item d-block d-md-none" [routerLinkActive]="['active']" title="Caregiver Dashboard" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" [routerLink]="['/caregivers']" [routerLinkActive]="['active']">
+            <i class="fas fa-child"></i> <span class="sr-only">(current)</span>
+            <span class="ml-2">Caregivers</span>
+          </a>
+        </li>
         <!-- Logout -->
-        <li class="nav-item"  [routerLinkActive]="['active']">
-          <a (click)="logOut()" class="nav-link" [routerLink]="['/']"> 
+        <li class="nav-item" [routerLinkActive]="['active']" title="Logout" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a (click)="logOut()" class="nav-link" [routerLink]="['/']">
             <i class="fas fa-power-off"></i>
             <span class="sr-only">(current)</span>
+            <span class="d-line d-md-none ml-2">Logout</span>
           </a>
         </li>
       </ul>
     </div>
     <ng-template #elseBlock>
       <ul class="navbar-nav">
-        <li class="nav-item"  [routerLinkActive]="['active']">
-          <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">Login <span
-            class="sr-only">(current)</span></a>
+        <li class="nav-item" [routerLinkActive]="['active']" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']"><i
+              class="fas fa-sign-in-alt mr-2"></i>Login <span class="sr-only">(current)</span></a>
         </li>
-          <li class="nav-item"  [routerLinkActive]="['active']">
-            <a class="nav-link" [routerLink]="['/signup']">Sign up <span
+        <li class="nav-item" [routerLinkActive]="['active']" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a class="nav-link" [routerLink]="['/signup']"><i class="fas fa-user-plus mr-2"></i>Sign up <span
               class="sr-only">(current)</span>
-            </a>
+          </a>
         </li>
       </ul>
     </ng-template>
-    
-    
   </div>
 </nav>
