@@ -148,6 +148,7 @@ export class ScheduleCaregiverComponent implements OnInit {
     this.postSuccess = false;
     let job: any = {
       userId: this.loggedInUser['_id'],
+      createdFor: this.caregiver['_id'],
       createdAt: moment().format('MM/DD/YYYY hh:mm A Z')
     }
     job = Object.assign({}, job, this.scheduleForm.value)
