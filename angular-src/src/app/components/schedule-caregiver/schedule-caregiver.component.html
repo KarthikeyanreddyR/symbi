@@ -13,6 +13,7 @@
             </span>
             <div class="card-body">
               <h5 class="card-title"> {{caregiver.firstName}} </h5>
+              <span><i>{{caregiver.email}}</i></span><br>
               <div class="card-text" *ngIf="caregiver.address">
                 <span *ngIf="caregiver.address.addressLine1">{{caregiver.address.addressLine1}}</span>
                 <span *ngIf="caregiver.address.addressLine2">, {{caregiver.address.addressLine2}}</span> <br>
