@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User } from '../shared/models/user';
 import { ApiResponse } from '../shared/interfaces/response';
 import { CommonUtilsService } from './common-utils.service';
+import { JobStatus } from '../shared/models/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +27,7 @@ export class JobService {
     return this.httpClient.get<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/jobs/jobsForUser/${id}`).toPromise();
   }
 
+  public updateJobStatus(id:string, _jobStatus: number): Promise<ApiResponse> {
+    return this.httpClient.put<ApiResponse>(`${CommonUtilsService.getAbsoluteUrl()}/jobs/${id}`, {jobStatus: _jobStatus}).toPromise();
+  }
 }

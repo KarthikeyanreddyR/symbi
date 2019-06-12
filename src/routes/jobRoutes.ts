@@ -59,6 +59,10 @@ class JobRoutes {
     this.router.get("/jobs/jobsForUser/:userId", this.validateAuth, (req: Request, res: Response) => {
       JobController.GetAllJobsForUserId(req, res);
     });
+
+    this.router.put("/jobs/:jobId", this.validateAuth, (req: Request, res: Response) => {
+      JobController.UpdateJobStatus(req, res);
+    });
   }
 }
 

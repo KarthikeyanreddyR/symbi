@@ -3,87 +3,171 @@
     <div class="col-md-2" id="dashboard-sidebar">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-sm-12 col-md-6">
-      <h2 class="d-inline">Jobs</h2>
-      <div class="float-right">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#openjobModal">Post open job</button>
-      </div>
-      <div class="clearfix"></div>
-      <br>
-      <div class="alert alert-danger" *ngIf="fetchError">
-        Unknown error occurred. please try again.
-      </div>
-      <div class="alert alert-info" *ngIf="!jobs$ || jobs$.length === 0">
-        No jobs
-      </div>
-      <div class="float-right">
-        <button class="btn btn-outline-light text-dark" (click)="fetchData()">Refresh</button>
-      </div>
-      <div class="clearfix"></div>
-      <div class="card my-3" *ngFor="let job of jobs$">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-5 text-break">
-                <h5 class="card-title text-break font-weight-bold">{{job.jobName}}</h5>
-            </div>
-            <div class="col-md-7">
-              <div class="row">
-                  <div class="col-md-6">
-                      <span>Job Type : </span><span class="font-italic badge badge-pill badge-warning">{{getJobType(job.jobType)  | titlecase}}</span>
-                  </div>
-                  <div class="col-md-6">
-                      <span>Job Status : </span><span class="font-italic badge badge-pill badge-success">{{getJobStatus(job.jobStatus)  | titlecase}}</span>
-                  </div>
+    <div *ngIf="loggedInUserType == 1; then parentBlock else caregiverBlock">
+
+    </div>
+  </div>
+</div>
+
+<ng-template #parentBlock>
+  <div class="col-sm-12 col-md-6">
+    <h2 class="d-inline">Jobs</h2>
+    <div class="float-right">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#openjobModal">Post open job</button>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div class="alert alert-danger" *ngIf="fetchError">
+      Unknown error occurred. please try again.
+    </div>
+    <div class="alert alert-info" *ngIf="!jobs$ || jobs$.length === 0">
+      No jobs
+    </div>
+    <div class="float-right">
+      <button class="btn btn-outline-light text-dark" (click)="fetchData()">Refresh</button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="card my-3" *ngFor="let job of jobs$">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-5 text-break">
+            <h5 class="card-title text-break font-weight-bold">{{job.jobName}}</h5>
+          </div>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-6">
+                <span>Job Type : </span><span
+                  class="font-italic badge badge-pill badge-warning">{{getJobType(job.jobType)  | titlecase}}</span>
+              </div>
+              <div class="col-md-6">
+                <span>Job Status : </span><span
+                  class="font-italic badge badge-pill badge-success">{{getJobStatus(job.jobStatus)  | titlecase}}</span>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-                <span>Job Start Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobStartTime | date: 'medium'}}</span>
-            </div>
-            <div class="col-md-6">
-                <span>Job End Date : </span><span class="font-italic font-weight-light ml-2">{{job.jobEndTime | date: 'medium'}}</span>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span>Job Start Date : </span><span
+              class="font-italic font-weight-light ml-2">{{job.jobStartTime | date: 'medium'}}</span>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <span>Job Created On : </span>
-              <span class="font-italic font-weight-light ml-2">{{job.createdAt | date: 'medium'}}</span>
-            </div>
-            <div class="col-md-12 text-break my-2">
-                <span>Job Notes : </span>
-                <p class="font-italic font-weight-light">{{job.jobNotes ? job.jobNotes : '--N/A--'}}</p>
-            </div>
+          <div class="col-md-6">
+            <span>Job End Date : </span><span
+              class="font-italic font-weight-light ml-2">{{job.jobEndTime | date: 'medium'}}</span>
           </div>
-          <div class="row">
-            <div class="col-md-12 float-right text-right">
-              <span *ngIf="job.jobStatus > 4">
-                <!-- Job Status with COMPLETED(5) or REJECTED(6) can write a review -->
-                <a href="javascript:void(0)" (click)="writeReview(job)"><i class="fas fa-pencil-alt"></i> Write a Review</a>
-              </span>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span>Job Created On : </span>
+            <span class="font-italic font-weight-light ml-2">{{job.createdAt | date: 'medium'}}</span>
+          </div>
+          <div class="col-md-12 text-break my-2">
+            <span>Job Notes : </span>
+            <p class="font-italic font-weight-light">{{job.jobNotes ? job.jobNotes : '--N/A--'}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 float-right text-right">
+            <span *ngIf="job.jobStatus > 4">
+              <!-- Job Status with COMPLETED(5) or REJECTED(6) can write a review -->
+              <a href="javascript:void(0)" (click)="writeReview(job)"><i class="fas fa-pencil-alt"></i> Write a
+                Review</a>
+            </span>
           </div>
         </div>
       </div>
     </div>
   </div>
+</ng-template>
 
-  <div id="openjobModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <app-post-open-job></app-post-open-job>
-        </div>
-      </div>
+<ng-template #caregiverBlock>
+  <div class="col-sm-12 col-md-6">
+    <h2 class="d-inline">Jobs</h2>
+    <div class="float-right">
+      <button class="btn btn-outline-light text-dark" (click)="fetchData()">Refresh</button>
     </div>
-  </div>
+    <div class="clearfix"></div>
+    <br>
+    <div class="alert alert-danger" *ngIf="fetchError">
+      Unknown error occurred. please try again.
+    </div>
+    <div class="alert alert-success" *ngIf="acceptJobSuccess">
+      Congrats, Job Accepted
+    </div>
+    <div class="alert alert-info" *ngIf="!jobs$ || jobs$.length === 0">
+      No jobs
+    </div>
 
-  <div id="openNewReviewModal" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <app-post-review></app-post-review>
+    <div class="card my-3" *ngFor="let job of jobs$">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-5 text-break">
+            <h5 class="card-title text-break font-weight-bold">{{job.jobName}}</h5>
+          </div>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-6">
+                <span>Job Type : </span><span
+                  class="font-italic badge badge-pill badge-warning">{{getJobType(job.jobType)  | titlecase}}</span>
+              </div>
+              <div class="col-md-6">
+                <span>Job Status : </span><span
+                  class="font-italic badge badge-pill badge-success">{{getJobStatus(job.jobStatus)  | titlecase}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <span>Job Start Date : </span><span
+              class="font-italic font-weight-light ml-2">{{job.jobStartTime | date: 'medium'}}</span>
+          </div>
+          <div class="col-md-6">
+            <span>Job End Date : </span><span
+              class="font-italic font-weight-light ml-2">{{job.jobEndTime | date: 'medium'}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span>Job Created On : </span>
+            <span class="font-italic font-weight-light ml-2">{{job.createdAt | date: 'medium'}}</span>
+          </div>
+          <div class="col-md-12 text-break my-2">
+            <span>Job Notes : </span>
+            <p class="font-italic font-weight-light">{{job.jobNotes ? job.jobNotes : '--N/A--'}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 float-right text-right">
+            <span *ngIf="job.jobStatus < 3">
+              <!-- Job Status with COMPLETED(5) or REJECTED(6) can write a review -->
+              <button type="button" class="btn btn-outline-success" (click)="acceptJob(job)">Accept</button>
+            </span>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</ng-template>
+
+
+
+<div id="openjobModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-post-open-job></app-post-open-job>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="openNewReviewModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-post-review></app-post-review>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ export class JobComponent implements OnInit {
   jobs$: any;
 
   fetchError: boolean;
+  acceptJobSuccess: boolean;
 
   constructor(private jobService: JobService, private commonUtilsService: CommonUtilsService) {
 
@@ -91,4 +92,16 @@ export class JobComponent implements OnInit {
     })
   }
 
+  public acceptJob(job: any) {
+    this.acceptJobSuccess = false;
+    console.log(job);
+    this.jobService.updateJobStatus(job['_id'], JobStatus.ACCEPTED).then(res => {
+      if(res.success) {
+        this.acceptJobSuccess = true;
+        this.fetchData();
+      }
+    }, err => {
+      alert(err);
+    })
+  }
 }

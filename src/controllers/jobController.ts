@@ -316,4 +316,24 @@ export class JobController {
             }
         })
     }
+
+    public static UpdateJobStatus(req: Request, res: Response) {
+        let _jobId = req.params.jobId;
+        let _jobStatus = req.body.jobStatus;
+
+        JobModel.findByIdAndUpdate(_jobId, {jobStatus: _jobStatus}).exec((err: any, doc: IJobSchema) => {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    error: err
+                });
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: doc
+                });
+            }
+        });
+
+    }
 }
