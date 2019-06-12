@@ -41,7 +41,6 @@ export class JobComponent implements OnInit {
   }
 
   public fetchData() {
-    console.log(this.loggedInUserType);
     if (this.loggedInUserType == UserType.PARENT) {
       this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(res => {
         if (res.success) {

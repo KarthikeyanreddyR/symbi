@@ -737,7 +737,6 @@ var JobComponent = /** @class */ (function () {
     };
     JobComponent.prototype.fetchData = function () {
         var _this = this;
-        console.log(this.loggedInUserType);
         if (this.loggedInUserType == src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["UserType"].PARENT) {
             this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(function (res) {
                 if (res.success) {
@@ -1452,7 +1451,7 @@ module.exports = ".card {\r\n  transition: box-shadow 0.3s ease-in-out;\r\n}\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\r\n      <app-sidebar></app-sidebar>\r\n    </div>\r\n    <div class=\"col-sm-12 col-md-6\">\r\n      <h2 class=\"mb-md-4 mb-sm-3 mb-3\">Your Reviews</h2>\r\n      <div class=\"alert alert-info\" *ngIf=\"!reviews$ || reviews$.length === 0\">\r\n        No Reviews\r\n      </div>\r\n      <div class=\"card my-3\" *ngFor=\"let r of reviews$\">\r\n        <div class=\"card-body\">\r\n          <h5 class=\"card-title text-break\">{{r.reviewTitle}}</h5>\r\n          <div class=\"float-left\" style=\"width: 70%\">\r\n            <i>{{r.reviewDate}}</i>\r\n          </div>\r\n          <div class=\"float-right text-right\" style=\"width: 28%;\">\r\n            <span *ngFor=\"let s of getStartRatingsArray(r.starRating)\">\r\n              <i *ngIf=\"!s\" class=\"far fa-star\"></i>\r\n              <i *ngIf=\"s\" class=\"fas fa-star\"></i>\r\n            </span>\r\n          </div>\r\n          <div class=\"clearfix\"></div>\r\n          <div class=\"text-break\">{{r.reviewNotes}}</div>\r\n          <div class=\"float-right mt-3\">\r\n              <button type=\"button\" (click)=\"deleteReview(r)\" class=\"btn btn-sm btn-danger\"><i class=\"fas fa-trash\"></i> Delete</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\" id=\"dashboard-sidebar\">\r\n      <app-sidebar></app-sidebar>\r\n    </div>\r\n    <div *ngIf=\"loggedInUserType == 1; then parentBlock else caregiverBlock\"></div>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #parentBlock>\r\n  <div class=\"col-sm-12 col-md-6\">\r\n    <h2 class=\"mb-md-4 mb-sm-3 mb-3\">Your Reviews</h2>\r\n    <div class=\"alert alert-info\" *ngIf=\"!reviews$ || reviews$.length === 0\">\r\n      No Reviews\r\n    </div>\r\n    <div class=\"card my-3\" *ngFor=\"let r of reviews$\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title text-break\">{{r.reviewTitle}}</h5>\r\n        <div class=\"float-left\" style=\"width: 70%\">\r\n          <i>{{r.reviewDate}}</i>\r\n        </div>\r\n        <div class=\"float-right text-right\" style=\"width: 28%;\">\r\n          <span *ngFor=\"let s of getStartRatingsArray(r.starRating)\">\r\n            <i *ngIf=\"!s\" class=\"far fa-star\"></i>\r\n            <i *ngIf=\"s\" class=\"fas fa-star\"></i>\r\n          </span>\r\n        </div>\r\n        <div class=\"clearfix\"></div>\r\n        <div class=\"text-break\">{{r.reviewNotes}}</div>\r\n        <div class=\"float-right mt-3\">\r\n          <button type=\"button\" (click)=\"deleteReview(r)\" class=\"btn btn-sm btn-danger\"><i class=\"fas fa-trash\"></i>\r\n            Delete</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ng-template>\r\n<ng-template #caregiverBlock>\r\n  <div class=\"col-sm-12 col-md-6\">\r\n    <h2 class=\"mb-md-4 mb-sm-3 mb-3\">Your Reviews</h2>\r\n    <div class=\"alert alert-info\" *ngIf=\"!reviews$ || reviews$.length === 0\">\r\n      No Reviews\r\n    </div>\r\n    <div class=\"card my-3\" *ngFor=\"let r of reviews$\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title text-break\">{{r.reviewTitle}}</h5>\r\n        <div class=\"float-left\" style=\"width: 70%\">\r\n          <i>{{r.reviewDate}}</i>\r\n        </div>\r\n        <div class=\"float-right text-right\" style=\"width: 28%;\">\r\n          <span *ngFor=\"let s of getStartRatingsArray(r.starRating)\">\r\n            <i *ngIf=\"!s\" class=\"far fa-star\"></i>\r\n            <i *ngIf=\"s\" class=\"fas fa-star\"></i>\r\n          </span>\r\n        </div>\r\n        <div class=\"clearfix\"></div>\r\n        <div class=\"text-break\">{{r.reviewNotes}}</div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -1471,6 +1470,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/common-utils.service */ "./src/app/services/common-utils.service.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/models/enums */ "./src/app/shared/models/enums.ts");
+
 
 
 
@@ -1478,28 +1479,43 @@ __webpack_require__.r(__webpack_exports__);
 
 var ReviewComponent = /** @class */ (function () {
     function ReviewComponent(userservice, commonUtilsService) {
-        var _this = this;
         this.userservice = userservice;
         this.commonUtilsService = commonUtilsService;
         this.reviews$ = [];
         this.subscription = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
+    }
+    ReviewComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(function (res) {
             _this.loggedInUser = res;
+            _this.subscription.add(_this.commonUtilsService.signedInUserType$.subscribe(function (res) {
+                _this.loggedInUserType = res;
+                _this.fetchData();
+            }, function (err) {
+                // error handling
+            }));
         }, function (err) {
             // error handling
         }));
-    }
-    ReviewComponent.prototype.ngOnInit = function () {
-        this.fetchData();
     };
     ReviewComponent.prototype.fetchData = function () {
         var _this = this;
-        this.subscription.add(this.userservice.GetAllReviewsByUser(this.loggedInUser['_id']).subscribe(function (res) {
-            _this.reviews$ = res.data;
-        }, function (err) {
-            // error handling
-            console.log(err);
-        }, function () { }));
+        if (this.loggedInUserType == src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["UserType"].PARENT) {
+            this.subscription.add(this.userservice.GetAllReviewsByUser(this.loggedInUser['_id']).subscribe(function (res) {
+                _this.reviews$ = res.data;
+            }, function (err) {
+                // error handling
+                console.log(err);
+            }, function () { }));
+        }
+        else if (this.loggedInUserType == src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["UserType"].CAREGIVER) {
+            this.subscription.add(this.userservice.GetAllReviewsForUser(this.loggedInUser['_id']).subscribe(function (res) {
+                _this.reviews$ = res.data;
+            }, function (err) {
+                // error handling
+                console.log(err);
+            }, function () { }));
+        }
     };
     ReviewComponent.prototype.ngOnDestroy = function () {
         //Called once, before the instance is destroyed.
@@ -1879,7 +1895,7 @@ module.exports = "#dashboard-sidebar {\r\n  margin: 1px 0 0 0;\r\n  padding: 1px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"d-none d-md-block\">\r\n  <div class=\"sidebar-logo\">Symbii</div>\r\n  <div class=\"sidebar-content\">\r\n    <ul class=\"left-hand-list\">\r\n      <li><a [routerLink]=\"['/profile']\"><i class=\"fas fa-user-circle\"></i> My Profile</a></li>\r\n      <li><a [routerLink]=\"['/jobs']\"><i class=\"fas fa-suitcase\"></i> Jobs</a></li>\r\n      <li><a [routerLink]=\"['/review']\"><i class=\"fas fa-comment\"></i> Reviews</a></li>\r\n      <li *ngIf=\"loggedInUserType == 1\"><a [routerLink]=\"['/caregivers']\"><i class=\"fas fa-child\"></i> Caregivers</a></li>\r\n      <!-- <li><i class=\"fab fa-paypal\"></i> Payments</li>\r\n      <li><i class=\"fas fa-cog\"></i> Account Settings</li> -->\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"d-none d-md-block\">\r\n  <div class=\"sidebar-logo\">Symbii\r\n    <p style=\"font-size: 1rem;font-weight: bold;color: blue;\" class=\"\">{{loggedInUserType == 1 ? 'Parent' : 'Caregiver'}}</p>\r\n  </div>\r\n  <div class=\"sidebar-content\">\r\n    <ul class=\"left-hand-list\">\r\n      <li><a [routerLink]=\"['/profile']\"><i class=\"fas fa-user-circle\"></i> My Profile</a></li>\r\n      <li><a [routerLink]=\"['/jobs']\"><i class=\"fas fa-suitcase\"></i> Jobs</a></li>\r\n      <li><a [routerLink]=\"['/review']\"><i class=\"fas fa-comment\"></i> Reviews</a></li>\r\n      <li *ngIf=\"loggedInUserType == 1\"><a [routerLink]=\"['/caregivers']\"><i class=\"fas fa-child\"></i> Caregivers</a></li>\r\n      <!-- <li><i class=\"fab fa-paypal\"></i> Payments</li>\r\n      <li><i class=\"fas fa-cog\"></i> Account Settings</li> -->\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2261,6 +2277,9 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.GetAllReviewsByUser = function (_userId) {
         return this.httpClient.get(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/reviewsByUser/" + _userId);
+    };
+    UserService.prototype.GetAllReviewsForUser = function (_userId) {
+        return this.httpClient.get(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/reviewsForUser/" + _userId);
     };
     UserService.prototype.DeleteReviewForUserByReviewId = function (_userId, _reviewId) {
         return this.httpClient.delete(_common_utils_service__WEBPACK_IMPORTED_MODULE_3__["CommonUtilsService"].getAbsoluteUrl() + "/review/" + _userId + "/" + _reviewId);
