@@ -1,156 +1,169 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2" id="dashboard-sidebar">
-          <app-sidebar></app-sidebar>
-        </div>
-
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{caregiver.profileImage}}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"> {{caregiver.firstName}} </h5>
-                <div class="card-text" *ngIf="caregiver.address">
-                    <span *ngIf="caregiver.address.addressLine1">{{caregiver.address.addressLine1}}</span>
-                    <span *ngIf="caregiver.address.addressLine2">, {{caregiver.address.addressLine2}}</span> <br>
-                    <span *ngIf="caregiver.address.city">{{caregiver.address.city}}</span>
-                    <span *ngIf="caregiver.address.state">, {{caregiver.address.state}}</span> <br>
-                    <span *ngIf="caregiver.address.country">{{caregiver.address.country}}</span>
-                </div>
-                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#openjobModal">Schedule</a>
-            </div>
-        </div>
-
-        <div class="card ml-3" style="width: 40rem;">
-            <div class="card-body">
-                <h5 class="card-title"> About {{caregiver.firstName}}</h5>
-                {{caregiver.bio}}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title"> Experience </h5>
-                <div *ngIf="getCaregiverExp().length > 0; else expBlock">
-                    <div *ngFor="let exp of getCaregiverExp()[0].profileData.experience">
-                        <i>
-                            Location: {{exp.jobPlace}}<br>
-                            Designation: {{exp.jobDesignation}}<br>
-                            Description: {{exp.jobDescription}}<br>
-                            Started: {{exp.startDate}}<br>
-                            Ended: {{exp.endDate}}
-                        </i>
-                    </div>
-                </div>
-                <ng-template #expBlock>
-                    This Caregiver has not added any experience
-                </ng-template>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title"> Reviews </h5>
-
-
-                <div class="modal-body container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card my-3 overflow-auto" *ngFor="let review of reviews$">
-                                <div class="card-body card-text">
-                                    <div class="float-left text-break" style="width: 70%;">
-                                        <strong>{{review.reviewTitle}}</strong> <br>
-                                        <i>{{review.reviewDate}}</i>
-                                    </div>
-                                    <div class="float-right" style="width: 28%;">
-                                        <span *ngFor="let s of getStarRatings()">
-                                            <i *ngIf="!s" class="far fa-star"></i>
-                                            <i *ngIf="s" class="fas fa-star"></i>
-                                        </span>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="text-break">{{review.reviewNotes}}</div>
-                                </div>
-                            </div>
-                            <div *ngIf="!reviews$ || reviews$.length == 0">
-                                <strong>No reviews found.</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-2" id="dashboard-sidebar">
+      <app-sidebar></app-sidebar>
     </div>
-
-    <!-- Job Modal Window -->
-    <div id="openjobModal" class="container-fluid modal fade" tabindex="-1" role="dialog">
-        <div class="modal-x1 modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="main-col">
-                        <h3>Schedule {{caregiver.firstName}}</h3>
-                        <form (submit)="scheduleJob()" [formGroup]='scheduleForm'>
-                            <div class="form-row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="title">Job Name</label>
-                                        <input type="text" class="form-control" formControlName="jobName">
-                                        <div *ngIf="jobName.invalid && (jobName.dirty || jobName.touched)" class="text-danger">
-                                            <div *ngIf="jobName.errors.required">
-                                                Job name is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="startDate">Start date-time</label>
-                                      <div class="input-group date" id="startDate" data-target-input="nearest">
-                                        <div class="input-group-prepend" data-target="#startDate" data-toggle="datetimepicker">
-                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#startDate"
-                                          formControlName="jobStartTime" />
-                                      </div>
-                                    </div>
-                                    <div *ngIf="jobStartTime.invalid && (jobStartTime.dirty || jobStartTime.touched)" class="text-danger">
-                                        <div *ngIf="jobStartTime.errors.required">
-                                          Job name is required
-                                        </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="endDate">End date-time</label>
-                                      <div class="input-group date" id="endDate" data-target-input="nearest">
-                                        <div class="input-group-prepend" data-target="#endDate" data-toggle="datetimepicker">
-                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#endDate"
-                                          formControlName="jobEndTime" />
-                                      </div>
-                                    </div>
-                                    <div *ngIf="jobEndTime.invalid && (jobEndTime.dirty || jobEndTime.touched)" class="text-danger">
-                                        <div *ngIf="jobEndTime.errors.required">
-                                          Job name is required
-                                        </div>
-                                    </div>
-                                  </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label for="notes"> Notes(optional) </label>
-                                    <textarea class="form-control" id="notes" cols="30" rows="5" formControlName="jobNotes"></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="form-row">
-                                <div class="col-md-4">
-                                  <button type="submit" class="btn btn-primary" [disabled]="!scheduleForm.valid"> Schedule Job </button>
-                                </div>
-                              </div>
-                        </form>
-                        <div class="alert alert-success mt-3" *ngIf="postSuccess">
-                            Job posted successfully.
-                        </div>
-                    </div>
-                </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <img class="card-img-top" [src]="caregiver.profileImage" *ngIf="caregiver.profileImage">
+            <span class="card-img-top" style="font-size: 6rem;text-align: center;" *ngIf="!caregiver.profileImage">
+              <i class="far fa-user"></i>
+            </span>
+            <div class="card-body">
+              <h5 class="card-title"> {{caregiver.firstName}} </h5>
+              <div class="card-text" *ngIf="caregiver.address">
+                <span *ngIf="caregiver.address.addressLine1">{{caregiver.address.addressLine1}}</span>
+                <span *ngIf="caregiver.address.addressLine2">, {{caregiver.address.addressLine2}}</span> <br>
+                <span *ngIf="caregiver.address.city">{{caregiver.address.city}}</span>
+                <span *ngIf="caregiver.address.state">, {{caregiver.address.state}}</span> <br>
+                <span *ngIf="caregiver.address.country">{{caregiver.address.country}}</span>
+              </div>
+              <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#scheduleJobModal">Schedule</button>
             </div>
+          </div>
         </div>
+        <div class="col-md-8 ml-md-3 mt-3 mt-sm-0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"> About {{caregiver.firstName}}</h5>
+              {{caregiver.bio}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"> Experience </h5>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12 overflow-auto" style="max-height: 30vh;">
+                    <div class="card my-3" *ngFor="let exp of getCaregiverExp()[0].profileData.experience">
+                      <div class="card-body card-text">
+                        <span><i> Location: {{exp.jobPlace}}</i></span><br>
+                        <span><i> Designation: {{exp.jobDesignation}}</i></span><br>
+                        <span><i> Description: {{exp.jobDescription}}</i></span><br>
+                        <span><i> Started: {{exp.startDate}}</i></span><br>
+                        <span><i> Ended: {{exp.endDate}}</i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="!getCaregiverExp()[0].profileData.experience || getCaregiverExp()[0].profileData.experience.length == 0">
+                      <strong>No experiences found.</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"> Reviews </h5>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12 overflow-auto" style="max-height: 30vh;">
+                    <div class="card my-3" *ngFor="let review of reviews$">
+                      <div class="card-body card-text">
+                        <div class="float-left text-break" style="width: 70%;">
+                          <strong>{{review.reviewTitle}}</strong> <br>
+                          <i>{{review.reviewDate}}</i>
+                        </div>
+                        <div class="float-right" style="width: 28%;">
+                          <span *ngFor="let s of getStarRatingsArray(review.starRating)">
+                            <i *ngIf="!s" class="far fa-star"></i>
+                            <i *ngIf="s" class="fas fa-star"></i>
+                          </span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="text-break">{{review.reviewNotes}}</div>
+                      </div>
+                    </div>
+                    <div *ngIf="!reviews$ || reviews$.length == 0">
+                      <strong>No reviews found.</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="scheduleJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Schedule {{caregiver.firstName}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="scheduleJob()" [formGroup]='scheduleForm'>
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="title">Job Name</label>
+                <input type="text" class="form-control" formControlName="jobName">
+                <div *ngIf="jobName.invalid && (jobName.dirty || jobName.touched)" class="text-danger">
+                  <div *ngIf="jobName.errors.required">
+                    Job name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startDate">Start date-time</label>
+                <div class="input-group date" id="startDate" data-target-input="nearest">
+                  <div class="input-group-prepend" data-target="#startDate" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+                  <input type="text" class="form-control datetimepicker-input" data-target="#startDate"
+                    formControlName="jobStartTime" />
+                </div>
+              </div>
+              <div *ngIf="jobStartTime.invalid && (jobStartTime.dirty || jobStartTime.touched)" class="text-danger">
+                <div *ngIf="jobStartTime.errors.required">
+                  Job start time is required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endDate">End date-time</label>
+                <div class="input-group date" id="endDate" data-target-input="nearest">
+                  <div class="input-group-prepend" data-target="#endDate" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+                  <input type="text" class="form-control datetimepicker-input" data-target="#endDate"
+                    formControlName="jobEndTime" />
+                </div>
+              </div>
+              <div *ngIf="jobEndTime.invalid && (jobEndTime.dirty || jobEndTime.touched)" class="text-danger">
+                <div *ngIf="jobEndTime.errors.required">
+                  Job end time is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="notes"> Notes </label>
+                <textarea class="form-control" placeholder="Extra notes (optional)" cols="30" rows="5"
+                  formControlName="jobNotes"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary" [disabled]="!scheduleForm.valid"> Submit </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

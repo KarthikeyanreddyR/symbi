@@ -53,18 +53,18 @@ export class ScheduleCaregiverComponent implements OnInit {
 
   ngOnInit() {
     this.subscription.add(this.commonUtilsService.scheduleCaregiver$.subscribe(res => {
-      console.log(res);
       this.caregiver = res['caregiver'];
       this.reviews$ = res['reviews'];
       this.caregiverExp = this.caregiver['profiles'].filter(e => {
         if(e['userType'] === 1)
           return e;
       });
+      console.log(this.caregiverExp);
     }));
 
     /**
      * Creating form for the user to fill out
-     * if more the job form requires more parts 
+     * if more the job form requires more parts
      * add those here.
      */
     this.scheduleForm = this.formBuilder.group({
@@ -121,16 +121,16 @@ export class ScheduleCaregiverComponent implements OnInit {
     return this.caregiverExp;
   }
 
-  public getStarRatings() {
-    let _arr: [] = this.getReviewsForId().map(rev => {
+  public getStarRatings(id: string) {
+    let _arr: [] = this.getReviewsForId(id).map(rev => {
       return rev["starRating"];
     });
     let totalRating = _arr.reduce((a, b) => a + b, 0);
     let avgRating = Math.ceil(totalRating / 5);
-    return this.getStartRatingsArray(avgRating);
+    return this.getStarRatingsArray(avgRating);
   }
 
-  public getStartRatingsArray(rating: number) {
+  public getStarRatingsArray(rating: number) {
     let finArr = [false, false, false, false, false];
     for (let i = 0; i < rating; i++) {
       finArr[i] = true;
@@ -138,14 +138,11 @@ export class ScheduleCaregiverComponent implements OnInit {
     return finArr;
   }
 
-  public getReviewsForId() {
-    return this.reviews$;
+  public getReviewsForId(id: string) {
+    return this.reviews$.filter(rev => {
+      return rev["revieweeID"] == id;
+    });
   }
-
-  public showDetailedReviews(id: string) {
-    this.caregiverReviews = this.getReviewsForId();
-  }
-
 
   public scheduleJob() {
     this.postSuccess = false;
