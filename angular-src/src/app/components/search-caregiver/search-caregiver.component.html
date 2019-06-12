@@ -60,7 +60,7 @@
                     <i>{{review.reviewDate}}</i>
                   </div>
                   <div class="float-right" style="width: 28%;">
-                      <span *ngFor="let s of getStartRatingsArray(review.starRating)">
+                      <span *ngFor="let s of getStarRatingsArray(review.starRating)">
                           <i *ngIf="!s" class="far fa-star"></i>
                           <i *ngIf="s" class="fas fa-star"></i>
                         </span>

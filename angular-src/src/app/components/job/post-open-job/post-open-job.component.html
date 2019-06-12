@@ -29,7 +29,7 @@
           </div>
           <div *ngIf="jobStartTime.invalid && (jobStartTime.dirty || jobStartTime.touched)" class="text-danger">
               <div *ngIf="jobStartTime.errors.required">
-                Job name is required
+                Job start time is required
               </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
           </div>
           <div *ngIf="jobEndTime.invalid && (jobEndTime.dirty || jobEndTime.touched)" class="text-danger">
               <div *ngIf="jobEndTime.errors.required">
-                Job name is required
+                Job end time is required
               </div>
           </div>
         </div>
@@ -54,8 +54,8 @@
       <div class="form-row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="notes"> Notes(optional) </label>
-            <textarea class="form-control" id="notes" cols="30" rows="5" formControlName="jobNotes"></textarea>
+            <label for="notes"> Notes </label>
+            <textarea class="form-control" placeholder="Extra notes(optional)" cols="30" rows="5" formControlName="jobNotes"></textarea>
           </div>
         </div>
       </div>

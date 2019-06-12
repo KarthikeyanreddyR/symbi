@@ -51,10 +51,10 @@ export class SearchCaregiverComponent implements OnInit {
     });
     let totalRating = _arr.reduce((a, b) => a + b, 0);
     let avgRating = Math.ceil(totalRating / 5);
-    return this.getStartRatingsArray(avgRating);
+    return this.getStarRatingsArray(avgRating);
   }
 
-  public getStartRatingsArray(rating: number) {
+  public getStarRatingsArray(rating: number) {
     let finArr = [false, false, false, false, false];
     for (let i = 0; i < rating; i++) {
       finArr[i] = true;
