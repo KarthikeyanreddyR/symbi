@@ -56,7 +56,7 @@ export class ScheduleCaregiverComponent implements OnInit {
       this.caregiver = res['caregiver'];
       this.reviews$ = res['reviews'];
       this.caregiverExp = this.caregiver['profiles'].filter(e => {
-        if(e['userType'] === 1)
+        if(e['userType'] === 2)
           return e;
       });
       console.log(this.caregiverExp);
