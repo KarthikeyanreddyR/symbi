@@ -3,30 +3,59 @@
     <div class="col-md-2" id="dashboard-sidebar">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-sm-12 col-md-6">
-      <h2 class="mb-md-4 mb-sm-3 mb-3">Your Reviews</h2>
-      <div class="alert alert-info" *ngIf="!reviews$ || reviews$.length === 0">
-        No Reviews
-      </div>
-      <div class="card my-3" *ngFor="let r of reviews$">
-        <div class="card-body">
-          <h5 class="card-title text-break">{{r.reviewTitle}}</h5>
-          <div class="float-left" style="width: 70%">
-            <i>{{r.reviewDate}}</i>
-          </div>
-          <div class="float-right text-right" style="width: 28%;">
-            <span *ngFor="let s of getStartRatingsArray(r.starRating)">
-              <i *ngIf="!s" class="far fa-star"></i>
-              <i *ngIf="s" class="fas fa-star"></i>
-            </span>
-          </div>
-          <div class="clearfix"></div>
-          <div class="text-break">{{r.reviewNotes}}</div>
-          <div class="float-right mt-3">
-              <button type="button" (click)="deleteReview(r)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-          </div>
+    <div *ngIf="loggedInUserType == 1; then parentBlock else caregiverBlock"></div>
+  </div>
+</div>
+
+<ng-template #parentBlock>
+  <div class="col-sm-12 col-md-6">
+    <h2 class="mb-md-4 mb-sm-3 mb-3">Your Reviews</h2>
+    <div class="alert alert-info" *ngIf="!reviews$ || reviews$.length === 0">
+      No Reviews
+    </div>
+    <div class="card my-3" *ngFor="let r of reviews$">
+      <div class="card-body">
+        <h5 class="card-title text-break">{{r.reviewTitle}}</h5>
+        <div class="float-left" style="width: 70%">
+          <i>{{r.reviewDate}}</i>
+        </div>
+        <div class="float-right text-right" style="width: 28%;">
+          <span *ngFor="let s of getStartRatingsArray(r.starRating)">
+            <i *ngIf="!s" class="far fa-star"></i>
+            <i *ngIf="s" class="fas fa-star"></i>
+          </span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="text-break">{{r.reviewNotes}}</div>
+        <div class="float-right mt-3">
+          <button type="button" (click)="deleteReview(r)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
+            Delete</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
+<ng-template #caregiverBlock>
+  <div class="col-sm-12 col-md-6">
+    <h2 class="mb-md-4 mb-sm-3 mb-3">Your Reviews</h2>
+    <div class="alert alert-info" *ngIf="!reviews$ || reviews$.length === 0">
+      No Reviews
+    </div>
+    <div class="card my-3" *ngFor="let r of reviews$">
+      <div class="card-body">
+        <h5 class="card-title text-break">{{r.reviewTitle}}</h5>
+        <div class="float-left" style="width: 70%">
+          <i>{{r.reviewDate}}</i>
+        </div>
+        <div class="float-right text-right" style="width: 28%;">
+          <span *ngFor="let s of getStartRatingsArray(r.starRating)">
+            <i *ngIf="!s" class="far fa-star"></i>
+            <i *ngIf="s" class="fas fa-star"></i>
+          </span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="text-break">{{r.reviewNotes}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

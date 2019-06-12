@@ -1,5 +1,7 @@
 <div class="d-none d-md-block">
-  <div class="sidebar-logo">Symbii</div>
+  <div class="sidebar-logo">Symbii
+    <p style="font-size: 1rem;font-weight: bold;color: blue;" class="">{{loggedInUserType == 1 ? 'Parent' : 'Caregiver'}}</p>
+  </div>
   <div class="sidebar-content">
     <ul class="left-hand-list">
       <li><a [routerLink]="['/profile']"><i class="fas fa-user-circle"></i> My Profile</a></li>
