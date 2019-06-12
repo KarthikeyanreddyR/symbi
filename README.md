@@ -21,8 +21,9 @@
 8. Will there be a background check / verification for nannies?
 9. It will be great if the system has a way of verifying the qualifications?
 10. How will you vet the caregiver?
-    * *We do not have an FBI or State sponsored childcare background check.*
-    * *Our v1 intention is for parents to use this tool to schedule existing nannies.*
+    * *This is beyond the scope of the assignment*
+        * *We do not have an FBI or State sponsored childcare background check.*
+        * *Our v1 intention is for parents to use this tool to schedule existing nannies.*
 ##### Rating the Nannies
 1. Is there a way to rate the nannies?
 2. Allow Child to Give feedback about the nanny without Parent's consent:
@@ -33,6 +34,7 @@
     * **Yes. Reviews**
     * [Symbii Reviews](http://symbii-dev.azurewebsites.net/#/review/)
     * `http://symbii-dev.azurewebsites.net/#/review`
+    * *Requires valid login to view private reviews*
 
 ---
 
