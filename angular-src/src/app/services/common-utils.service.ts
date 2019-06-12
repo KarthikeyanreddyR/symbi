@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { UserType } from '../shared/models/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,17 @@ export class CommonUtilsService {
 
   changeSignedInUser(user: any) {
     this.signedInUser.next(user);
+  }
+
+
+  /**
+  * Store logged in user type. Parent or caregiver
+  */
+  private signedInUserType = new BehaviorSubject<UserType>(null);
+  signedInUserType$ = this.signedInUserType.asObservable();
+
+  changesignedInUserType(userType: UserType) {
+    this.signedInUserType.next(userType);
   }
 
   /**

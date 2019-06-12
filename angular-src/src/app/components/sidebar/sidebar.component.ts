@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonUtilsService } from 'src/app/services/common-utils.service';
+import { UserType } from 'src/app/shared/models/enums';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  loggedInUserType: UserType;
+
+  constructor(private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
+    this.commonUtilsService.signedInUserType$.subscribe((res: UserType) => {
+      this.loggedInUserType = res
+    }, err => {
+      // error handling
+    })
   }
 
 }

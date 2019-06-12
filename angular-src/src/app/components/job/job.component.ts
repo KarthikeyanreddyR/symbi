@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobService } from 'src/app/services/job.service';
 import { CommonUtilsService } from 'src/app/services/common-utils.service';
 import { Subscription } from 'rxjs';
-import { JobType, JobStatus } from 'src/app/shared/models/enums';
+import { JobType, JobStatus, UserType } from 'src/app/shared/models/enums';
 
 declare var $: any;
 @Component({
@@ -15,33 +15,53 @@ export class JobComponent implements OnInit {
   private subscription: Subscription = new Subscription();
 
   private loggedInUser: any;
+  private loggedInUserType: UserType;
 
   jobs$: any;
 
   fetchError: boolean;
 
   constructor(private jobService: JobService, private commonUtilsService: CommonUtilsService) {
+
+  }
+
+  ngOnInit() {
     this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(res => {
-      this.loggedInUser = res
+      this.loggedInUser = res;
+      this.subscription.add(this.commonUtilsService.signedInUserType$.subscribe((res: UserType) => {
+        this.loggedInUserType = res;
+        this.fetchData();
+      }, err => {
+        // error handling
+      }));
     }, err => {
       // error handling
     }));
-   }
-
-  ngOnInit() {
-    this.fetchData();
   }
 
   public fetchData() {
-    this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(res => {
-      if(res.success) {
-        this.jobs$ = res.data;
-      }
-    }, err => {
-      // error handling
-      console.log(err);
-      this.fetchError = true;
-    })
+    console.log(this.loggedInUserType);
+    if (this.loggedInUserType == UserType.PARENT) {
+      this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(res => {
+        if (res.success) {
+          this.jobs$ = res.data;
+        }
+      }, err => {
+        // error handling
+        console.log(err);
+        this.fetchError = true;
+      });
+    } else if (this.loggedInUserType == UserType.CAREGIVER) {
+      this.jobService.getJobsForUser(this.loggedInUser['_id']).then(res => {
+        if (res.success) {
+          this.jobs$ = res.data;
+        }
+      }, err => {
+        // error handling
+        console.log(err);
+        this.fetchError = true;
+      });
+    }
   }
 
   ngOnDestroy(): void {

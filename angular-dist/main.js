@@ -717,30 +717,49 @@ __webpack_require__.r(__webpack_exports__);
 
 var JobComponent = /** @class */ (function () {
     function JobComponent(jobService, commonUtilsService) {
-        var _this = this;
         this.jobService = jobService;
         this.commonUtilsService = commonUtilsService;
         this.subscription = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
+    }
+    JobComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.subscription.add(this.commonUtilsService.signedInUser$.subscribe(function (res) {
             _this.loggedInUser = res;
+            _this.subscription.add(_this.commonUtilsService.signedInUserType$.subscribe(function (res) {
+                _this.loggedInUserType = res;
+                _this.fetchData();
+            }, function (err) {
+                // error handling
+            }));
         }, function (err) {
             // error handling
         }));
-    }
-    JobComponent.prototype.ngOnInit = function () {
-        this.fetchData();
     };
     JobComponent.prototype.fetchData = function () {
         var _this = this;
-        this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(function (res) {
-            if (res.success) {
-                _this.jobs$ = res.data;
-            }
-        }, function (err) {
-            // error handling
-            console.log(err);
-            _this.fetchError = true;
-        });
+        console.log(this.loggedInUserType);
+        if (this.loggedInUserType == src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["UserType"].PARENT) {
+            this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(function (res) {
+                if (res.success) {
+                    _this.jobs$ = res.data;
+                }
+            }, function (err) {
+                // error handling
+                console.log(err);
+                _this.fetchError = true;
+            });
+        }
+        else if (this.loggedInUserType == src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["UserType"].CAREGIVER) {
+            this.jobService.getJobsForUser(this.loggedInUser['_id']).then(function (res) {
+                if (res.success) {
+                    _this.jobs$ = res.data;
+                }
+            }, function (err) {
+                // error handling
+                console.log(err);
+                _this.fetchError = true;
+            });
+        }
     };
     JobComponent.prototype.ngOnDestroy = function () {
         //Called once, before the instance is destroyed.
@@ -972,6 +991,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/common-utils.service */ "./src/app/services/common-utils.service.ts");
+/* harmony import */ var src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/models/enums */ "./src/app/shared/models/enums.ts");
+
 
 
 
@@ -1006,8 +1027,10 @@ var LandingPageComponent = /** @class */ (function () {
     LandingPageComponent.prototype.openDashboard = function (userType) {
         if (userType === 0) {
             this.router.navigate(['/dashboard/parent']);
+            this.commonUtilsService.changesignedInUserType(src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["UserType"].PARENT);
         }
         else if (userType === 1) {
+            this.commonUtilsService.changesignedInUserType(src_app_shared_models_enums__WEBPACK_IMPORTED_MODULE_5__["UserType"].CAREGIVER);
             this.router.navigate(['/dashboard/caregiver']);
         }
         else {
@@ -1843,7 +1866,7 @@ module.exports = "#dashboard-sidebar {\r\n  margin: 1px 0 0 0;\r\n  padding: 1px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"d-none d-md-block\">\r\n  <div class=\"sidebar-logo\">Symbii</div>\r\n  <div class=\"sidebar-content\">\r\n    <ul class=\"left-hand-list\">\r\n      <li><a [routerLink]=\"['/profile']\"><i class=\"fas fa-user-circle\"></i> My Profile</a></li>\r\n      <li><a [routerLink]=\"['/jobs']\"><i class=\"fas fa-suitcase\"></i> Jobs</a></li>\r\n      <li><a [routerLink]=\"['/review']\"><i class=\"fas fa-comment\"></i> Reviews</a></li>\r\n      <li><a [routerLink]=\"['/caregivers']\"><i class=\"fas fa-child\"></i> Caregivers</a></li>\r\n      <!-- <li><i class=\"fab fa-paypal\"></i> Payments</li>\r\n      <li><i class=\"fas fa-cog\"></i> Account Settings</li> -->\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"d-none d-md-block\">\r\n  <div class=\"sidebar-logo\">Symbii</div>\r\n  <div class=\"sidebar-content\">\r\n    <ul class=\"left-hand-list\">\r\n      <li><a [routerLink]=\"['/profile']\"><i class=\"fas fa-user-circle\"></i> My Profile</a></li>\r\n      <li><a [routerLink]=\"['/jobs']\"><i class=\"fas fa-suitcase\"></i> Jobs</a></li>\r\n      <li><a [routerLink]=\"['/review']\"><i class=\"fas fa-comment\"></i> Reviews</a></li>\r\n      <li *ngIf=\"loggedInUserType == 1\"><a [routerLink]=\"['/caregivers']\"><i class=\"fas fa-child\"></i> Caregivers</a></li>\r\n      <!-- <li><i class=\"fab fa-paypal\"></i> Payments</li>\r\n      <li><i class=\"fas fa-cog\"></i> Account Settings</li> -->\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1859,12 +1882,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SidebarComponent", function() { return SidebarComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/common-utils.service */ "./src/app/services/common-utils.service.ts");
+
 
 
 var SidebarComponent = /** @class */ (function () {
-    function SidebarComponent() {
+    function SidebarComponent(commonUtilsService) {
+        this.commonUtilsService = commonUtilsService;
     }
     SidebarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.commonUtilsService.signedInUserType$.subscribe(function (res) {
+            _this.loggedInUserType = res;
+        }, function (err) {
+            // error handling
+        });
     };
     SidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1872,7 +1904,7 @@ var SidebarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./sidebar.component.html */ "./src/app/components/sidebar/sidebar.component.html"),
             styles: [__webpack_require__(/*! ./sidebar.component.css */ "./src/app/components/sidebar/sidebar.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_common_utils_service__WEBPACK_IMPORTED_MODULE_2__["CommonUtilsService"]])
     ], SidebarComponent);
     return SidebarComponent;
 }());
@@ -2064,6 +2096,11 @@ var CommonUtilsService = /** @class */ (function () {
         this.signedInUser = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
         this.signedInUser$ = this.signedInUser.asObservable();
         /**
+        * Store logged in user type. Parent or caregiver
+        */
+        this.signedInUserType = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+        this.signedInUserType$ = this.signedInUserType.asObservable();
+        /**
          * Store caregiver info between components
          */
         this.scheduleCaregiver = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
@@ -2087,6 +2124,9 @@ var CommonUtilsService = /** @class */ (function () {
     };
     CommonUtilsService.prototype.changeSignedInUser = function (user) {
         this.signedInUser.next(user);
+    };
+    CommonUtilsService.prototype.changesignedInUserType = function (userType) {
+        this.signedInUserType.next(userType);
     };
     CommonUtilsService.prototype.setCaregiver = function (caregiver) {
         this.scheduleCaregiver.next(caregiver);

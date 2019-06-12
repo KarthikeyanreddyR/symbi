@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { CommonUtilsService } from 'src/app/services/common-utils.service';
+import { UserType } from 'src/app/shared/models/enums';
 
 declare var $: any;
 @Component({
@@ -36,7 +37,9 @@ export class LandingPageComponent implements OnInit {
   public openDashboard(userType: number) {
     if (userType === 0) {
       this.router.navigate(['/dashboard/parent']);
+      this.commonUtilsService.changesignedInUserType(UserType.PARENT);
     } else if (userType === 1) {
+      this.commonUtilsService.changesignedInUserType(UserType.CAREGIVER);
       this.router.navigate(['/dashboard/caregiver']);
     } else {
       // no option
