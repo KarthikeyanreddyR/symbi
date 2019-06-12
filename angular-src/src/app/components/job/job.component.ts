@@ -33,7 +33,7 @@ export class JobComponent implements OnInit {
   }
 
   public fetchData() {
-    this.jobService.getAllJobsForUser(this.loggedInUser['_id']).then(res => {
+    this.jobService.getAllJobsByUser(this.loggedInUser['_id']).then(res => {
       if(res.success) {
         this.jobs$ = res.data;
       }
