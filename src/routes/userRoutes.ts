@@ -24,6 +24,7 @@ class UserRoutes {
         this.init();
     }
 
+    // Redirect URL Function
     private getRedirectUrl(req: Request): string {
         let _originUrl = req.get('origin');
         let _host = req.get('host');
