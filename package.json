@@ -4,9 +4,9 @@
   "description": "Child care planner",
   "main": "dist/server.js",
   "scripts": {
-    "startlocal": "tsnd --respawn --transpileOnly src/server.ts",
+    "start": "tsnd --respawn --transpileOnly src/server.ts",
     "build": "tsc -p .",
-    "testlocal": "mocha src/tests/"
+    "tests": "mocha src/tests/"
   },
   "author": "Vic, Tejas, Valerio, Karthikeyan",
   "license": "ISC",
